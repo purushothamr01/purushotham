@@ -163,7 +163,161 @@ footer {
   margin-top: 8px;
 }
 
-  
+  .banner {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  filter: brightness(0.85);
+}
+
+.banner:hover img {
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.banner-overlay h2 {
+  font-size: 2.8rem;
+  margin: 0;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+.banner-overlay p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -70%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+.about-section {
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0e75b6, #020617);
+  color: #fff;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.about-card h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #00fff0;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+}
+
+.about-card p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 10px 0;
+  color: #e0e0e0;
+}
+
+  .skills-section {
+  padding: 80px 20px;
+  background: #020617;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.skills-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.skills-card h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #00fff0;
+  text-align: center;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+}
+
+.skill {
+  margin-bottom: 20px;
+}
+
+.skill-name {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: #00fff0;
+  border-radius: 10px;
+  transition: width 1.5s ease-in-out;
+}
+
   
 </style>
 </head>
@@ -183,12 +337,19 @@ footer {
 
 <!-- BANNER -->
 <section class="banner center">
-  <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
+  <div class="banner-container">
+    <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true" alt="Teal & Black Banner">
+    <div class="banner-overlay">
+      <h2>Hello, I'm Purushotham R</h2>
+      <p>Farmer 🌾 | ECE Engineer | Security Researcher</p>
+    </div>
+  </div>
 </section>
 
+
 <!-- ABOUT -->
-<section>
-  <div class="card">
+<section class="about-section center">
+  <div class="about-card">
     <h2>🧠 About Me</h2>
     <p>🌾 Farmer by roots, technologist by passion</p>
     <p>🎓 Electronics & Communication Engineer</p>
@@ -196,6 +357,7 @@ footer {
     <p>📄 Ethical, reproducible & responsible disclosures</p>
   </div>
 </section>
+
 
 <!-- SOCIALS -->
 <section class="center socials">
@@ -207,27 +369,32 @@ footer {
 </section>
 
 <!-- SKILLS -->
-<section>
-  <div class="card">
+<section class="skills-section center">
+  <div class="skills-card">
     <h2>📊 Technical Expertise</h2>
 
-    <div class="skill">API Security
+    <div class="skill">
+      <span class="skill-name">API Security</span>
       <div class="bar"><span data-width="70%"></span></div>
     </div>
 
-    <div class="skill">JavaScript Security
+    <div class="skill">
+      <span class="skill-name">JavaScript Security</span>
       <div class="bar"><span data-width="75%"></span></div>
     </div>
 
-    <div class="skill">Linux & Bash
+    <div class="skill">
+      <span class="skill-name">Linux & Bash</span>
       <div class="bar"><span data-width="75%"></span></div>
     </div>
 
-    <div class="skill">Python
+    <div class="skill">
+      <span class="skill-name">Python</span>
       <div class="bar"><span data-width="70%"></span></div>
     </div>
   </div>
 </section>
+
 
 <footer>
   © 2026 Purushotham — Security Researcher
@@ -315,8 +482,7 @@ gsap.utils.toArray(".socials img").forEach(icon => {
   const roles = [
     "Security Researcher",
     "ECE Engineer",
-    "Bug Bounty Hunter",
-    "DevOps Enthusiast"
+    "🌾 Farmer"
   ];
 
   let roleIndex = 0;
@@ -355,5 +521,28 @@ gsap.utils.toArray(".socials img").forEach(icon => {
 </script>
 
 
+<script>
+const skills = document.querySelectorAll('.bar span');
+
+function animateSkills() {
+  const triggerPoint = window.innerHeight * 0.8;
+
+  skills.forEach(bar => {
+    const barTop = bar.getBoundingClientRect().top;
+
+    if(barTop < triggerPoint) {
+      bar.style.width = bar.getAttribute('data-width');
+    }
+  });
+}
+
+// Animate on scroll
+window.addEventListener('scroll', animateSkills);
+
+// Animate on page load (if section already in view)
+animateSkills();
+</script>
+
+  
 </body>
 </html>
