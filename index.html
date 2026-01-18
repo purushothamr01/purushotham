@@ -5,231 +5,238 @@
 <title>Purushotham | Security Researcher</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --cyan:#38bdf8;
-  --bg:#020617;
-  --card:#020617dd;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
+:root {
+  --primary: #38bdf8;
+  --accent: #0e75b6;
+  --bg: #0b0f14;
+  --card: rgba(17,24,39,.75);
+  --text: #e6edf3;
+  --muted: #9ba3af;
+  --border: rgba(255,255,255,.08);
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:black;
-  color:var(--text);
-  font-family:'Fira Code',monospace;
-  overflow-x:hidden;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Fira Code', monospace;
 }
 
-/* MATRIX */
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:-1;
+body {
+  background: radial-gradient(circle at top, #0e1624, var(--bg));
+  color: var(--text);
+  overflow-x: hidden;
 }
 
-/* LAYOUT */
-section{padding:80px 8%}
-.center{text-align:center}
-
-/* GLITCH */
-.glitch{
-  font-size:3rem;
-  color:var(--cyan);
-  text-shadow:2px 0 red,-2px 0 cyan;
+section {
+  padding: 90px 10%;
 }
 
-/* TERMINAL */
-.terminal{
-  background:var(--card);
-  border:1px solid var(--cyan);
-  padding:25px;
-  border-radius:14px;
-  box-shadow:0 0 30px rgba(56,189,248,.35);
-  margin-top:30px;
+.center { text-align: center; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--primary), #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.typing {
+  font-size: 1.1rem;
+  margin-top: 14px;
+  color: var(--muted);
 }
 
 /* BANNER */
-.banner{
-  max-width:900px;
-  width:100%;
-  border-radius:16px;
-  margin-top:30px;
-  box-shadow:0 0 50px rgba(56,189,248,.4);
+.banner img {
+  width: 90%;
+  max-width: 920px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 60px rgba(0,0,0,.6);
+  animation: float 7s ease-in-out infinite;
 }
 
-/* ANIME */
-.anime{
-  width:220px;
-  filter:drop-shadow(0 0 30px cyan);
-  animation:float 6s ease-in-out infinite;
-}
-@keyframes float{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-15px)}
-  100%{transform:translateY(0)}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
 }
 
-/* LINKS */
-a{color:var(--cyan);text-decoration:none}
-a:hover{text-shadow:0 0 10px cyan}
+/* CARDS */
+.card {
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  padding: 36px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(0,0,0,.5);
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* SOCIALS */
+.socials a img {
+  width: 34px;
+  margin: 14px;
+  filter: invert(1) opacity(.75);
+  transition: .3s;
+}
+
+.socials a img:hover {
+  transform: translateY(-4px) scale(1.15);
+  filter: drop-shadow(0 0 12px var(--primary));
+}
 
 /* SKILLS */
-.skill{margin:15px 0}
-.bar{
-  height:8px;
-  background:#0f172a;
-  border-radius:10px;
-  overflow:hidden;
+.skill {
+  margin-bottom: 22px;
+  font-size: .95rem;
 }
-.bar span{
-  display:block;
-  height:100%;
-  background:linear-gradient(90deg,cyan,#22d3ee);
-  width:0;
-  transition:2s;
+
+.bar {
+  height: 10px;
+  background: #1f2933;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  transition: width 2s ease;
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* FOOTER */
-footer{
-  padding:30px;
-  text-align:center;
-  color:var(--muted);
-  border-top:1px solid #0f172a;
+footer {
+  padding: 40px;
+  text-align: center;
+  font-size: .85rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
-
 <!-- HERO -->
-<section class="center">
-  <h1 class="glitch">Purushotham</h1>
-  <p id="typing"></p>
+<section class="hero center">
+  <h1>Purushotham</h1>
+  <div class="typing" id="typing"></div>
+</section>
 
-  <img class="banner"
-  src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
-
-  <!-- Anime Hacker Character -->
-  <div>
-    <img class="anime"
-    src="https://raw.githubusercontent.com/ashishps1/awesome-leetcode-resources/main/assets/hacker-anime.png"
-    alt="anime hacker">
-  </div>
+<!-- BANNER -->
+<section class="banner center reveal">
+  <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
 </section>
 
 <!-- ABOUT -->
-<section>
-<div class="terminal">
-<pre>
-> whoami
-Farmer 🌾 | ECE Engineer | Security Researcher
-
-> mission
-Recon → Exploit → Impact → Report
-
-> ethics
-Responsible disclosure. Real-world impact.
-</pre>
-</div>
+<section class="reveal">
+  <div class="card">
+    <h2>🧠 About Me</h2>
+    <p>🌾 Rooted in agriculture, driven by technology</p>
+    <p>🎓 Electronics & Communication Engineer</p>
+    <p>⚔️ Methodology: Recon → Exploit → Impact → Report</p>
+    <p>📄 Clear, ethical & reproducible vulnerability disclosures</p>
+  </div>
 </section>
 
-<!-- OSINT / DARK WEB VIBE -->
-<section>
-<div class="terminal">
-<h2>🕶️ OSINT / DARK WEB OPERATIONS</h2>
-<pre>
-• GitHub Recon & Secret Hunting
-• JavaScript Source Mapping
-• API Abuse & Auth Bypass
-• Android / Mobile Attack Surface
-• Infrastructure Fingerprinting
-</pre>
-</div>
+<!-- SOCIALS -->
+<section class="center reveal socials">
+  <a href="mailto:purubughunting@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
+  <a href="https://medium.com/@purushothamr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
+  <a href="https://twitter.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg"></a>
+  <a href="https://linkedin.com/in/purushothamr06"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
+  <a href="https://github.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
 </section>
 
 <!-- SKILLS -->
-<section>
-<div class="terminal">
-<h2>🧪 Skills</h2>
+<section class="reveal">
+  <div class="card">
+    <h2>📊 Technical Expertise</h2>
 
-<div class="skill">API Security
-<div class="bar"><span data="75%"></span></div></div>
+    <div class="skill">API Security
+      <div class="bar"><span data-width="80%"></span></div>
+    </div>
 
-<div class="skill">JavaScript Security
-<div class="bar"><span data="70%"></span></div></div>
+    <div class="skill">JavaScript Security
+      <div class="bar"><span data-width="75%"></span></div>
+    </div>
 
-<div class="skill">Linux & Bash
-<div class="bar"><span data="70%"></span></div></div>
+    <div class="skill">Linux & Bash
+      <div class="bar"><span data-width="75%"></span></div>
+    </div>
 
-<div class="skill">Python
-<div class="bar"><span data="70%"></span></div></div>
-</div>
-</section>
-
-<!-- BLOGS -->
-<section>
-<div class="terminal">
-<h2>📰 Latest Research (Auto-synced)</h2>
-<div id="blogs">Fetching Medium feed…</div>
-</div>
+    <div class="skill">Python
+      <div class="bar"><span data-width="70%"></span></div>
+    </div>
+  </div>
 </section>
 
 <footer>
-© 2026 Purushotham — Offensive Security Researcher
+  © 2026 Purushotham — Security Researcher
 </footer>
 
 <script>
-/* MATRIX */
-const c=document.getElementById("matrix");
-const ctx=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-const chars="01";
-const size=14;
-const cols=c.width/size;
-const drops=Array(cols).fill(1);
+/* Typing */
+const text = "Farmer 🌾 | ECE Engineer | Security Researcher";
+let i = 0;
+const typingEl = document.getElementById("typing");
 
-setInterval(()=>{
-ctx.fillStyle="rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,c.width,c.height);
-ctx.fillStyle="#38bdf8";
-ctx.font=size+"px monospace";
-drops.forEach((y,i)=>{
-const t=chars[Math.random()*2|0];
-ctx.fillText(t,i*size,y*size);
-if(y*size>c.height&&Math.random()>0.975)drops[i]=0;
-drops[i]++;
-});
-},35);
+(function type() {
+  if (i < text.length) {
+    typingEl.innerHTML += text.charAt(i++);
+    setTimeout(type, 80);
+  }
+})();
 
-/* TYPING */
-const text="Farmer 🌾 | ECE Engineer | Security Researcher";
-let i=0;
-(function type(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text[i++];
-setTimeout(type,70);
-}})();
+/* Scroll Animations */
+const reveals = document.querySelectorAll(".reveal");
+const bars = document.querySelectorAll(".bar span");
 
-/* SKILLS */
-window.addEventListener("scroll",()=>{
-document.querySelectorAll(".bar span").forEach(b=>{
-b.style.width=b.getAttribute("data");
-});
-});
+window.addEventListener("scroll", () => {
+  reveals.forEach(r => {
+    if (r.getBoundingClientRect().top < window.innerHeight - 120)
+      r.classList.add("active");
+  });
 
-/* MEDIUM RSS */
-fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@purushothamr")
-.then(r=>r.json())
-.then(d=>{
-document.getElementById("blogs").innerHTML=
-d.items.slice(0,5).map(p=>`▸ <a target="_blank" href="${p.link}">${p.title}</a>`).join("<br>");
+  bars.forEach(b => b.style.width = b.dataset.width);
 });
 </script>
 
