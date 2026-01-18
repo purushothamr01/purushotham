@@ -318,6 +318,36 @@ footer {
   transition: width 1.5s ease-in-out;
 }
 
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 50px 0;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icon img {
+  width: 100%;
+  height: 100%;
+  filter: invert(100%) brightness(1.2);
+  transition: filter 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 10px #00fff0);
+}
+
+.social-icon:hover img {
+  filter: invert(55%) sepia(100%) saturate(500%) hue-rotate(150deg);
+}
+
   
 </style>
 </head>
@@ -329,7 +359,7 @@ footer {
   <h1 id="welcome" class="welcome">Welcome</h1>
 
   <div id="mainContent" class="hidden">
-    <h1>Purushotham R</h1>
+    <h1>Hello, I'm Purushotham R</h1>
     <div class="typing" id="typing"></div>
   </div>
 </section>
@@ -340,7 +370,7 @@ footer {
   <div class="banner-container">
     <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true" alt="Teal & Black Banner">
     <div class="banner-overlay">
-      <h2>Hello, I'm Purushotham R</h2>
+      <h2></h2>
       <p>Farmer 🌾 | ECE Engineer | Security Researcher</p>
     </div>
   </div>
@@ -353,20 +383,30 @@ footer {
     <h2>🧠 About Me</h2>
     <p>🌾 Farmer by roots, technologist by passion</p>
     <p>🎓 Electronics & Communication Engineer</p>
-    <p>⚔️ Recon → Exploit → Impact → Report</p>
-    <p>📄 Ethical, reproducible & responsible disclosures</p>
+
   </div>
 </section>
 
 
 <!-- SOCIALS -->
 <section class="center socials">
-  <a href="mailto:purubughunting@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
-  <a href="https://medium.com/@purushothamr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
-  <a href="https://twitter.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg"></a>
-  <a href="https://linkedin.com/in/purushothamr06"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
-  <a href="https://github.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
+  <a href="mailto:purubughunting@gmail.com" class="social-icon" target="_blank">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" alt="Gmail">
+  </a>
+  <a href="https://medium.com/@purushothamr" class="social-icon" target="_blank">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg" alt="Medium">
+  </a>
+  <a href="https://twitter.com/purushothamr01" class="social-icon" target="_blank">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X/Twitter">
+  </a>
+  <a href="https://linkedin.com/in/purushothamr06" class="social-icon" target="_blank">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
+  </a>
+  <a href="https://github.com/purushothamr01" class="social-icon" target="_blank">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
+  </a>
 </section>
+
 
 <!-- SKILLS -->
 <section class="skills-section center">
@@ -397,7 +437,7 @@ footer {
 
 
 <footer>
-  © 2026 Purushotham — Security Researcher
+  © 2026 Purushotham R — Security Researcher
 </footer>
 
 <script>
