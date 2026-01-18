@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Purushotham | Security Researcher</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fira Code Font -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- PyScript for Python Integration -->
+<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
 <style>
 :root{
   --bg:#05070d;
@@ -13,147 +20,94 @@
   --text:#e5e7eb;
   --muted:#9ca3af;
 }
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-  background:radial-gradient(circle at top,var(--panel),var(--bg));
-  color:var(--text);
   font-family:"Fira Code",monospace;
   line-height:1.6;
+  background: radial-gradient(circle at top, var(--panel), var(--bg));
+  color: var(--text);
   scroll-behavior:smooth;
 }
-section{
-  max-width:1100px;
-  margin:auto;
-  padding:70px 20px;
-}
-h2{
-  color:var(--accent);
-  margin-bottom:25px;
-  font-size:1.8rem;
-}
-.hero{
-  text-align:center;
-  padding:90px 20px 40px;
-  position:relative;
-}
-.hero img{
-  max-width:100%;
-  border-radius:16px;
-  animation: fadeIn 2s ease forwards;
-  opacity:0;
-}
-@keyframes fadeIn{
-  to{opacity:1;}
-}
-.abstract{
-  display:flex;
-  justify-content:center;
-  margin:40px 0;
-  animation: float 5s ease-in-out infinite alternate;
-}
-.abstract img{
-  width:220px;
-  opacity:.85;
-}
-@keyframes float{
-  0%{transform: translateY(0px);}
-  100%{transform: translateY(-20px);}
-}
+a{color:inherit;text-decoration:none;}
+section{max-width:1100px;margin:auto;padding:70px 20px;}
+h2{color:var(--accent);margin-bottom:25px;font-size:2rem;}
+
+/* Hero */
+.hero{text-align:center;padding:90px 20px 40px;position:relative;}
+#typing{font-size:2rem;display:inline-block;opacity:0;}
+
+/* Abstract Image */
+.abstract{display:flex;justify-content:center;margin:40px 0;animation: float 5s ease-in-out infinite alternate;}
+.abstract img{width:220px;opacity:.85;}
+@keyframes float{0%{transform: translateY(0px);}100%{transform: translateY(-20px);}}
+
+/* Panel */
 .panel{
-  background:rgba(15,23,42,.85);
-  border-radius:16px;
+  background: rgba(15,23,42,.85);
+  border-radius: 16px;
   padding:30px;
-  box-shadow:0 0 40px rgba(14,117,182,.15);
-  opacity:0;
-  transform: translateY(20px);
-  animation: fadeUp 1s forwards;
-  animation-delay:0.3s;
-}
-@keyframes fadeUp{
-  to{opacity:1; transform:translateY(0);}
-}
-.socials a{
-  margin:10px;
-  display:inline-block;
-  color:white;
-  text-decoration:none;
-  border-bottom:2px solid transparent;
-  transition:.3s;
-}
-.socials a:hover{border-color:var(--accent);transform:scale(1.1);}
-.timeline{
-  border-left:2px solid var(--accent);
-  padding-left:25px;
-}
-.timeline-item{
-  margin-bottom:30px;
-  opacity:0;
-  transform:translateX(-20px);
-  animation: slideIn 1s forwards;
-}
-.timeline-item:nth-child(1){animation-delay:0.2s;}
-.timeline-item:nth-child(2){animation-delay:0.4s;}
-.timeline-item:nth-child(3){animation-delay:0.6s;}
-@keyframes slideIn{
-  to{opacity:1; transform:translateX(0);}
-}
-.hof{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
-}
-.hof-card{
-  background:#0b1220;
-  padding:25px;
-  border-radius:14px;
-  transition:.3s;
-}
-.hof-card:hover{
-  box-shadow:0 0 30px rgba(14,117,182,.3);
-  transform:translateY(-6px);
-}
-.medium-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:25px;
-}
-.medium-card{
-  background:#0b1220;
-  padding:25px;
-  border-radius:16px;
-  transition:.3s;
+  box-shadow: 0 0 40px rgba(14,117,182,.15);
   opacity:0;
   transform:translateY(20px);
+  animation: fadeUp 1s forwards 0.3s;
 }
+@keyframes fadeUp{to{opacity:1; transform:translateY(0);}}
+
+/* Social Icons */
+.socials{text-align:center;margin:30px 0;}
+.socials a{
+  display:inline-block;
+  margin:0 15px;
+  width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  background:#0b1220;
+  border-radius:50%;
+  transition:.3s;
+}
+.socials a:hover{transform:scale(1.2);box-shadow:0 0 20px var(--accent);}
+.socials img{width:22px;height:22px;filter:invert(1);}
+
+/* Timeline */
+.timeline{border-left:2px solid var(--accent);padding-left:25px;}
+.timeline-item{margin-bottom:30px;opacity:0;transform:translateX(-20px);}
+.timeline-item:nth-child(1){animation:slideIn 1s forwards 0.2s;}
+.timeline-item:nth-child(2){animation:slideIn 1s forwards 0.4s;}
+.timeline-item:nth-child(3){animation:slideIn 1s forwards 0.6s;}
+@keyframes slideIn{to{opacity:1;transform:translateX(0);}}
+
+/* HOF */
+.hof{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.hof-card{background:#0b1220;padding:25px;border-radius:14px;transition:.3s;opacity:0;transform:translateY(20px);}
+.hof-card:hover{transform:translateY(-8px);box-shadow:0 0 40px rgba(14,117,182,.4);}
+.hof-card:nth-child(1){animation:fadeUp 1s forwards 0.2s;}
+.hof-card:nth-child(2){animation:fadeUp 1s forwards 0.4s;}
+.hof-card:nth-child(3){animation:fadeUp 1s forwards 0.6s;}
+
+/* Medium Blogs */
+.medium-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
+.medium-card{background:#0b1220;padding:25px;border-radius:16px;opacity:0;transform:translateY(20px);transition:.3s;}
+.medium-card:hover{transform:translateY(-8px);box-shadow:0 0 40px rgba(14,117,182,.4);}
 .medium-card:nth-child(1){animation:fadeUp 1s forwards 0.2s;}
 .medium-card:nth-child(2){animation:fadeUp 1s forwards 0.4s;}
 .medium-card:nth-child(3){animation:fadeUp 1s forwards 0.6s;}
-.medium-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 40px rgba(14,117,182,.4);
-}
-.medium-card a{color:var(--accent); text-decoration:none;}
-footer{
-  text-align:center;
-  padding:30px;
-  color:var(--muted);
-  font-size:.85rem;
-}
+
+/* Footer */
+footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;}
 </style>
 </head>
 <body>
 
 <!-- HERO -->
 <div class="hero">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&duration=3000&pause=500&color=FFFFFF&center=true&vCenter=true&width=900&lines=Farmer+🌾+|+ECE+Engineer+|+Security+Researcher" alt="Typing Hero">
+  <span id="typing"></span>
 </div>
 
-<!-- ABSTRACT IMAGE -->
+<!-- Abstract Image -->
 <div class="abstract">
   <img src="Orange Aesthetic Desktop Wallpaper.png" alt="abstract security symbol">
 </div>
 
-<!-- ABOUT -->
+<!-- About -->
 <section>
 <div class="panel">
 <h2>🧠 About Me</h2>
@@ -166,19 +120,21 @@ footer{
 </div>
 </section>
 
-<!-- CONNECT -->
+<!-- Social Media -->
 <section>
-<h2>🔗 Connect</h2>
+<h2>🔗 Connect With Me</h2>
 <div class="socials">
-<a href="mailto:purubughunting@gmail.com">Email</a>
-<a href="https://medium.com/@purushothamr">Medium</a>
-<a href="https://twitter.com/purushothamr01">X</a>
-<a href="https://linkedin.com/in/purushothamr06">LinkedIn</a>
-<a href="https://github.com/purushothamr01">GitHub</a>
+<a href="mailto:purubughunting@gmail.com" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
+<a href="https://github.com/purushothamr01" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
+<a href="https://linkedin.com/in/purushothamr06" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linked-in-alt.svg"></a>
+<a href="https://twitter.com/purushothamr01" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twitter.svg"></a>
+<a href="https://medium.com/@purushothamr" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
+<a href="https://instagram.com/purushothamr06" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"></a>
+<a href="https://t.me/purushothamr06" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/telegram.svg"></a>
 </div>
 </section>
 
-<!-- BUG BOUNTY TIMELINE -->
+<!-- Bug Bounty Timeline -->
 <section>
 <h2>🐞 Bug Bounty Timeline</h2>
 <div class="timeline">
@@ -200,7 +156,7 @@ footer{
 </div>
 </section>
 
-<!-- HOF -->
+<!-- Hall of Fame -->
 <section>
 <h2>🏆 Hall of Fame</h2>
 <div class="hof">
@@ -210,29 +166,15 @@ footer{
 </div>
 </section>
 
-<!-- MEDIUM BLOGS -->
+<!-- Medium Blogs -->
 <section>
 <h2>📰 Medium Write-ups</h2>
-<div class="medium-grid">
-<div class="medium-card">
-<h3>Reading JavaScript Like a Hacker</h3>
-<p>How client-side code leaks real attack paths.</p>
-<a href="https://medium.com/@purushothamr">Read →</a>
-</div>
-<div class="medium-card">
-<h3>XSS in Production</h3>
-<p>Real-world reflected & stored XSS discoveries.</p>
-<a href="https://medium.com/@purushothamr">Read →</a>
-</div>
-<div class="medium-card">
-<h3>GitHub Recon</h3>
-<p>Secrets, endpoints & misconfigurations.</p>
-<a href="https://medium.com/@purushothamr">Read →</a>
-</div>
+<div class="medium-grid" id="medium-blogs">
+<!-- Populated by Python -->
 </div>
 </section>
 
-<!-- SUPPORT -->
+<!-- Support -->
 <section>
 <h2>☕ Support My Work</h2>
 <a href="https://buymeacoffee.com/purushotham" target="_blank">
@@ -243,6 +185,43 @@ footer{
 <footer>
 © 2026 Purushotham — Security Researcher • purushotham.dev
 </footer>
+
+<!-- JS Animations -->
+<script>
+// Typing animation
+const text = "Farmer 🌾 | ECE Engineer | Security Researcher";
+let i = 0;
+function typeWriter(){
+  if(i<text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    document.getElementById("typing").style.opacity = 1;
+    setTimeout(typeWriter,100);
+  }
+}
+typeWriter();
+</script>
+
+<!-- PyScript: Fetch Medium Articles -->
+<py-script>
+import js
+from pyodide.http import pyfetch
+import json
+
+MEDIUM_RSS = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@purushothamr"
+
+async def fetch_medium():
+    response = await pyfetch(MEDIUM_RSS)
+    data = await response.json()
+    container = js.document.getElementById("medium-blogs")
+    for item in data["items"][:3]:
+        div = js.document.createElement("div")
+        div.className = "medium-card"
+        div.innerHTML = f"<h3>{item['title']}</h3><p>{item['description']}</p><a href='{item['link']}' target='_blank'>Read →</a>"
+        container.appendChild(div)
+
+js.window.create_task(fetch_medium())
+</py-script>
 
 </body>
 </html>
