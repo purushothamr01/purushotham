@@ -1,203 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>One Piece Adventure 🌊 | Purushotham</title>
+<meta charset="UTF-8">
+<title>Purushotham | Security Researcher</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    /* ===== Reset & Base ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-    body {
-      overflow-x: hidden;
-      background: linear-gradient(to top, #ffcb00, #f57c00);
-      color: #fff;
-    }
-    a { text-decoration: none; color: inherit; }
+<style>
+:root {
+  --primary: #0e75b6;
+  --bg: #0b0f14;
+  --text: #e6edf3;
+  --muted: #9ba3af;
+}
 
-    /* ===== Header ===== */
-    header {
-      width: 100%;
-      padding: 20px 0;
-      text-align: center;
-      background: rgba(0,0,0,0.5);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-    }
-    header h1 { font-family: 'Press Start 2P', cursive; font-size: 2rem; color: #ffe400; }
-    nav { margin-top: 10px; }
-    nav a { margin: 0 15px; font-weight: bold; transition: 0.3s; }
-    nav a:hover { color: #00f0ff; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Fira Code', monospace;
+}
 
-    /* ===== Animated Background (Clouds, Sun, Waves) ===== */
-    #scene {
-      position: relative;
-      width: 100%;
-      height: 90vh;
-      overflow: hidden;
-    }
-    .cloud {
-      position: absolute;
-      top: 20%;
-      width: 150px;
-      opacity: 0.8;
-      animation: cloudMove 60s linear infinite;
-    }
-    .cloud:nth-child(2) { top: 40%; animation-duration: 80s; opacity: 0.6; }
-    .cloud:nth-child(3) { top: 10%; animation-duration: 100s; opacity: 0.7; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
 
-    @keyframes cloudMove {
-      0% { left: -200px; }
-      100% { left: 110%; }
-    }
+section {
+  padding: 80px 10%;
+}
 
-    .waves {
-      position: absolute;
-      bottom: 0;
-      width: 200%;
-      height: 150px;
-      background: url('https://i.imgur.com/3vR3A9b.png') repeat-x;
-      background-size: contain;
-      animation: waveMove 10s linear infinite;
-      z-index: 1;
-    }
-    @keyframes waveMove { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.center {
+  text-align: center;
+}
 
-    /* ===== Hero Text & Character Animation ===== */
-    #hero-text {
-      position: absolute;
-      top: 30%;
-      width: 100%;
-      text-align: center;
-      z-index: 2;
-    }
-    #hero-text h2 {
-      font-size: 2rem;
-      color: #ffe400;
-      text-shadow: 2px 2px #000;
-      animation: fadeInText 3s ease forwards;
-    }
-    @keyframes fadeInText { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    .character {
-      position: absolute;
-      bottom: 50px;
-      width: 150px;
-      animation: floatCharacter 4s ease-in-out infinite alternate;
-      z-index: 2;
-    }
-    .character:nth-child(1) { left: 10%; }
-    .character:nth-child(2) { left: 35%; animation-delay: 0.5s; }
-    .character:nth-child(3) { left: 60%; animation-delay: 1s; }
-    .character:nth-child(4) { left: 80%; animation-delay: 1.5s; }
+.hero h1 {
+  font-size: 2.4rem;
+  color: var(--primary);
+}
 
-    @keyframes floatCharacter {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-      100% { transform: translateY(0) rotate(0deg); }
-    }
+.typing {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: var(--muted);
+}
 
-    /* ===== Unique Profile Card ===== */
-    #profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 50px 20px;
-      padding: 30px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 25px;
-      backdrop-filter: blur(10px);
-      text-align: center;
-      animation: profileFade 2s ease forwards;
-    }
-    #profile img {
-      width: 200px;
-      border-radius: 50%;
-      border: 5px solid #00f0ff;
-      animation: rotateProfile 20s linear infinite;
-    }
-    #profile h3 { margin: 15px 0; color: #00f0ff; font-size: 1.5rem; }
-    #profile p { font-size: 1rem; color: #fff; }
+/* GIF */
+.banner img {
+  width: 90%;
+  max-width: 900px;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(14,117,182,.4);
+  animation: float 6s ease-in-out infinite;
+}
 
-    @keyframes rotateProfile {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    @keyframes profileFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
 
-    /* ===== Footer ===== */
-    footer {
-      padding: 20px;
-      text-align: center;
-      background: rgba(0,0,0,0.7);
-      font-size: 0.8rem;
-    }
+/* SOCIAL ICONS */
+.socials a img {
+  width: 36px;
+  margin: 12px;
+  transition: transform .3s, filter .3s;
+}
 
-    /* ===== Buttons ===== */
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 20px;
-      background: #00f0ff;
-      color: #000;
-      font-weight: bold;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-    .btn:hover { background: #ffe400; }
-  </style>
+.socials a img:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 10px var(--primary));
+}
+
+/* CARDS */
+.card {
+  background: #111827;
+  padding: 30px;
+  border-radius: 14px;
+  margin-top: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+
+/* SKILLS */
+.skill {
+  margin-bottom: 20px;
+}
+
+.bar {
+  height: 10px;
+  background: #1f2933;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #38bdf8);
+  width: 0;
+  transition: width 2s ease;
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FOOTER */
+footer {
+  padding: 30px;
+  text-align: center;
+  color: var(--muted);
+}
+</style>
 </head>
+
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>One Piece Adventure 🌊</h1>
-    <nav>
-      <a href="#scene">Home</a>
-      <a href="#profile">Profile</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<!-- HERO -->
+<section class="hero center">
+  <h1>Purushotham</h1>
+  <div class="typing" id="typing"></div>
+</section>
 
-  <!-- Animated Hero Section -->
-  <section id="scene">
-    <!-- Clouds -->
-    <img src="https://i.imgur.com/2Zs7K7W.png" class="cloud" />
-    <img src="https://i.imgur.com/2Zs7K7W.png" class="cloud" />
-    <img src="https://i.imgur.com/2Zs7K7W.png" class="cloud" />
+<!-- GIF BANNER -->
+<section class="banner center reveal">
+  <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
+</section>
 
-    <!-- Waves -->
-    <div class="waves"></div>
+<!-- ABOUT -->
+<section class="reveal">
+  <div class="card">
+    <h2>🧠 About Me</h2><br>
+    <p>🌾 Farmer by roots, technologist by passion</p>
+    <p>🎓 Electronics & Communication Engineer</p>
+    <p>⚔️ Recon → Exploit → Impact → Report</p>
+    <p>📄 Clear, reproducible & responsible disclosures</p>
+  </div>
+</section>
 
-    <!-- Hero Text -->
-    <div id="hero-text">
-      <h2>Join the Straw Hat Pirates!</h2>
+<!-- SOCIAL -->
+<section class="center reveal socials">
+  <a href="mailto:purubughunting@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
+  <a href="https://medium.com/@purushothamr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
+  <a href="https://twitter.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg"></a>
+  <a href="https://linkedin.com/in/purushothamr06"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
+  <a href="https://github.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
+</section>
+
+<!-- SKILLS -->
+<section class="reveal">
+  <div class="card">
+    <h2>📊 Skills</h2><br>
+
+    <div class="skill">API Security
+      <div class="bar"><span data-width="75%"></span></div>
     </div>
 
-    <!-- Characters -->
-    <img src="https://i.imgur.com/1uK5X0V.png" class="character" alt="Luffy">
-    <img src="https://i.imgur.com/JgV1Jk3.png" class="character" alt="Zoro">
-    <img src="https://i.imgur.com/qhVtXMn.png" class="character" alt="Nami">
-    <img src="https://i.imgur.com/m1o3i7n.png" class="character" alt="Sanji">
-  </section>
+    <div class="skill">JavaScript Security
+      <div class="bar"><span data-width="70%"></span></div>
+    </div>
 
-  <!-- Unique Profile Section -->
-  <section id="profile">
-    <img src="https://avatars.githubusercontent.com/u/your-avatar.png" alt="Purushotham Profile" />
-    <h3>Purushotham R 🌾 | ECE Engineer & Security Researcher</h3>
-    <p>From a farmer by roots to exploring the world of electronics, coding, and cybersecurity. Join me in my journey of bug bounty, anime, and tech adventures!</p>
-    <a href="mailto:purushothamr01@gmail.com" class="btn">Contact Me</a>
-  </section>
+    <div class="skill">Linux & Bash
+      <div class="bar"><span data-width="70%"></span></div>
+    </div>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2026 Purushotham R | One Piece Fan Site | Made with ❤️
-  </footer>
+    <div class="skill">Python
+      <div class="bar"><span data-width="70%"></span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Purushotham — Security Researcher
+</footer>
+
+<script>
+/* Typing effect */
+const text = "Farmer 🌾 | ECE Engineer | Security Researcher";
+let i = 0;
+function typing() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 80);
+  }
+}
+typing();
+
+/* Scroll reveal */
+const reveals = document.querySelectorAll(".reveal");
+window.addEventListener("scroll", () => {
+  reveals.forEach(r => {
+    const top = r.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) r.classList.add("active");
+  });
+});
+
+/* Skill animation */
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".bar span").forEach(bar => {
+    bar.style.width = bar.dataset.width;
+  });
+});
+</script>
 
 </body>
 </html>
