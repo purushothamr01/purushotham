@@ -14,48 +14,58 @@
 
 <style>
 :root{
-  --bg:#0a0f1c;
-  --panel:#0f172a;
-  --accent:#0e75b6;
-  --text:#e5e7eb;
-  --muted:#9ca3af;
+  --bg:#0b0c1c;
+  --panel:#11142f;
+  --accent:#ff0066;
+  --accent2:#00ffff;
+  --text:#e0e0e0;
+  --muted:#a0a0a0;
   --transition-speed:0.5s;
 }
-body{font-family:"Fira Code",monospace;line-height:1.6;background:linear-gradient(180deg,#0f172a,#0a0f1c);color:var(--text);scroll-behavior:smooth;transition:all var(--transition-speed);}
+body{
+  font-family:"Fira Code",monospace;
+  line-height:1.6;
+  background: linear-gradient(135deg,#0b0c1c,#11142f);
+  color: var(--text);
+  scroll-behavior:smooth;
+  transition: all var(--transition-speed);
+  overflow-x:hidden;
+}
 a{color:inherit;text-decoration:none;}
-section{max-width:1100px;margin:auto;padding:70px 20px;opacity:0;transform:translateY(40px);transition: all 0.8s ease;}
-h2{color:var(--accent);margin-bottom:25px;font-size:2rem;}
+section{max-width:1100px;margin:auto;padding:70px 20px;opacity:0;transform:translateY(50px);transition: all 0.8s ease;}
+h2{color:var(--accent);margin-bottom:25px;font-size:2rem;text-shadow:0 0 10px var(--accent);}
 
 /* Light Mode */
-body.light-mode{--bg:#f5f5f5;--panel:#ffffff;--accent:#0e75b6;--text:#111827;--muted:#6b7280;background:linear-gradient(180deg,#ffffff,#f5f5f5);}
+body.light-mode{
+  --bg:#f5f5f5;--panel:#ffffff;--accent:#ff0066;--accent2:#00cccc;--text:#111827;--muted:#6b7280;
+  background: linear-gradient(135deg,#ffffff,#f5f5f5);
+}
 
 /* Hero */
-.hero{text-align:center;padding:120px 20px 80px;position:relative;}
-#typing{font-size:2.2rem;display:inline-block;opacity:0;}
-.hero p{margin-top:15px;font-size:1.2rem;color:var(--muted);}
+.hero{text-align:center;padding:140px 20px 80px;position:relative;}
+#typing{font-size:2.5rem;display:inline-block;opacity:0;color:var(--accent);text-shadow:0 0 20px var(--accent);}
+.hero img{position:absolute;top:50px;right:50px;width:250px;animation: float 6s ease-in-out infinite alternate;}
 
-/* Abstract Image */
-.abstract{display:flex;justify-content:center;margin:40px 0;animation: float 5s ease-in-out infinite alternate;}
-.abstract img{width:220px;opacity:.85;}
-@keyframes float{0%{transform: translateY(0);}100%{transform: translateY(-20px);}}
+/* Floating animation */
+@keyframes float{0%{transform: translateY(0px);}100%{transform: translateY(-25px);}}
 
 /* Panels */
-.panel{background:var(--panel);border-radius:16px;padding:30px;box-shadow:0 0 40px rgba(14,117,182,.2);transition: all var(--transition-speed);}
+.panel{background:var(--panel);border-radius:20px;padding:30px;box-shadow:0 0 40px var(--accent2);}
 
 /* Socials */
 .socials{text-align:center;margin:30px 0;}
-.socials a{display:inline-flex;margin:0 15px;width:45px;height:45px;align-items:center;justify-content:center;background:var(--panel);border-radius:50%;transition:.3s;}
-.socials a:hover{transform:scale(1.2);box-shadow:0 0 20px var(--accent);}
-.socials img{width:24px;height:24px;filter:invert(1);}
+.socials a{display:inline-flex;margin:0 15px;width:50px;height:50px;align-items:center;justify-content:center;background:var(--panel);border-radius:50%;transition:.3s;}
+.socials a:hover{transform:scale(1.2);box-shadow:0 0 25px var(--accent);}
+.socials img{width:26px;height:26px;filter:invert(1);}
 
 /* Timeline */
 .timeline{border-left:3px solid var(--accent);padding-left:25px;}
-.timeline-item{margin-bottom:30px;opacity:0;transform:translateX(-30px);transition:all 0.6s ease;}
+.timeline-item{margin-bottom:30px;opacity:0;transform:translateX(-30px);transition:all 0.7s ease;}
 .timeline-item.visible{opacity:1;transform:translateX(0);}
 
 /* Hall of Fame */
 .hof{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
-.hof-card{background:var(--panel);padding:25px;border-radius:14px;opacity:0;transform:translateY(20px);transition:all 0.5s ease;}
+.hof-card{background:var(--panel);padding:25px;border-radius:20px;opacity:0;transform:translateY(20px);transition:all 0.5s ease;text-align:center;font-weight:600;color:var(--accent2);}
 .hof-card.visible{opacity:1;transform:translateY(0);}
 
 /* Skills */
@@ -63,30 +73,26 @@ body.light-mode{--bg:#f5f5f5;--panel:#ffffff;--accent:#0e75b6;--text:#111827;--m
 .skill{margin-bottom:20px;}
 .skill span{display:block;margin-bottom:5px;color:var(--accent);}
 .skill-bar{background:var(--panel);border-radius:10px;overflow:hidden;height:15px;}
-.skill-fill{height:100%;background:var(--accent);width:0%;transition:width 2s;}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%;transition:width 2s;}
 
 /* Stats */
 .stats{display:flex;gap:40px;justify-content:center;margin-top:30px;}
 .stat{text-align:center;}
-.stat .count{font-size:2rem;color:var(--accent);}
+.stat .count{font-size:2rem;color:var(--accent);text-shadow:0 0 10px var(--accent2);}
 
 /* Medium Blogs */
 .medium-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
-.medium-card{background:var(--panel);padding:15px;border-radius:16px;opacity:0;transform:translateY(20px);transition:.5s;}
-.medium-card img{width:100%;border-radius:12px;margin-bottom:10px;}
+.medium-card{background:var(--panel);padding:15px;border-radius:20px;opacity:0;transform:translateY(20px);transition:.5s;}
+.medium-card img{width:100%;border-radius:12px;margin-bottom:10px;box-shadow:0 0 15px var(--accent);}
 .medium-card.visible{opacity:1;transform:translateY(0);}
-.medium-card:hover{transform:translateY(-8px);box-shadow:0 0 40px var(--accent);}
-
-/* Back to top */
-#back-to-top{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background:var(--accent);color:#fff;font-size:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 20px rgba(0,0,0,.3);transition:.3s;opacity:0;visibility:hidden;}
-#back-to-top:hover{transform:scale(1.2);}
+.medium-card:hover{transform:translateY(-8px);box-shadow:0 0 40px var(--accent2);}
 
 /* Dark/Light Toggle */
-#theme-toggle{position:fixed;top:20px;right:20px;background:var(--panel);color:var(--accent);width:45px;height:45px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;box-shadow:0 0 15px rgba(0,0,0,.3);transition: all var(--transition-speed); z-index:1000;}
+#theme-toggle{position:fixed;top:20px;right:20px;background:var(--panel);color:var(--accent);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:24px;box-shadow:0 0 15px rgba(0,0,0,.3);z-index:1000;transition:all .3s;}
 #theme-toggle:hover{transform:scale(1.2);}
 
 /* Footer */
-footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;transition:color var(--transition-speed);}
+footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;transition:color .5s;}
 </style>
 </head>
 <body>
@@ -97,12 +103,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;transi
 <!-- Hero -->
 <div class="hero">
   <span id="typing"></span>
-  <p>Transforming recon, exploits, and research into actionable bug bounty reports.</p>
-</div>
-
-<!-- Abstract Image -->
-<div class="abstract">
-  <img src="Orange Aesthetic Desktop Wallpaper.png" alt="abstract security symbol">
+  <img src="/mnt/data/fe8a85e8-689a-4bbc-b49d-53adad650bb9.png" alt="Anime abstract">
 </div>
 
 <!-- About -->
@@ -130,88 +131,30 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;transi
 </div>
 </section>
 
-<!-- Bug Bounty Timeline -->
-<section>
-<h2>🐞 Bug Bounty Timeline</h2>
-<div class="timeline">
-<div class="timeline-item"><span>2024</span><h3>First Valid Vulnerability</h3><p>Reported XSS in production with full PoC & fix guidance.</p></div>
-<div class="timeline-item"><span>2024</span><h3>API Authorization Bypass</h3><p>BOLA issue exposing sensitive user resources.</p></div>
-<div class="timeline-item"><span>2025</span><h3>JavaScript Recon Exposure</h3><p>Discovered internal endpoints & leaked secrets.</p></div>
-</div>
-</section>
-
-<!-- Hall of Fame -->
-<section>
-<h2>🏆 Hall of Fame</h2>
-<div class="hof">
-<div class="hof-card">HackerOne – Public Acknowledgment</div>
-<div class="hof-card">Bugcrowd – Valid Reports Accepted</div>
-<div class="hof-card">Intigriti – Responsible Disclosure</div>
-</div>
-</section>
-
-<!-- Skills -->
-<section>
-<h2>🛠️ Skills</h2>
-<div class="skills">
-<div class="skill"><span>Python</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
-<div class="skill"><span>Bug Hunting</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
-<div class="skill"><span>Recon & Exploit</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
-</div>
-</section>
-
-<!-- Bug Bounty Stats -->
-<section>
-<h2>📊 Bug Bounty Stats</h2>
-<div class="stats">
-<div class="stat"><span class="count" data-target="35">0</span><p>Valid Reports</p></div>
-<div class="stat"><span class="count" data-target="12">0</span><p>Platforms</p></div>
-<div class="stat"><span class="count" data-target="8">0</span><p>Critical Vulnerabilities</p></div>
-</div>
-</section>
-
-<!-- Medium Blogs -->
+<!-- Medium Posts -->
 <section>
 <h2>📰 Latest Medium Posts</h2>
 <div class="medium-grid" id="medium-blogs"></div>
 </section>
 
-<!-- Support -->
-<section>
-<h2>☕ Support My Work</h2>
-<a href="https://buymeacoffee.com/purushotham" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50"></a>
-</section>
-
 <footer>© 2026 Purushotham — Security Researcher • purushotham.dev</footer>
-
-<!-- Back to Top -->
-<div id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
 <script>
 // Typing animation
 const text = "Farmer 🌾 | ECE Engineer | Security Researcher";let i=0;
 function typeWriter(){if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i);i++;document.getElementById("typing").style.opacity=1;setTimeout(typeWriter,100);}}typeWriter();
 
-// Back-to-top button
-window.addEventListener('scroll',()=>{const btn=document.getElementById('back-to-top');btn.style.opacity=window.scrollY>300?1:0;btn.style.visibility=window.scrollY>300?'visible':'hidden';});
-
-// Animate skill bars
-const skillBars=document.querySelectorAll('.skill-fill');window.addEventListener('scroll',()=>{const trigger=window.innerHeight*0.9;skillBars.forEach(bar=>{const top=bar.getBoundingClientRect().top;if(top<trigger){bar.style.width=bar.style.width||bar.getAttribute('style').split(':')[1];}});});
-
-// Animate counters
-const counters=document.querySelectorAll('.count');counters.forEach(counter=>{const updateCount=()=>{const target=+counter.getAttribute('data-target');const count=+counter.innerText;const speed=50;const inc=Math.ceil(target/speed);if(count<target){counter.innerText=count+inc;setTimeout(updateCount,20);}else{counter.innerText=target;}};updateCount();});
-
 // Dark/Light Toggle
 const toggle=document.getElementById('theme-toggle');const body=document.body;if(localStorage.getItem('theme')==='light'){body.classList.add('light-mode');toggle.textContent='🌞';}
 toggle.addEventListener('click',()=>{body.classList.toggle('light-mode');if(body.classList.contains('light-mode')){toggle.textContent='🌞';localStorage.setItem('theme','light');}else{toggle.textContent='🌙';localStorage.setItem('theme','dark');}});
 
-// Scroll reveal animations
-const sections=document.querySelectorAll('section, .hero, .abstract');
+// Scroll reveal
+const sections=document.querySelectorAll('section, .hero');
 const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}}},{threshold:0.2});
 sections.forEach(sec=>observer.observe(sec));
 </script>
 
-<!-- PyScript: Fetch Medium Articles -->
+<!-- PyScript -->
 <py-script>
 import js
 from pyodide.http import pyfetch
@@ -228,6 +171,7 @@ async def fetch_medium():
         thumbnail = item.get('thumbnail') or 'https://via.placeholder.com/400x200.png?text=Medium'
         div.innerHTML = f"<img src='{thumbnail}'><h3>{item['title']}</h3><p>{item['description']}</p><a href='{item['link']}' target='_blank'>Read →</a>"
         container.appendChild(div)
+
 js.window.create_task(fetch_medium())
 </py-script>
 </body>
