@@ -1,178 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Purushotham | Security Researcher</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Piece Adventure | Purushotham's Anime Site</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-<!-- Fira Code Font -->
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
 
-<!-- PyScript -->
-<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <style>
+    /* ===== Reset & Base ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Press Start 2P', cursive; }
+    body {
+      background: linear-gradient(to bottom, #ffeb3b, #f57c00);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
 
-<style>
-:root{
-  --bg:#0b0c1c;
-  --panel:#11142f;
-  --accent:#ff0066;
-  --accent2:#00ffff;
-  --text:#e0e0e0;
-  --muted:#a0a0a0;
-  --transition-speed:0.5s;
-}
-body{
-  font-family:"Fira Code",monospace;
-  line-height:1.6;
-  background: linear-gradient(135deg,#0b0c1c,#11142f);
-  color: var(--text);
-  scroll-behavior:smooth;
-  transition: all var(--transition-speed);
-  overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none;}
-section{max-width:1100px;margin:auto;padding:70px 20px;opacity:0;transform:translateY(50px);transition: all 0.8s ease;}
-h2{color:var(--accent);margin-bottom:25px;font-size:2rem;text-shadow:0 0 10px var(--accent);}
+    /* ===== Header ===== */
+    header {
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+      background: rgba(0,0,0,0.6);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { font-size: 2rem; color: #ffe400; }
 
-/* Light Mode */
-body.light-mode{
-  --bg:#f5f5f5;--panel:#ffffff;--accent:#ff0066;--accent2:#00cccc;--text:#111827;--muted:#6b7280;
-  background: linear-gradient(135deg,#ffffff,#f5f5f5);
-}
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      margin: 0 15px;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+    nav a:hover { color: #00f0ff; }
 
-/* Hero */
-.hero{text-align:center;padding:140px 20px 80px;position:relative;}
-#typing{font-size:2.5rem;display:inline-block;opacity:0;color:var(--accent);text-shadow:0 0 20px var(--accent);}
-.hero img{position:absolute;top:50px;right:50px;width:250px;animation: float 6s ease-in-out infinite alternate;}
+    /* ===== Hero Section ===== */
+    #hero {
+      width: 100%;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero img {
+      position: absolute;
+      bottom: 0;
+      max-height: 100%;
+      z-index: 1;
+      animation: float 6s ease-in-out infinite;
+    }
+    #hero h2 {
+      position: relative;
+      z-index: 2;
+      font-size: 2rem;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 15px;
+      animation: fadeIn 2s ease forwards;
+    }
 
-/* Floating animation */
-@keyframes float{0%{transform: translateY(0px);}100%{transform: translateY(-25px);}}
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
 
-/* Panels */
-.panel{background:var(--panel);border-radius:20px;padding:30px;box-shadow:0 0 40px var(--accent2);}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-/* Socials */
-.socials{text-align:center;margin:30px 0;}
-.socials a{display:inline-flex;margin:0 15px;width:50px;height:50px;align-items:center;justify-content:center;background:var(--panel);border-radius:50%;transition:.3s;}
-.socials a:hover{transform:scale(1.2);box-shadow:0 0 25px var(--accent);}
-.socials img{width:26px;height:26px;filter:invert(1);}
+    /* ===== Sections ===== */
+    section {
+      padding: 80px 20px;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      margin: 20px;
+      border-radius: 20px;
+    }
+    section h2 { margin-bottom: 30px; color: #ffeb3b; }
 
-/* Timeline */
-.timeline{border-left:3px solid var(--accent);padding-left:25px;}
-.timeline-item{margin-bottom:30px;opacity:0;transform:translateX(-30px);transition:all 0.7s ease;}
-.timeline-item.visible{opacity:1;transform:translateX(0);}
+    /* ===== Character Gallery ===== */
+    .characters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .character-card {
+      width: 200px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .character-card:hover {
+      transform: scale(1.1);
+    }
+    .character-card img {
+      width: 100%;
+      display: block;
+    }
+    .character-card h3 {
+      padding: 10px;
+      font-size: 1rem;
+      background: rgba(0,0,0,0.6);
+    }
 
-/* Hall of Fame */
-.hof{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
-.hof-card{background:var(--panel);padding:25px;border-radius:20px;opacity:0;transform:translateY(20px);transition:all 0.5s ease;text-align:center;font-weight:600;color:var(--accent2);}
-.hof-card.visible{opacity:1;transform:translateY(0);}
+    /* ===== Footer ===== */
+    footer {
+      padding: 20px;
+      text-align: center;
+      background: rgba(0,0,0,0.7);
+      font-size: 0.8rem;
+    }
 
-/* Skills */
-.skills{max-width:700px;margin:auto;}
-.skill{margin-bottom:20px;}
-.skill span{display:block;margin-bottom:5px;color:var(--accent);}
-.skill-bar{background:var(--panel);border-radius:10px;overflow:hidden;height:15px;}
-.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%;transition:width 2s;}
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background: #00f0ff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #ffeb3b; }
 
-/* Stats */
-.stats{display:flex;gap:40px;justify-content:center;margin-top:30px;}
-.stat{text-align:center;}
-.stat .count{font-size:2rem;color:var(--accent);text-shadow:0 0 10px var(--accent2);}
-
-/* Medium Blogs */
-.medium-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
-.medium-card{background:var(--panel);padding:15px;border-radius:20px;opacity:0;transform:translateY(20px);transition:.5s;}
-.medium-card img{width:100%;border-radius:12px;margin-bottom:10px;box-shadow:0 0 15px var(--accent);}
-.medium-card.visible{opacity:1;transform:translateY(0);}
-.medium-card:hover{transform:translateY(-8px);box-shadow:0 0 40px var(--accent2);}
-
-/* Dark/Light Toggle */
-#theme-toggle{position:fixed;top:20px;right:20px;background:var(--panel);color:var(--accent);width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:24px;box-shadow:0 0 15px rgba(0,0,0,.3);z-index:1000;transition:all .3s;}
-#theme-toggle:hover{transform:scale(1.2);}
-
-/* Footer */
-footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;transition:color .5s;}
-</style>
+  </style>
 </head>
 <body>
 
-<!-- Dark/Light Toggle -->
-<div id="theme-toggle" title="Toggle Dark/Light Mode">🌙</div>
+  <!-- Header -->
+  <header>
+    <h1>One Piece Adventure 🌊</h1>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#characters">Characters</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<!-- Hero -->
-<div class="hero">
-  <span id="typing"></span>
-  <img src="/mnt/data/fe8a85e8-689a-4bbc-b49d-53adad650bb9.png" alt="Anime abstract">
-</div>
+  <!-- Hero Section -->
+  <section id="hero">
+    <img src="https://i.imgur.com/0XnL1zO.png" alt="One Piece Ship" />
+    <h2>Set sail with the Straw Hat Pirates!</h2>
+  </section>
 
-<!-- About -->
-<section class="panel">
-<h2>🧠 About Me</h2>
-<pre>
-🌾 Farmer by roots, technologist by passion
-🎓 Electronics & Communication Engineer
-⚔️ Recon → Exploit → Impact → Report
-📄 Clear, reproducible & responsible disclosures
-</pre>
-</section>
+  <!-- Characters Section -->
+  <section id="characters">
+    <h2>Main Characters</h2>
+    <div class="characters">
+      <div class="character-card">
+        <img src="https://i.imgur.com/1uK5X0V.png" alt="Luffy">
+        <h3>Monkey D. Luffy</h3>
+      </div>
+      <div class="character-card">
+        <img src="https://i.imgur.com/JgV1Jk3.png" alt="Zoro">
+        <h3>Roronoa Zoro</h3>
+      </div>
+      <div class="character-card">
+        <img src="https://i.imgur.com/qhVtXMn.png" alt="Nami">
+        <h3>Nami</h3>
+      </div>
+      <div class="character-card">
+        <img src="https://i.imgur.com/m1o3i7n.png" alt="Sanji">
+        <h3>Sanji</h3>
+      </div>
+    </div>
+  </section>
 
-<!-- Socials -->
-<section>
-<h2>🔗 Connect With Me</h2>
-<div class="socials">
-<a href="mailto:purubughunting@gmail.com" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
-<a href="https://github.com/purushothamr01" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
-<a href="https://linkedin.com/in/purushothamr06" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
-<a href="https://twitter.com/purushothamr01" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twitter.svg"></a>
-<a href="https://medium.com/@purushothamr" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
-<a href="https://instagram.com/purushothamr06" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"></a>
-<a href="https://t.me/purushothamr06" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/telegram.svg"></a>
-</div>
-</section>
+  <!-- About Section -->
+  <section id="about">
+    <h2>About This Site</h2>
+    <p>Welcome to the One Piece Adventure! Explore the world of pirates, treasures, and epic battles. This website showcases characters, stories, and your favorite moments from the anime.</p>
+    <a class="btn" href="#characters">Meet the Crew</a>
+  </section>
 
-<!-- Medium Posts -->
-<section>
-<h2>📰 Latest Medium Posts</h2>
-<div class="medium-grid" id="medium-blogs"></div>
-</section>
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Want to discuss anime or share your fan art? Reach out to me!</p>
+    <a class="btn" href="mailto:purushothamr01@gmail.com">Email Me</a>
+  </section>
 
-<footer>© 2026 Purushotham — Security Researcher • purushotham.dev</footer>
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Purushotham R | One Piece Fan Site | Made with ❤️
+  </footer>
 
-<script>
-// Typing animation
-const text = "Farmer 🌾 | ECE Engineer | Security Researcher";let i=0;
-function typeWriter(){if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i);i++;document.getElementById("typing").style.opacity=1;setTimeout(typeWriter,100);}}typeWriter();
-
-// Dark/Light Toggle
-const toggle=document.getElementById('theme-toggle');const body=document.body;if(localStorage.getItem('theme')==='light'){body.classList.add('light-mode');toggle.textContent='🌞';}
-toggle.addEventListener('click',()=>{body.classList.toggle('light-mode');if(body.classList.contains('light-mode')){toggle.textContent='🌞';localStorage.setItem('theme','light');}else{toggle.textContent='🌙';localStorage.setItem('theme','dark');}});
-
-// Scroll reveal
-const sections=document.querySelectorAll('section, .hero');
-const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}}},{threshold:0.2});
-sections.forEach(sec=>observer.observe(sec));
-</script>
-
-<!-- PyScript -->
-<py-script>
-import js
-from pyodide.http import pyfetch
-
-MEDIUM_RSS="https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@purushothamr"
-
-async def fetch_medium():
-    response = await pyfetch(MEDIUM_RSS)
-    data = await response.json()
-    container = js.document.getElementById("medium-blogs")
-    for item in data["items"][:5]:
-        div = js.document.createElement("div")
-        div.className = "medium-card"
-        thumbnail = item.get('thumbnail') or 'https://via.placeholder.com/400x200.png?text=Medium'
-        div.innerHTML = f"<img src='{thumbnail}'><h3>{item['title']}</h3><p>{item['description']}</p><a href='{item['link']}' target='_blank'>Read →</a>"
-        container.appendChild(div)
-
-js.window.create_task(fetch_medium())
-</py-script>
 </body>
 </html>
