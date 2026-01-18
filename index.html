@@ -1,274 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Purushotham | Security Researcher</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Purushotham | Security Researcher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- GSAP -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <!-- React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-<style>
-:root {
-  --primary: #38bdf8;
-  --accent: #0e75b6;
-  --bg: #0b0f14;
-  --card: rgba(17,24,39,.75);
-  --text: #e6edf3;
-  --muted: #9ba3af;
-  --border: rgba(255,255,255,.08);
-}
+  <!-- Framer Motion -->
+  <script src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Fira Code', monospace;
-}
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-body {
-  background: radial-gradient(circle at top, #0e1624, var(--bg));
-  color: var(--text);
-  overflow-x: hidden;
-}
-
-section {
-  padding: 90px 10%;
-}
-
-.center { text-align: center; }
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg, var(--primary), #22d3ee);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.typing {
-  font-size: 1.1rem;
-  margin-top: 16px;
-  color: var(--muted);
-}
-
-/* BANNER */
-.banner img {
-  width: 90%;
-  max-width: 920px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  box-shadow: 0 30px 60px rgba(0,0,0,.6);
-}
-
-/* CARD */
-.card {
-  background: var(--card);
-  backdrop-filter: blur(14px);
-  padding: 36px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  box-shadow: 0 20px 50px rgba(0,0,0,.5);
-}
-
-.card h2 {
-  font-size: 1.4rem;
-  margin-bottom: 14px;
-}
-
-.card p {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-/* SOCIALS */
-.socials a img {
-  width: 34px;
-  margin: 14px;
-  filter: invert(1) opacity(.7);
-  cursor: pointer;
-}
-
-/* SKILLS */
-.skill {
-  margin-bottom: 22px;
-  font-size: .95rem;
-}
-
-.bar {
-  height: 10px;
-  background: #1f2933;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-top: 6px;
-}
-
-.bar span {
-  display: block;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, var(--accent), var(--primary));
-}
-
-/* FOOTER */
-footer {
-  padding: 40px;
-  text-align: center;
-  font-size: .85rem;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-}
-</style>
+  <style>
+    body {
+      font-family: "Fira Code", monospace;
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-[#0b0f14] text-[#e6edf3]">
 
-<!-- HERO -->
-<section class="hero center">
-  <h1>Purushotham</h1>
-  <div class="typing" id="typing"></div>
-</section>
-
-<!-- BANNER -->
-<section class="banner center">
-  <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
-</section>
-
-<!-- ABOUT -->
-<section>
-  <div class="card">
-    <h2>🧠 About Me</h2>
-    <p>🌾 Farmer by roots, technologist by passion</p>
-    <p>🎓 Electronics & Communication Engineer</p>
-    <p>⚔️ Recon → Exploit → Impact → Report</p>
-    <p>📄 Ethical, reproducible & responsible disclosures</p>
-  </div>
-</section>
-
-<!-- SOCIALS -->
-<section class="center socials">
-  <a href="mailto:purubughunting@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
-  <a href="https://medium.com/@purushothamr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
-  <a href="https://twitter.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg"></a>
-  <a href="https://linkedin.com/in/purushothamr06"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
-  <a href="https://github.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
-</section>
-
-<!-- SKILLS -->
-<section>
-  <div class="card">
-    <h2>📊 Technical Expertise</h2>
-
-    <div class="skill">API Security
-      <div class="bar"><span data-width="80%"></span></div>
-    </div>
-
-    <div class="skill">JavaScript Security
-      <div class="bar"><span data-width="75%"></span></div>
-    </div>
-
-    <div class="skill">Linux & Bash
-      <div class="bar"><span data-width="75%"></span></div>
-    </div>
-
-    <div class="skill">Python
-      <div class="bar"><span data-width="70%"></span></div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © 2026 Purushotham — Security Researcher
-</footer>
+<div id="root"></div>
 
 <script>
-gsap.registerPlugin(ScrollTrigger);
+const { motion } = window["framer-motion"];
+const { Mail, Github, Linkedin, Twitter } = lucide;
 
-/* HERO ANIMATION */
-gsap.from(".hero h1", {
-  y: 50,
-  opacity: 0,
-  duration: 1.2,
-  ease: "power3.out"
-});
+function App() {
+  return React.createElement(
+    "div",
+    { className: "min-h-screen bg-gradient-to-b from-[#0e1624] to-[#0b0f14]" },
 
-gsap.from(".typing", {
-  y: 20,
-  opacity: 0,
-  delay: .6,
-  duration: 1,
-  ease: "power3.out"
-});
+    /* HERO */
+    React.createElement(
+      "section",
+      { className: "h-screen flex flex-col justify-center items-center text-center px-6" },
 
-/* TYPING EFFECT */
-const text = "Farmer 🌾 | ECE Engineer | Security Researcher";
-let i = 0;
-const typingEl = document.getElementById("typing");
-(function type() {
-  if (i < text.length) {
-    typingEl.innerHTML += text.charAt(i++);
-    setTimeout(type, 70);
-  }
-})();
+      React.createElement(
+        motion.h1,
+        {
+          initial: { opacity: 0, y: 50 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 1, ease: "easeOut" },
+          className:
+            "text-5xl md:text-6xl font-semibold bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent"
+        },
+        "Purushotham"
+      ),
 
-/* BANNER FLOAT */
-gsap.to(".banner img", {
-  y: -18,
-  duration: 4,
-  repeat: -1,
-  yoyo: true,
-  ease: "sine.inOut"
-});
+      React.createElement(
+        motion.p,
+        {
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          transition: { delay: 0.6 },
+          className: "mt-4 text-gray-400"
+        },
+        "Farmer 🌾 | ECE Engineer | Security Researcher"
+      )
+    ),
 
-/* CARD REVEALS */
-gsap.utils.toArray(".card").forEach(card => {
-  gsap.from(card, {
-    scrollTrigger: {
-      trigger: card,
-      start: "top 80%"
-    },
-    y: 60,
-    opacity: 0,
-    duration: 1.1,
-    ease: "power3.out"
-  });
-});
+    /* ABOUT */
+    React.createElement(
+      "section",
+      { className: "px-6 py-24 max-w-4xl mx-auto" },
 
-/* SKILL BARS */
-gsap.utils.toArray(".bar span").forEach(bar => {
-  gsap.to(bar, {
-    scrollTrigger: {
-      trigger: bar,
-      start: "top 85%"
-    },
-    width: bar.dataset.width,
-    duration: 1.6,
-    ease: "power2.out"
-  });
-});
+      React.createElement(
+        motion.div,
+        {
+          initial: { opacity: 0, y: 60 },
+          whileInView: { opacity: 1, y: 0 },
+          viewport: { once: true },
+          transition: { duration: 0.9 },
+          className:
+            "bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-10 shadow-2xl"
+        },
 
-/* SOCIAL ICON MICRO INTERACTIONS */
-gsap.utils.toArray(".socials img").forEach(icon => {
-  icon.addEventListener("mouseenter", () => {
-    gsap.to(icon, { scale: 1.2, y: -6, duration: .3 });
-  });
-  icon.addEventListener("mouseleave", () => {
-    gsap.to(icon, { scale: 1, y: 0, duration: .3 });
-  });
-});
+        React.createElement("h2", { className: "text-xl mb-4" }, "🧠 About Me"),
+        React.createElement(
+          "p",
+          { className: "text-gray-400 leading-relaxed" },
+          "🌾 Rooted in agriculture, driven by technology.",
+          React.createElement("br"),
+          "🎓 Electronics & Communication Engineer.",
+          React.createElement("br"),
+          "⚔️ Recon → Exploit → Impact → Report.",
+          React.createElement("br"),
+          "📄 Ethical & responsible disclosures."
+        )
+      )
+    ),
+
+    /* SKILLS */
+    React.createElement(
+      "section",
+      { className: "px-6 py-20 max-w-4xl mx-auto" },
+
+      React.createElement("h2", { className: "text-xl mb-8" }, "📊 Technical Expertise"),
+
+      [
+        { name: "API Security", value: 80 },
+        { name: "JavaScript Security", value: 75 },
+        { name: "Linux & Bash", value: 75 },
+        { name: "Python", value: 70 }
+      ].map((skill, i) =>
+        React.createElement(
+          "div",
+          { key: i, className: "mb-6" },
+
+          React.createElement("p", { className: "text-sm mb-2" }, skill.name),
+
+          React.createElement(
+            "div",
+            { className: "w-full h-2 bg-gray-800 rounded-full overflow-hidden" },
+
+            React.createElement(motion.div, {
+              initial: { width: 0 },
+              whileInView: { width: skill.value + "%" },
+              viewport: { once: true },
+              transition: { duration: 1.3, ease: "easeOut" },
+              className:
+                "h-full bg-gradient-to-r from-sky-500 to-cyan-400"
+            })
+          )
+        )
+      )
+    ),
+
+    /* SOCIALS */
+    React.createElement(
+      "section",
+      { className: "flex justify-center gap-8 py-16" },
+
+      [
+        { icon: Mail, href: "mailto:purubughunting@gmail.com" },
+        { icon: Github, href: "https://github.com/purushothamr01" },
+        { icon: Linkedin, href: "https://linkedin.com/in/purushothamr06" },
+        { icon: Twitter, href: "https://twitter.com/purushothamr01" }
+      ].map((item, i) =>
+        React.createElement(
+          motion.a,
+          {
+            key: i,
+            href: item.href,
+            whileHover: { scale: 1.2, y: -6 },
+            transition: { type: "spring", stiffness: 300 },
+            className: "text-gray-400 hover:text-sky-400"
+          },
+          React.createElement(item.icon, { size: 28 })
+        )
+      )
+    ),
+
+    /* FOOTER */
+    React.createElement(
+      "footer",
+      {
+        className:
+          "text-center py-10 text-gray-500 text-sm border-t border-white/10"
+      },
+      "© 2026 Purushotham — Security Researcher"
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  React.createElement(App)
+);
 </script>
 
 </body>
