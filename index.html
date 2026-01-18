@@ -19,18 +19,21 @@
   --accent:#0e75b6;
   --text:#e5e7eb;
   --muted:#9ca3af;
+  --transition-speed:0.4s;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:"Fira Code",monospace;
-  line-height:1.6;
-  background: radial-gradient(circle at top, var(--panel), var(--bg));
-  color: var(--text);
-  scroll-behavior:smooth;
-}
+body{font-family:"Fira Code",monospace;line-height:1.6;background:radial-gradient(circle at top,var(--panel),var(--bg));color:var(--text);scroll-behavior:smooth;transition: background var(--transition-speed), color var(--transition-speed);}
 a{color:inherit;text-decoration:none;}
 section{max-width:1100px;margin:auto;padding:70px 20px;}
 h2{color:var(--accent);margin-bottom:25px;font-size:2rem;}
+
+/* Light mode */
+body.light-mode{
+  --bg:#f5f5f5;
+  --panel:#ffffff;
+  --accent:#0e75b6;
+  --text:#111827;
+  --muted:#6b7280;
+}
 
 /* Hero */
 .hero{text-align:center;padding:90px 20px 40px;position:relative;}
@@ -42,30 +45,14 @@ h2{color:var(--accent);margin-bottom:25px;font-size:2rem;}
 @keyframes float{0%{transform: translateY(0px);}100%{transform: translateY(-20px);}}
 
 /* Panel */
-.panel{
-  background: rgba(15,23,42,.85);
-  border-radius: 16px;
-  padding:30px;
-  box-shadow: 0 0 40px rgba(14,117,182,.15);
-  opacity:0;
-  transform:translateY(20px);
-  animation: fadeUp 1s forwards 0.3s;
-}
+.panel{background:rgba(15,23,42,.85);border-radius:16px;padding:30px;box-shadow:0 0 40px rgba(14,117,182,.15);opacity:0;transform:translateY(20px);animation: fadeUp 1s forwards 0.3s;transition: background var(--transition-speed), color var(--transition-speed);}
 @keyframes fadeUp{to{opacity:1; transform:translateY(0);}}
 
 /* Social Icons */
 .socials{text-align:center;margin:30px 0;}
-.socials a{
-  display:inline-block;
-  margin:0 15px;
-  width:40px;height:40px;
-  display:flex;align-items:center;justify-content:center;
-  background:#0b1220;
-  border-radius:50%;
-  transition:.3s;
-}
+.socials a{display:inline-flex;margin:0 15px;width:45px;height:45px;align-items:center;justify-content:center;background:var(--panel);border-radius:50%;transition:.3s;}
 .socials a:hover{transform:scale(1.2);box-shadow:0 0 20px var(--accent);}
-.socials img{width:22px;height:22px;filter:invert(1);}
+.socials img{width:24px;height:24px;filter:invert(1);transition:filter var(--transition-speed);}
 
 /* Timeline */
 .timeline{border-left:2px solid var(--accent);padding-left:25px;}
@@ -75,37 +62,51 @@ h2{color:var(--accent);margin-bottom:25px;font-size:2rem;}
 .timeline-item:nth-child(3){animation:slideIn 1s forwards 0.6s;}
 @keyframes slideIn{to{opacity:1;transform:translateX(0);}}
 
-/* HOF */
+/* Hall of Fame */
 .hof{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
-.hof-card{background:#0b1220;padding:25px;border-radius:14px;transition:.3s;opacity:0;transform:translateY(20px);}
+.hof-card{background:var(--panel);padding:25px;border-radius:14px;transition:.3s;opacity:0;transform:translateY(20px);}
 .hof-card:hover{transform:translateY(-8px);box-shadow:0 0 40px rgba(14,117,182,.4);}
-.hof-card:nth-child(1){animation:fadeUp 1s forwards 0.2s;}
-.hof-card:nth-child(2){animation:fadeUp 1s forwards 0.4s;}
-.hof-card:nth-child(3){animation:fadeUp 1s forwards 0.6s;}
+
+/* Skills */
+.skills{max-width:700px;margin:auto;}
+.skill{margin-bottom:20px;}
+.skill span{display:block;margin-bottom:5px;color:var(--accent);}
+.skill-bar{background:var(--panel);border-radius:10px;overflow:hidden;height:15px;}
+.skill-fill{height:100%;background:var(--accent);width:0%;transition:width 2s;}
+
+/* Bug Bounty Stats */
+.stats{display:flex;gap:40px;justify-content:center;margin-top:30px;}
+.stat{text-align:center;}
+.stat .count{font-size:2rem;color:var(--accent);}
 
 /* Medium Blogs */
 .medium-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;}
-.medium-card{background:#0b1220;padding:25px;border-radius:16px;opacity:0;transform:translateY(20px);transition:.3s;}
-.medium-card:hover{transform:translateY(-8px);box-shadow:0 0 40px rgba(14,117,182,.4);}
-.medium-card:nth-child(1){animation:fadeUp 1s forwards 0.2s;}
-.medium-card:nth-child(2){animation:fadeUp 1s forwards 0.4s;}
-.medium-card:nth-child(3){animation:fadeUp 1s forwards 0.6s;}
+.medium-card{background:var(--panel);padding:15px;border-radius:16px;opacity:0;transform:translateY(20px);transition:.5s;}
+.medium-card img{width:100%;border-radius:12px;margin-bottom:10px;}
+.medium-card:hover{transform:translateY(-8px);box-shadow:0 0 40px var(--accent);}
+
+/* Back to top */
+#back-to-top{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background:var(--accent);color:#fff;font-size:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 20px rgba(0,0,0,.3);transition:.3s;opacity:0;visibility:hidden;}
+#back-to-top:hover{transform:scale(1.2);}
+
+/* Dark/Light Toggle */
+#theme-toggle{position:fixed;top:20px;right:20px;background:var(--panel);color:var(--accent);width:45px;height:45px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;box-shadow:0 0 15px rgba(0,0,0,.3);transition: all var(--transition-speed); z-index:1000;}
+#theme-toggle:hover{transform:scale(1.2);}
 
 /* Footer */
-footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;}
+footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;transition: color var(--transition-speed);}
 </style>
 </head>
 <body>
 
+<!-- Dark/Light Mode Toggle -->
+<div id="theme-toggle" title="Toggle Dark/Light Mode">🌙</div>
+
 <!-- HERO -->
-<div class="hero">
-  <span id="typing"></span>
-</div>
+<div class="hero"><span id="typing"></span></div>
 
 <!-- Abstract Image -->
-<div class="abstract">
-  <img src="Orange Aesthetic Desktop Wallpaper.png" alt="abstract security symbol">
-</div>
+<div class="abstract"><img src="Orange Aesthetic Desktop Wallpaper.png" alt="abstract security symbol"></div>
 
 <!-- About -->
 <section>
@@ -126,7 +127,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;}
 <div class="socials">
 <a href="mailto:purubughunting@gmail.com" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
 <a href="https://github.com/purushothamr01" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
-<a href="https://linkedin.com/in/purushothamr06" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linked-in-alt.svg"></a>
+<a href="https://linkedin.com/in/purushothamr06" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
 <a href="https://twitter.com/purushothamr01" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twitter.svg"></a>
 <a href="https://medium.com/@purushothamr" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
 <a href="https://instagram.com/purushothamr06" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"></a>
@@ -138,21 +139,9 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;}
 <section>
 <h2>🐞 Bug Bounty Timeline</h2>
 <div class="timeline">
-<div class="timeline-item">
-<span>2024</span>
-<h3>First Valid Vulnerability</h3>
-<p>Reported XSS in production with full PoC & fix guidance.</p>
-</div>
-<div class="timeline-item">
-<span>2024</span>
-<h3>API Authorization Bypass</h3>
-<p>BOLA issue exposing sensitive user resources.</p>
-</div>
-<div class="timeline-item">
-<span>2025</span>
-<h3>JavaScript Recon Exposure</h3>
-<p>Discovered internal endpoints & leaked secrets.</p>
-</div>
+<div class="timeline-item"><span>2024</span><h3>First Valid Vulnerability</h3><p>Reported XSS in production with full PoC & fix guidance.</p></div>
+<div class="timeline-item"><span>2024</span><h3>API Authorization Bypass</h3><p>BOLA issue exposing sensitive user resources.</p></div>
+<div class="timeline-item"><span>2025</span><h3>JavaScript Recon Exposure</h3><p>Discovered internal endpoints & leaked secrets.</p></div>
 </div>
 </section>
 
@@ -166,60 +155,83 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:.85rem;}
 </div>
 </section>
 
+<!-- Skills -->
+<section>
+<h2>🛠️ Skills</h2>
+<div class="skills">
+<div class="skill"><span>Python</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+<div class="skill"><span>Bug Hunting</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+<div class="skill"><span>Recon & Exploit</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+</div>
+</section>
+
+<!-- Bug Bounty Stats -->
+<section>
+<h2>📊 Bug Bounty Stats</h2>
+<div class="stats">
+<div class="stat"><span class="count" data-target="35">0</span><p>Valid Reports</p></div>
+<div class="stat"><span class="count" data-target="12">0</span><p>Platforms</p></div>
+<div class="stat"><span class="count" data-target="8">0</span><p>Critical Vulnerabilities</p></div>
+</div>
+</section>
+
 <!-- Medium Blogs -->
 <section>
 <h2>📰 Medium Write-ups</h2>
-<div class="medium-grid" id="medium-blogs">
-<!-- Populated by Python -->
-</div>
+<div class="medium-grid" id="medium-blogs"></div>
 </section>
 
 <!-- Support -->
 <section>
 <h2>☕ Support My Work</h2>
-<a href="https://buymeacoffee.com/purushotham" target="_blank">
-<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50">
-</a>
+<a href="https://buymeacoffee.com/purushotham" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50"></a>
 </section>
 
-<footer>
-© 2026 Purushotham — Security Researcher • purushotham.dev
-</footer>
+<footer>© 2026 Purushotham — Security Researcher • purushotham.dev</footer>
 
-<!-- JS Animations -->
+<!-- Back to Top -->
+<div id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
 <script>
 // Typing animation
 const text = "Farmer 🌾 | ECE Engineer | Security Researcher";
 let i = 0;
-function typeWriter(){
-  if(i<text.length){
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    document.getElementById("typing").style.opacity = 1;
-    setTimeout(typeWriter,100);
-  }
-}
-typeWriter();
+function typeWriter(){if(i<text.length){document.getElementById("typing").innerHTML+=text.charAt(i);i++;document.getElementById("typing").style.opacity=1;setTimeout(typeWriter,100);}} typeWriter();
+
+// Back-to-top button
+window.addEventListener('scroll',()=>{const btn=document.getElementById('back-to-top');btn.style.opacity=window.scrollY>300?1:0;btn.style.visibility=window.scrollY>300?'visible':'hidden';});
+
+// Animate skill bars
+const skillBars=document.querySelectorAll('.skill-fill');
+window.addEventListener('scroll',()=>{const trigger=window.innerHeight*0.9;skillBars.forEach(bar=>{const top=bar.getBoundingClientRect().top;if(top<trigger){bar.style.width=bar.style.width||bar.getAttribute('style').split(':')[1];}});});
+
+// Animate counters
+const counters=document.querySelectorAll('.count');
+counters.forEach(counter=>{const updateCount=()=>{const target=+counter.getAttribute('data-target');const count=+counter.innerText;const speed=50;const inc=Math.ceil(target/speed);if(count<target){counter.innerText=count+inc;setTimeout(updateCount,20);}else{counter.innerText=target;}};updateCount();});
+
+// Dark/Light Toggle
+const toggle=document.getElementById('theme-toggle');const body=document.body;if(localStorage.getItem('theme')==='light'){body.classList.add('light-mode');toggle.textContent='🌞';}
+toggle.addEventListener('click',()=>{body.classList.toggle('light-mode');if(body.classList.contains('light-mode')){toggle.textContent='🌞';localStorage.setItem('theme','light');}else{toggle.textContent='🌙';localStorage.setItem('theme','dark');}});
 </script>
 
-<!-- PyScript: Fetch Medium Articles -->
+<!-- PyScript: Fetch Medium Articles with Images -->
 <py-script>
 import js
 from pyodide.http import pyfetch
 import json
 
-MEDIUM_RSS = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@purushothamr"
+MEDIUM_RSS="https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@purushothamr"
 
 async def fetch_medium():
-    response = await pyfetch(MEDIUM_RSS)
-    data = await response.json()
-    container = js.document.getElementById("medium-blogs")
-    for item in data["items"][:3]:
-        div = js.document.createElement("div")
-        div.className = "medium-card"
-        div.innerHTML = f"<h3>{item['title']}</h3><p>{item['description']}</p><a href='{item['link']}' target='_blank'>Read →</a>"
+    response=await pyfetch(MEDIUM_RSS)
+    data=await response.json()
+    container=js.document.getElementById("medium-blogs")
+    for item in data["items"][:5]:
+        div=js.document.createElement("div")
+        div.className="medium-card"
+        thumbnail=item.get('thumbnail') or 'https://via.placeholder.com/400x200.png?text=Medium'
+        div.innerHTML=f"<img src='{thumbnail}'><h3>{item['title']}</h3><p>{item['description']}</p><a href='{item['link']}' target='_blank'>Read →</a>"
         container.appendChild(div)
-
 js.window.create_task(fetch_medium())
 </py-script>
 
