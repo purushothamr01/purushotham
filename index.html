@@ -3,21 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>One Piece Adventure | Purushotham's Anime Site</title>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>One Piece Adventure 🌊 | Purushotham</title>
 
-  <!-- Font Awesome for icons -->
-  <script src="https://kit.fontawesome.com/yourkit.js" crossorigin="anonymous"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     /* ===== Reset & Base ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Press Start 2P', cursive; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
     body {
-      background: linear-gradient(to bottom, #ffeb3b, #f57c00);
-      color: #fff;
       overflow-x: hidden;
+      background: linear-gradient(to top, #ffcb00, #f57c00);
+      color: #fff;
     }
     a { text-decoration: none; color: inherit; }
 
@@ -26,97 +23,112 @@
       width: 100%;
       padding: 20px 0;
       text-align: center;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.5);
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
     }
-    header h1 { font-size: 2rem; color: #ffe400; }
-
-    nav {
-      margin-top: 10px;
-    }
-    nav a {
-      margin: 0 15px;
-      font-size: 0.9rem;
-      transition: 0.3s;
-    }
+    header h1 { font-family: 'Press Start 2P', cursive; font-size: 2rem; color: #ffe400; }
+    nav { margin-top: 10px; }
+    nav a { margin: 0 15px; font-weight: bold; transition: 0.3s; }
     nav a:hover { color: #00f0ff; }
 
-    /* ===== Hero Section ===== */
-    #hero {
+    /* ===== Animated Background (Clouds, Sun, Waves) ===== */
+    #scene {
+      position: relative;
       width: 100%;
       height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
       overflow: hidden;
     }
-    #hero img {
+    .cloud {
+      position: absolute;
+      top: 20%;
+      width: 150px;
+      opacity: 0.8;
+      animation: cloudMove 60s linear infinite;
+    }
+    .cloud:nth-child(2) { top: 40%; animation-duration: 80s; opacity: 0.6; }
+    .cloud:nth-child(3) { top: 10%; animation-duration: 100s; opacity: 0.7; }
+
+    @keyframes cloudMove {
+      0% { left: -200px; }
+      100% { left: 110%; }
+    }
+
+    .waves {
       position: absolute;
       bottom: 0;
-      max-height: 100%;
+      width: 200%;
+      height: 150px;
+      background: url('https://i.imgur.com/3vR3A9b.png') repeat-x;
+      background-size: contain;
+      animation: waveMove 10s linear infinite;
       z-index: 1;
-      animation: float 6s ease-in-out infinite;
     }
-    #hero h2 {
-      position: relative;
-      z-index: 2;
-      font-size: 2rem;
-      text-align: center;
-      background: rgba(0,0,0,0.5);
-      padding: 20px;
-      border-radius: 15px;
-      animation: fadeIn 2s ease forwards;
-    }
+    @keyframes waveMove { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ===== Sections ===== */
-    section {
-      padding: 80px 20px;
-      text-align: center;
-      background: rgba(0,0,0,0.5);
-      margin: 20px;
-      border-radius: 20px;
-    }
-    section h2 { margin-bottom: 30px; color: #ffeb3b; }
-
-    /* ===== Character Gallery ===== */
-    .characters {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .character-card {
-      width: 200px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 15px;
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-    .character-card:hover {
-      transform: scale(1.1);
-    }
-    .character-card img {
+    /* ===== Hero Text & Character Animation ===== */
+    #hero-text {
+      position: absolute;
+      top: 30%;
       width: 100%;
-      display: block;
+      text-align: center;
+      z-index: 2;
     }
-    .character-card h3 {
-      padding: 10px;
-      font-size: 1rem;
+    #hero-text h2 {
+      font-size: 2rem;
+      color: #ffe400;
+      text-shadow: 2px 2px #000;
+      animation: fadeInText 3s ease forwards;
+    }
+    @keyframes fadeInText { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .character {
+      position: absolute;
+      bottom: 50px;
+      width: 150px;
+      animation: floatCharacter 4s ease-in-out infinite alternate;
+      z-index: 2;
+    }
+    .character:nth-child(1) { left: 10%; }
+    .character:nth-child(2) { left: 35%; animation-delay: 0.5s; }
+    .character:nth-child(3) { left: 60%; animation-delay: 1s; }
+    .character:nth-child(4) { left: 80%; animation-delay: 1.5s; }
+
+    @keyframes floatCharacter {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    /* ===== Unique Profile Card ===== */
+    #profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 50px 20px;
+      padding: 30px;
       background: rgba(0,0,0,0.6);
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+      animation: profileFade 2s ease forwards;
     }
+    #profile img {
+      width: 200px;
+      border-radius: 50%;
+      border: 5px solid #00f0ff;
+      animation: rotateProfile 20s linear infinite;
+    }
+    #profile h3 { margin: 15px 0; color: #00f0ff; font-size: 1.5rem; }
+    #profile p { font-size: 1rem; color: #fff; }
+
+    @keyframes rotateProfile {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes profileFade { from { opacity: 0; } to { opacity: 1; } }
 
     /* ===== Footer ===== */
     footer {
@@ -137,8 +149,7 @@
       border-radius: 10px;
       transition: 0.3s;
     }
-    .btn:hover { background: #ffeb3b; }
-
+    .btn:hover { background: #ffe400; }
   </style>
 </head>
 <body>
@@ -147,54 +158,40 @@
   <header>
     <h1>One Piece Adventure 🌊</h1>
     <nav>
-      <a href="#hero">Home</a>
-      <a href="#characters">Characters</a>
-      <a href="#about">About</a>
+      <a href="#scene">Home</a>
+      <a href="#profile">Profile</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section id="hero">
-    <img src="https://i.imgur.com/0XnL1zO.png" alt="One Piece Ship" />
-    <h2>Set sail with the Straw Hat Pirates!</h2>
-  </section>
+  <!-- Animated Hero Section -->
+  <section id="scene">
+    <!-- Clouds -->
+    <img src="https://i.imgur.com/2Zs7K7W.png" class="cloud" />
+    <img src="https://i.imgur.com/2Zs7K7W.png" class="cloud" />
+    <img src="https://i.imgur.com/2Zs7K7W.png" class="cloud" />
 
-  <!-- Characters Section -->
-  <section id="characters">
-    <h2>Main Characters</h2>
-    <div class="characters">
-      <div class="character-card">
-        <img src="https://i.imgur.com/1uK5X0V.png" alt="Luffy">
-        <h3>Monkey D. Luffy</h3>
-      </div>
-      <div class="character-card">
-        <img src="https://i.imgur.com/JgV1Jk3.png" alt="Zoro">
-        <h3>Roronoa Zoro</h3>
-      </div>
-      <div class="character-card">
-        <img src="https://i.imgur.com/qhVtXMn.png" alt="Nami">
-        <h3>Nami</h3>
-      </div>
-      <div class="character-card">
-        <img src="https://i.imgur.com/m1o3i7n.png" alt="Sanji">
-        <h3>Sanji</h3>
-      </div>
+    <!-- Waves -->
+    <div class="waves"></div>
+
+    <!-- Hero Text -->
+    <div id="hero-text">
+      <h2>Join the Straw Hat Pirates!</h2>
     </div>
+
+    <!-- Characters -->
+    <img src="https://i.imgur.com/1uK5X0V.png" class="character" alt="Luffy">
+    <img src="https://i.imgur.com/JgV1Jk3.png" class="character" alt="Zoro">
+    <img src="https://i.imgur.com/qhVtXMn.png" class="character" alt="Nami">
+    <img src="https://i.imgur.com/m1o3i7n.png" class="character" alt="Sanji">
   </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About This Site</h2>
-    <p>Welcome to the One Piece Adventure! Explore the world of pirates, treasures, and epic battles. This website showcases characters, stories, and your favorite moments from the anime.</p>
-    <a class="btn" href="#characters">Meet the Crew</a>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Want to discuss anime or share your fan art? Reach out to me!</p>
-    <a class="btn" href="mailto:purushothamr01@gmail.com">Email Me</a>
+  <!-- Unique Profile Section -->
+  <section id="profile">
+    <img src="https://avatars.githubusercontent.com/u/your-avatar.png" alt="Purushotham Profile" />
+    <h3>Purushotham R 🌾 | ECE Engineer & Security Researcher</h3>
+    <p>From a farmer by roots to exploring the world of electronics, coding, and cybersecurity. Join me in my journey of bug bounty, anime, and tech adventures!</p>
+    <a href="mailto:purushothamr01@gmail.com" class="btn">Contact Me</a>
   </section>
 
   <!-- Footer -->
