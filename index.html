@@ -29,9 +29,75 @@ section { padding: 90px 10%; }
 .center { text-align: center; }
 
 /* HERO */
-.hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; }
-.hero h1 { font-size:3rem; letter-spacing:1px; background:linear-gradient(90deg,var(--primary),#22d3ee); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.typing { font-size:1.2rem; margin-top:16px; color:var(--muted); }
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #0e1624, var(--bg));
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: linear-gradient(270deg, #38bdf8, #22d3ee, #0e75b6, #38bdf8);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 6s ease infinite;
+  text-align: center;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.typing {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  color: var(--muted);
+  font-family: 'Fira Code', monospace;
+  position: relative;
+}
+
+.typing::after {
+  content: "|";
+  position: absolute;
+  right: -12px;
+  animation: blink 0.8s step-start infinite;
+  color: var(--primary);
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+/* Optional floating particle dots */
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: floatParticles 20s linear infinite;
+}
+
+@keyframes floatParticles {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
 
 /* BANNER */
 .banner { position: relative; width:100%; height:500px; display:flex; justify-content:center; align-items:center; overflow:hidden; margin:60px 0; }
@@ -51,7 +117,7 @@ section { padding: 90px 10%; }
 /* SKILLS */
 .skills-section { display:flex; justify-content:center; }
 .skills-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius:20px; padding:40px; max-width:500px; box-shadow:0 20px 40px rgba(0,0,0,0.3);}
-.skills-card h2 { font-size:2rem; margin-bottom:30px; color:#00fff0; text-align:center; text-shadow:1px 1px 6px rgba(0,0,0,0.7);}
+.skills-card h3 { font-size:2rem; margin-bottom:30px; color:#00fff0; text-align:center; text-shadow:1px 1px 6px rgba(0,0,0,0.7);}
 .skill { margin-bottom:20px; }
 .skill-name { display:block; margin-bottom:6px; font-weight:600; color:#e0e0e0; }
 .bar { width:100%; height:12px; background: rgba(255,255,255,0.2); border-radius:10px; overflow:hidden; position:relative; }
@@ -95,17 +161,16 @@ footer { padding:40px; text-align:center; font-size:.85rem; color:var(--muted); 
 <section class="about-section center">
   <div class="about-card">
     <h2>🧠 About Me</h2>
-    <p>🌾 Farmer by roots, technologist by passion</p>
-    <p>🎓 Electronics & Communication Engineer</p>
-    <p>⚔️ Recon → Exploit → Impact → Report</p>
-    <p>📄 Ethical, reproducible & responsible disclosures</p>
+    <p>Farmer by roots, technologist by passion</p>
+    <p> Electronics & Communication Engineer</p>
+  
   </div>
 </section>
 
 <!-- SKILLS -->
 <section class="skills-section center">
   <div class="skills-card">
-    <h2>📊 Technical Expertise</h2>
+    <h3>📊 Technical Expertise</h3>
     <div class="skill"><span class="skill-name">API Security</span><div class="bar"><span data-width="70%"></span></div></div>
     <div class="skill"><span class="skill-name">JavaScript Security</span><div class="bar"><span data-width="75%"></span></div></div>
     <div class="skill"><span class="skill-name">Linux & Bash</span><div class="bar"><span data-width="75%"></span></div></div>
@@ -123,7 +188,7 @@ footer { padding:40px; text-align:center; font-size:.85rem; color:var(--muted); 
 </section>
 
 <footer>
-  © 2026 Purushotham R — Security Researcher
+  © 2026 Purushotham R  Security Researcher
 </footer>
 
 <script>
@@ -191,5 +256,34 @@ gsap.utils.toArray(".social-icon").forEach((icon,i)=>{
 });
 </script>
 
+const roles = ["Security Researcher", "ECE Engineer", "🌾 Farmer"];
+let roleIndex = 0;
+let charIndex = 0;
+const typingEl = document.getElementById("typing");
+
+function typeEffect() {
+  if(charIndex < roles[roleIndex].length) {
+    typingEl.textContent += roles[roleIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(typeEffect, 80);
+  } else {
+    setTimeout(()=>{
+      typingEl.textContent="";
+      charIndex=0;
+      roleIndex=(roleIndex+1)%roles.length;
+      typeEffect();
+    },1500);
+  }
+}
+
+// Start typing once hero is in view
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 10 && !started){
+    started = true;
+    typeEffect();
+  }
+});
+
+  
 </body>
 </html>
