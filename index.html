@@ -5,7 +5,12 @@
 <title>Purushotham | Security Researcher</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
 <style>
 :root {
@@ -56,7 +61,7 @@ section {
 
 .typing {
   font-size: 1.1rem;
-  margin-top: 14px;
+  margin-top: 16px;
   color: var(--muted);
 }
 
@@ -67,18 +72,12 @@ section {
   border-radius: 18px;
   border: 1px solid var(--border);
   box-shadow: 0 30px 60px rgba(0,0,0,.6);
-  animation: float 7s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
-}
-
-/* CARDS */
+/* CARD */
 .card {
   background: var(--card);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
   padding: 36px;
   border-radius: 18px;
   border: 1px solid var(--border);
@@ -99,13 +98,8 @@ section {
 .socials a img {
   width: 34px;
   margin: 14px;
-  filter: invert(1) opacity(.75);
-  transition: .3s;
-}
-
-.socials a img:hover {
-  transform: translateY(-4px) scale(1.15);
-  filter: drop-shadow(0 0 12px var(--primary));
+  filter: invert(1) opacity(.7);
+  cursor: pointer;
 }
 
 /* SKILLS */
@@ -127,19 +121,6 @@ section {
   height: 100%;
   width: 0;
   background: linear-gradient(90deg, var(--accent), var(--primary));
-  transition: width 2s ease;
-}
-
-/* REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* FOOTER */
@@ -162,23 +143,23 @@ footer {
 </section>
 
 <!-- BANNER -->
-<section class="banner center reveal">
+<section class="banner center">
   <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
 </section>
 
 <!-- ABOUT -->
-<section class="reveal">
+<section>
   <div class="card">
     <h2>🧠 About Me</h2>
-    <p>🌾 Rooted in agriculture, driven by technology</p>
+    <p>🌾 Farmer by roots, technologist by passion</p>
     <p>🎓 Electronics & Communication Engineer</p>
-    <p>⚔️ Methodology: Recon → Exploit → Impact → Report</p>
-    <p>📄 Clear, ethical & reproducible vulnerability disclosures</p>
+    <p>⚔️ Recon → Exploit → Impact → Report</p>
+    <p>📄 Ethical, reproducible & responsible disclosures</p>
   </div>
 </section>
 
 <!-- SOCIALS -->
-<section class="center reveal socials">
+<section class="center socials">
   <a href="mailto:purubughunting@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
   <a href="https://medium.com/@purushothamr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
   <a href="https://twitter.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg"></a>
@@ -187,7 +168,7 @@ footer {
 </section>
 
 <!-- SKILLS -->
-<section class="reveal">
+<section>
   <div class="card">
     <h2>📊 Technical Expertise</h2>
 
@@ -214,29 +195,79 @@ footer {
 </footer>
 
 <script>
-/* Typing */
+gsap.registerPlugin(ScrollTrigger);
+
+/* HERO ANIMATION */
+gsap.from(".hero h1", {
+  y: 50,
+  opacity: 0,
+  duration: 1.2,
+  ease: "power3.out"
+});
+
+gsap.from(".typing", {
+  y: 20,
+  opacity: 0,
+  delay: .6,
+  duration: 1,
+  ease: "power3.out"
+});
+
+/* TYPING EFFECT */
 const text = "Farmer 🌾 | ECE Engineer | Security Researcher";
 let i = 0;
 const typingEl = document.getElementById("typing");
-
 (function type() {
   if (i < text.length) {
     typingEl.innerHTML += text.charAt(i++);
-    setTimeout(type, 80);
+    setTimeout(type, 70);
   }
 })();
 
-/* Scroll Animations */
-const reveals = document.querySelectorAll(".reveal");
-const bars = document.querySelectorAll(".bar span");
+/* BANNER FLOAT */
+gsap.to(".banner img", {
+  y: -18,
+  duration: 4,
+  repeat: -1,
+  yoyo: true,
+  ease: "sine.inOut"
+});
 
-window.addEventListener("scroll", () => {
-  reveals.forEach(r => {
-    if (r.getBoundingClientRect().top < window.innerHeight - 120)
-      r.classList.add("active");
+/* CARD REVEALS */
+gsap.utils.toArray(".card").forEach(card => {
+  gsap.from(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: "top 80%"
+    },
+    y: 60,
+    opacity: 0,
+    duration: 1.1,
+    ease: "power3.out"
   });
+});
 
-  bars.forEach(b => b.style.width = b.dataset.width);
+/* SKILL BARS */
+gsap.utils.toArray(".bar span").forEach(bar => {
+  gsap.to(bar, {
+    scrollTrigger: {
+      trigger: bar,
+      start: "top 85%"
+    },
+    width: bar.dataset.width,
+    duration: 1.6,
+    ease: "power2.out"
+  });
+});
+
+/* SOCIAL ICON MICRO INTERACTIONS */
+gsap.utils.toArray(".socials img").forEach(icon => {
+  icon.addEventListener("mouseenter", () => {
+    gsap.to(icon, { scale: 1.2, y: -6, duration: .3 });
+  });
+  icon.addEventListener("mouseleave", () => {
+    gsap.to(icon, { scale: 1, y: 0, duration: .3 });
+  });
 });
 </script>
 
