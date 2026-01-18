@@ -1,0 +1,82 @@
+name: Advanced Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      # 1️⃣ Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ Setup Node.js (if you have a build system)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3️⃣ Cache dependencies (speed up workflow)
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # 4️⃣ Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 5️⃣ Build the site (skip if plain HTML)
+      - name: Build static site
+        run: npm run build || echo "No build step required for plain HTML"
+
+      # 6️⃣ Configure GitHub Pages
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      # 7️⃣ Upload artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # If using a build system, point to build folder
+          path: './build' # replace './build' with '.' if plain HTML
+
+      # 8️⃣ Deploy to GitHub Pages
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@v4
+
+      # 9️⃣ Notify on Slack (Optional)
+      - name: Notify Slack
+        if: success() || failure()
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: 'YOUR_SLACK_CHANNEL_ID'
+          slack-message: |
+            Deployment of Purushotham Portfolio 
+            to GitHub Pages was *${{ job.status }}*!
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+      # 🔹 Optional: Output deployment URL
+      - name: Show deployed URL
+        run: echo "Your site is live at ${{ steps.deploy.outputs.page_url }}"
