@@ -5,221 +5,231 @@
 <title>Purushotham | Security Researcher</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --primary: #0e75b6;
-  --bg: #0b0f14;
-  --text: #e6edf3;
-  --muted: #9ba3af;
+:root{
+  --cyan:#38bdf8;
+  --bg:#020617;
+  --card:#020617dd;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Fira Code', monospace;
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:black;
+  color:var(--text);
+  font-family:'Fira Code',monospace;
+  overflow-x:hidden;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
+/* MATRIX */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
 }
 
-section {
-  padding: 80px 10%;
+/* LAYOUT */
+section{padding:80px 8%}
+.center{text-align:center}
+
+/* GLITCH */
+.glitch{
+  font-size:3rem;
+  color:var(--cyan);
+  text-shadow:2px 0 red,-2px 0 cyan;
 }
 
-.center {
-  text-align: center;
+/* TERMINAL */
+.terminal{
+  background:var(--card);
+  border:1px solid var(--cyan);
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 0 30px rgba(56,189,248,.35);
+  margin-top:30px;
 }
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* BANNER */
+.banner{
+  max-width:900px;
+  width:100%;
+  border-radius:16px;
+  margin-top:30px;
+  box-shadow:0 0 50px rgba(56,189,248,.4);
 }
 
-.hero h1 {
-  font-size: 2.4rem;
-  color: var(--primary);
+/* ANIME */
+.anime{
+  width:220px;
+  filter:drop-shadow(0 0 30px cyan);
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+  100%{transform:translateY(0)}
 }
 
-.typing {
-  font-size: 1.2rem;
-  margin-top: 10px;
-  color: var(--muted);
-}
-
-/* GIF */
-.banner img {
-  width: 90%;
-  max-width: 900px;
-  border-radius: 16px;
-  box-shadow: 0 0 40px rgba(14,117,182,.4);
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-
-/* SOCIAL ICONS */
-.socials a img {
-  width: 36px;
-  margin: 12px;
-  transition: transform .3s, filter .3s;
-}
-
-.socials a img:hover {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 10px var(--primary));
-}
-
-/* CARDS */
-.card {
-  background: #111827;
-  padding: 30px;
-  border-radius: 14px;
-  margin-top: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.4);
-}
+/* LINKS */
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-shadow:0 0 10px cyan}
 
 /* SKILLS */
-.skill {
-  margin-bottom: 20px;
+.skill{margin:15px 0}
+.bar{
+  height:8px;
+  background:#0f172a;
+  border-radius:10px;
+  overflow:hidden;
 }
-
-.bar {
-  height: 10px;
-  background: #1f2933;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.bar span {
-  display: block;
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), #38bdf8);
-  width: 0;
-  transition: width 2s ease;
-}
-
-/* REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1s;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+.bar span{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,cyan,#22d3ee);
+  width:0;
+  transition:2s;
 }
 
 /* FOOTER */
-footer {
-  padding: 30px;
-  text-align: center;
-  color: var(--muted);
+footer{
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+  border-top:1px solid #0f172a;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="hero center">
-  <h1>Purushotham</h1>
-  <div class="typing" id="typing"></div>
-</section>
+<canvas id="matrix"></canvas>
 
-<!-- GIF BANNER -->
-<section class="banner center reveal">
-  <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
+<!-- HERO -->
+<section class="center">
+  <h1 class="glitch">Purushotham</h1>
+  <p id="typing"></p>
+
+  <img class="banner"
+  src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
+
+  <!-- Anime Hacker Character -->
+  <div>
+    <img class="anime"
+    src="https://raw.githubusercontent.com/ashishps1/awesome-leetcode-resources/main/assets/hacker-anime.png"
+    alt="anime hacker">
+  </div>
 </section>
 
 <!-- ABOUT -->
-<section class="reveal">
-  <div class="card">
-    <h2>🧠 About Me</h2><br>
-    <p>🌾 Farmer by roots, technologist by passion</p>
-    <p>🎓 Electronics & Communication Engineer</p>
-    <p>⚔️ Recon → Exploit → Impact → Report</p>
-    <p>📄 Clear, reproducible & responsible disclosures</p>
-  </div>
+<section>
+<div class="terminal">
+<pre>
+> whoami
+Farmer 🌾 | ECE Engineer | Security Researcher
+
+> mission
+Recon → Exploit → Impact → Report
+
+> ethics
+Responsible disclosure. Real-world impact.
+</pre>
+</div>
 </section>
 
-<!-- SOCIAL -->
-<section class="center reveal socials">
-  <a href="mailto:purubughunting@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
-  <a href="https://medium.com/@purushothamr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
-  <a href="https://twitter.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg"></a>
-  <a href="https://linkedin.com/in/purushothamr06"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
-  <a href="https://github.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
+<!-- OSINT / DARK WEB VIBE -->
+<section>
+<div class="terminal">
+<h2>🕶️ OSINT / DARK WEB OPERATIONS</h2>
+<pre>
+• GitHub Recon & Secret Hunting
+• JavaScript Source Mapping
+• API Abuse & Auth Bypass
+• Android / Mobile Attack Surface
+• Infrastructure Fingerprinting
+</pre>
+</div>
 </section>
 
 <!-- SKILLS -->
-<section class="reveal">
-  <div class="card">
-    <h2>📊 Skills</h2><br>
+<section>
+<div class="terminal">
+<h2>🧪 Skills</h2>
 
-    <div class="skill">API Security
-      <div class="bar"><span data-width="75%"></span></div>
-    </div>
+<div class="skill">API Security
+<div class="bar"><span data="75%"></span></div></div>
 
-    <div class="skill">JavaScript Security
-      <div class="bar"><span data-width="70%"></span></div>
-    </div>
+<div class="skill">JavaScript Security
+<div class="bar"><span data="70%"></span></div></div>
 
-    <div class="skill">Linux & Bash
-      <div class="bar"><span data-width="70%"></span></div>
-    </div>
+<div class="skill">Linux & Bash
+<div class="bar"><span data="70%"></span></div></div>
 
-    <div class="skill">Python
-      <div class="bar"><span data-width="70%"></span></div>
-    </div>
-  </div>
+<div class="skill">Python
+<div class="bar"><span data="70%"></span></div></div>
+</div>
+</section>
+
+<!-- BLOGS -->
+<section>
+<div class="terminal">
+<h2>📰 Latest Research (Auto-synced)</h2>
+<div id="blogs">Fetching Medium feed…</div>
+</div>
 </section>
 
 <footer>
-  © 2026 Purushotham — Security Researcher
+© 2026 Purushotham — Offensive Security Researcher
 </footer>
 
 <script>
-/* Typing effect */
-const text = "Farmer 🌾 | ECE Engineer | Security Researcher";
-let i = 0;
-function typing() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing, 80);
-  }
-}
-typing();
+/* MATRIX */
+const c=document.getElementById("matrix");
+const ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+const chars="01";
+const size=14;
+const cols=c.width/size;
+const drops=Array(cols).fill(1);
 
-/* Scroll reveal */
-const reveals = document.querySelectorAll(".reveal");
-window.addEventListener("scroll", () => {
-  reveals.forEach(r => {
-    const top = r.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100) r.classList.add("active");
-  });
+setInterval(()=>{
+ctx.fillStyle="rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,c.width,c.height);
+ctx.fillStyle="#38bdf8";
+ctx.font=size+"px monospace";
+drops.forEach((y,i)=>{
+const t=chars[Math.random()*2|0];
+ctx.fillText(t,i*size,y*size);
+if(y*size>c.height&&Math.random()>0.975)drops[i]=0;
+drops[i]++;
+});
+},35);
+
+/* TYPING */
+const text="Farmer 🌾 | ECE Engineer | Security Researcher";
+let i=0;
+(function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text[i++];
+setTimeout(type,70);
+}})();
+
+/* SKILLS */
+window.addEventListener("scroll",()=>{
+document.querySelectorAll(".bar span").forEach(b=>{
+b.style.width=b.getAttribute("data");
+});
 });
 
-/* Skill animation */
-window.addEventListener("scroll", () => {
-  document.querySelectorAll(".bar span").forEach(bar => {
-    bar.style.width = bar.dataset.width;
-  });
+/* MEDIUM RSS */
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@purushothamr")
+.then(r=>r.json())
+.then(d=>{
+document.getElementById("blogs").innerHTML=
+d.items.slice(0,5).map(p=>`▸ <a target="_blank" href="${p.link}">${p.title}</a>`).join("<br>");
 });
 </script>
 
