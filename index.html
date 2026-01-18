@@ -131,6 +131,40 @@ footer {
   color: var(--muted);
   border-top: 1px solid var(--border);
 }
+
+
+  .hero {
+  height: 100vh;
+  background: radial-gradient(circle at top, #0e75b6, #020617);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome {
+  font-size: 3.2rem;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.hidden {
+  display: none;
+}
+
+.typing {
+  font-family: "Fira Code", monospace;
+  font-size: 1.4rem;
+  margin-top: 8px;
+}
+
+  
+  
 </style>
 </head>
 
@@ -138,9 +172,14 @@ footer {
 
 <!-- HERO -->
 <section class="hero center">
-  <h1>Purushotham</h1>
-  <div class="typing" id="typing"></div>
+  <h1 id="welcome" class="welcome">Welcome</h1>
+
+  <div id="mainContent" class="hidden">
+    <h1>Purushotham R</h1>
+    <div class="typing" id="typing"></div>
+  </div>
 </section>
+
 
 <!-- BANNER -->
 <section class="banner center">
@@ -270,6 +309,51 @@ gsap.utils.toArray(".socials img").forEach(icon => {
   });
 });
 </script>
+  <script>
+  let started = false;
+
+  const roles = [
+    "Security Researcher",
+    "ECE Engineer",
+    "Bug Bounty Hunter",
+    "DevOps Enthusiast"
+  ];
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  const typing = document.getElementById("typing");
+
+  function typeEffect() {
+    if (charIndex < roles[roleIndex].length) {
+      typing.textContent += roles[roleIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeEffect, 80);
+    } else {
+      setTimeout(() => {
+        typing.textContent = "";
+        charIndex = 0;
+        roleIndex = (roleIndex + 1) % roles.length;
+        typeEffect();
+      }, 1500);
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!started && window.scrollY > 10) {
+      started = true;
+
+      const welcome = document.getElementById("welcome");
+      welcome.classList.add("fade-out");
+
+      setTimeout(() => {
+        welcome.style.display = "none";
+        document.getElementById("mainContent").classList.remove("hidden");
+        typeEffect();
+      }, 600);
+    }
+  });
+</script>
+
 
 </body>
 </html>
