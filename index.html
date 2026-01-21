@@ -6,18 +6,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
-
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
 <style>
 :root{
- --bg:#020617;--panel:#020617;--text:#e5e7eb;--muted:#9ca3af;
- --accent:#22d3ee;--accent2:#38bdf8;--border:rgba(255,255,255,.08)
+ --bg:#0d1117;
+ --panel:#161b22;
+ --text:#c9d1d9;
+ --muted:#8b949e;
+ --accent:#58a6ff;
+ --accent2:#1f6feb;
+ --border:rgba(255,255,255,.08);
+ --social-hover:rgba(88,166,255,0.3);
 }
-[data-theme="dark"]{--bg:#000;--panel:#000}
+[data-theme="dark"]{
+ --bg:#0d1117;
+ --panel:#161b22;
+ --text:#c9d1d9;
+ --muted:#8b949e;
+ --accent:#58a6ff;
+ --accent2:#1f6feb;
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Fira Code',monospace}
-body{background:radial-gradient(circle at top,#020617,#000);color:var(--text);overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:background 0.3s,color 0.3s;}
 section{padding:80px 10%}
 .center{text-align:center}
 
@@ -26,27 +38,28 @@ section{padding:80px 10%}
  position:fixed;top:20px;right:20px;z-index:99;
  cursor:pointer;border:1px solid var(--border);
  padding:8px 14px;border-radius:20px;
- background:#000;color:var(--accent)
+ background:var(--panel);color:var(--accent);
+ transition:0.3s;
 }
 
 /* INTRO */
 #intro{
- position:fixed;inset:0;background:#000;
+ position:fixed;inset:0;background:var(--panel);
  display:flex;align-items:center;justify-content:center;
- z-index:9999
+ z-index:9999;
 }
 #intro img{
  max-width:90%;border-radius:20px;
- box-shadow:0 0 80px rgba(34,211,238,.4)
+ box-shadow:0 0 80px var(--accent);
 }
 
 /* TERMINAL */
 .hero{min-height:70vh;display:flex;justify-content:center;align-items:center}
 .terminal{
- background:#000;border:1px solid var(--border);
+ background:var(--panel);border:1px solid var(--border);
  border-radius:18px;padding:40px;
  width:100%;max-width:1000px;
- box-shadow:0 0 50px rgba(34,211,238,.22);
+ box-shadow:0 0 50px var(--accent);
  font-size:1.1rem;line-height:1.6;
  white-space:pre-wrap;position:relative
 }
@@ -62,7 +75,7 @@ section{padding:80px 10%}
 .story h2{
  font-size:2.5rem;margin-bottom:20px;
  background:linear-gradient(90deg,var(--accent),var(--accent2));
- -webkit-background-clip:text;-webkit-text-fill-color:transparent
+ -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
 
 /* METRICS */
@@ -73,13 +86,13 @@ section{padding:80px 10%}
 .metric{
  border:1px solid var(--border);
  padding:25px;border-radius:18px;
- background:rgba(255,255,255,.02);
+ background:rgba(88,166,255,.05);
  text-align:center
 }
 .metric h3{font-size:2rem;color:var(--accent)}
 
 /* ATTACK CHAIN */
-.attack-chain{background:linear-gradient(180deg,#000,#020617)}
+.attack-chain{background:linear-gradient(180deg,var(--panel),var(--bg))}
 .chain{
  display:flex;justify-content:center;align-items:center;
  gap:20px;flex-wrap:wrap
@@ -87,7 +100,7 @@ section{padding:80px 10%}
 .chain-step{
  border:1px solid var(--border);
  padding:20px;border-radius:18px;
- background:rgba(255,255,255,.03);
+ background:rgba(88,166,255,.05);
  width:240px;text-align:center
 }
 .chain-step strong{color:var(--accent)}
@@ -100,14 +113,14 @@ section{padding:80px 10%}
  gap:20px
 }
 .medium-card{
- background:rgba(255,255,255,.03);
+ background:rgba(88,166,255,.05);
  border:1px solid var(--border);
  border-radius:18px;
- transition:.3s ease
+ transition:.3s ease, transform .3s ease;
 }
 .medium-card:hover{
  transform:translateY(-6px);
- box-shadow:0 15px 50px rgba(34,211,238,.25)
+ box-shadow:0 15px 50px var(--accent);
 }
 .medium-body{
  padding:20px;
@@ -128,7 +141,7 @@ section{padding:80px 10%}
  font-size:.7rem;padding:4px 8px;
  border-radius:999px;border:1px solid var(--border);
  color:var(--accent);
- background:rgba(34,211,238,.08);
+ background:rgba(88,166,255,.08);
 }
 
 /* SOCIALS */
@@ -137,14 +150,13 @@ section{padding:80px 10%}
  width:50px;height:50px;
  display:flex;align-items:center;justify-content:center;
  border:1px solid var(--border);border-radius:50%;
- background:#000;transition:.3s
+ background:var(--panel);transition:0.3s;
 }
 .icon svg{width:22px;height:22px;fill:var(--text)}
 .icon:hover{
- transform:translateY(-4px) scale(1.1);
- box-shadow:0 0 12px rgba(34,211,238,.5)
+ transform:translateY(-4px) scale(1.2);
+ box-shadow:0 0 20px var(--social-hover);
 }
-.icon.private{opacity:.6;border-style:dashed}
 
 /* FOOTER */
 footer{
@@ -233,17 +245,21 @@ footer{
 <!-- FOOTER + SOCIALS -->
 <footer>
  <div class="socials">
+   <!-- Email -->
    <a class="icon" href="mailto:purubughunting@gmail.com" aria-label="Email">
-     <svg viewBox="0 0 24 24"><path d="M12 13L0 4v16h24V4L12 13z"/></svg>
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 4v16h20V4H2zm10 9l-10-7h20l-10 7z"/></svg>
    </a>
+   <!-- Medium -->
    <a class="icon" href="https://medium.com/@purushothamr" aria-label="Medium">
-     <svg viewBox="0 0 24 24"><path d="M0 4h24v16H0z"/></svg>
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 6h20v12H2z"/></svg>
    </a>
+   <!-- LinkedIn -->
    <a class="icon" href="https://linkedin.com/in/purushothamr06" aria-label="LinkedIn">
-     <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
    </a>
+   <!-- GitHub -->
    <a class="icon" href="https://github.com/purushothamr01" aria-label="GitHub">
-     <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.7 1.6-.7.1-.7.4-1.1.7-1.4-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2.9-.2 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.7 1.6-.7.1-.7.4-1.1.7-1.4-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2.9-.2 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
    </a>
  </div>
  © 2026 Purushotham R · Security Researcher
@@ -261,16 +277,16 @@ cursor.className='cursor';
 terminal.appendChild(cursor);
 const lines=[
   'puru@linux:~$ Hi',
- 'Welcome',
- '',
- 'puru@linux:~$ whoami',
- 'Farmer 🌾 | ECE Engineer | Security Researcher',
- '',
- 'puru@linux:~$ ls skills',
- 'Linux  Bash  Python  API Security',
- '',
- 'puru@linux:~$ cat focus.txt',
- 'Finding real bugs. Not noise.'
+  'Welcome',
+  '',
+  'puru@linux:~$ whoami',
+  'Farmer 🌾 | ECE Engineer | Security Researcher',
+  '',
+  'puru@linux:~$ ls skills',
+  'Linux  Bash  Python  API Security',
+  '',
+  'puru@linux:~$ cat focus.txt',
+  'Finding real bugs. Not noise.'
 ];
 let i=0,j=0;
 (function type(){
@@ -291,6 +307,5 @@ gsap.from('.chain-step',{scrollTrigger:{trigger:'.attack-chain',start:'top 80%'}
 gsap.from('.medium-card',{scrollTrigger:{trigger:'.medium-cards',start:'top 80%'},y:40,opacity:0,stagger:.15});
 gsap.from('footer .icon',{scrollTrigger:{trigger:'footer',start:'top 80%'},y:20,opacity:0,scale:.8,stagger:.1});
 </script>
-
 </body>
 </html>
