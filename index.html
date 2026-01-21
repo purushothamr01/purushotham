@@ -193,6 +193,8 @@ footer{ text-align:center; padding:30px; color:var(--muted); border-top:1px soli
 // INTRO hide after 3s
 const intro = document.getElementById('intro');
 setTimeout(()=>{gsap.to(intro,{opacity:0,scale:1.05,duration:1,onComplete:()=>intro.remove()});},3000);
+ </script>
+
 
 // TERMINAL animation
 <script>
@@ -200,6 +202,7 @@ const terminal = document.getElementById('terminal');
 const cursor = document.createElement('span');
 cursor.className = 'cursor';
 terminal.appendChild(cursor);
+ 
 
 // Each line: [text, typeClass, delayAfterLine]
 const lines = [
