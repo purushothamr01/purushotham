@@ -112,14 +112,14 @@ section{padding:60px 10%;}
 .socials{
  display:flex; justify-content:center; gap:15px; margin:40px 0;
  opacity:0;
- transform: translateY(50px);
+ transform: translateX(-100px);
 }
 .socials a img{
  width:50px; height:50px;
  border-radius:12px;
  transition:0.3s;
 }
-.socials a:hover{transform:scale(1.2);}
+.socials a:hover{transform:scale(1.2) rotate(-5deg);}
 footer{ text-align:center; padding:30px; color:var(--muted); border-top:1px solid var(--border);}
 </style>
 </head>
@@ -203,7 +203,7 @@ footer{ text-align:center; padding:30px; color:var(--muted); border-top:1px soli
 // Hide intro
 gsap.to("#intro",{opacity:0,scale:1.05,duration:1,delay:3,onComplete:()=>document.getElementById('intro').remove()});
 
-// Smooth terminal typing
+// Smooth terminal typing with fade
 const terminal = document.getElementById('terminal');
 const cursor = document.createElement('span');
 cursor.className = 'cursor';
@@ -223,13 +223,14 @@ const lines = [
   ["Finding real bugs. Not noise.", "info", 0]
 ];
 
-let i = 0;
-function typeLine(lineArr, callback){
+let i=0;
+function typeLine(lineArr){
+  if(i >= lines.length) return;
   const [text, cls, delay] = lineArr;
   const lineEl = document.createElement('div');
   lineEl.className = `line ${cls}`;
   terminal.insertBefore(lineEl, cursor);
-  let j = 0;
+  let j=0;
   function typeChar(){
     if(j < text.length){
       const span = document.createElement('span');
@@ -240,21 +241,20 @@ function typeLine(lineArr, callback){
       setTimeout(typeChar, 40 + Math.random()*20);
     } else {
       lineEl.style.opacity = 1;
-      setTimeout(callback, delay);
+      i++;
+      setTimeout(()=>typeLine(lines[i]), delay);
     }
   }
   typeChar();
 }
-function startTerminal(){
-  if(i < lines.length){ typeLine(lines[i], ()=>{ i++; startTerminal(); }); }
-}
-startTerminal();
+typeLine(lines[i]);
 
-// Scroll animations for cards and socials
+// Scroll animations for cards
 gsap.utils.toArray('.medium-card').forEach(card=>{
   gsap.to(card,{scrollTrigger:{trigger:card,start:"top 85%",once:true},y:0,opacity:1,duration:1,ease:"power3.out"});
 });
-gsap.to('.socials',{scrollTrigger:{trigger:'.socials',start:"top 85%",once:true},y:0,opacity:1,duration:1.2,ease:"power3.out"});
+// Socials whoosh animation
+gsap.to('.socials',{scrollTrigger:{trigger:'.socials',start:"top 85%",once:true},x:0,opacity:1,duration:1.2,ease:"power3.out"});
 </script>
 
 </body>
