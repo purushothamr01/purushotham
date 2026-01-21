@@ -203,6 +203,9 @@ cursor.className = 'cursor';
 terminal.appendChild(cursor);
 
 const lines = [
+  ["puru@linux:~$ ನಮಸ್ಕಾರ| Namaste | नमस्ते | வணக்கம் | നമസ്കാരം |  Hello | こんにちは |", "cmd", 500],
+  ["Welcome", "info", 600],
+  ["", "", 200],
   ["puru@linux:~$ whoami", "cmd", 500],
   ["Farmer 🌾 | ECE Engineer | Security Researcher", "info", 600],
   ["", "", 200],
@@ -239,39 +242,6 @@ function startTerminal() {
   }
 }
 startTerminal();
-</script>
-<script>
-// GSAP scroll animations
-gsap.registerPlugin(ScrollTrigger);
-
-// Blog cards animation
-gsap.from(".medium-card", {
-  scrollTrigger: {
-    trigger: ".medium-cards",
-    start: "top 80%",
-    toggleActions: "play none none none"
-  },
-  y: 50,
-  opacity: 0,
-  stagger: 0.2,
-  duration: 0.8,
-  ease: "power3.out"
-});
-
-// Social icons animation
-gsap.from(".socials a", {
-  scrollTrigger: {
-    trigger: ".socials",
-    start: "top 90%",
-    toggleActions: "play none none none"
-  },
-  y: 20,
-  opacity: 0,
-  scale: 0.8,
-  stagger: 0.15,
-  duration: 0.6,
-  ease: "back.out(1.2)"
-});
 </script>
 
 </body>
