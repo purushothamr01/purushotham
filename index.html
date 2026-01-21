@@ -4,133 +4,124 @@
 <meta charset="UTF-8">
 <title>Purushotham R | Security Researcher</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
-
-<!-- GSAP -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-
 <style>
-:root {
-  --primary:#38bdf8;
-  --accent:#22d3ee;
-  --bg:#0b0f14;
-  --card:rgba(17,24,39,.75);
-  --text:#e6edf3;
-  --muted:#9ba3af;
-  --border:rgba(255,255,255,.08);
+:root{
+ --bg:#020617;--panel:#020617;--text:#e5e7eb;--muted:#9ca3af;
+ --accent:#22d3ee;--accent2:#38bdf8;--border:rgba(255,255,255,.08)
 }
-
+[data-theme="dark"]{--bg:#000;--panel:#000}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Fira Code',monospace}
-body{background:radial-gradient(circle at top,#0e1624,var(--bg));color:var(--text);overflow-x:hidden}
-section{padding:90px 10%}
+body{background:radial-gradient(circle at top,#020617,#000);color:var(--text);overflow-x:hidden}
+section{padding:100px 10%}
 .center{text-align:center}
-.hidden{opacity:0;pointer-events:none}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;overflow:hidden}
-.hero h1{font-size:3.6rem;letter-spacing:2px;font-weight:700;text-transform:uppercase;background:linear-gradient(270deg,#38bdf8,#22d3ee,#0e75b6,#38bdf8);background-size:600% 600%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientMove 6s ease infinite}
-@keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+/* TOGGLE */
+.toggle{position:fixed;top:20px;right:20px;z-index:99;cursor:pointer;border:1px solid var(--border);padding:8px 14px;border-radius:20px;background:#000;color:var(--accent)}
 
-.typing{font-size:1.5rem;margin-top:22px;color:var(--muted);position:relative}
-.typing::after{content:"|";position:absolute;right:-12px;color:var(--primary);animation:blink .8s infinite}
-@keyframes blink{50%{opacity:0}}
+/* TERMINAL HERO */
+.hero{min-height:100vh;display:flex;justify-content:center;align-items:center}
+.terminal{background:#000;border:1px solid var(--border);border-radius:14px;padding:30px;width:100%;max-width:720px;box-shadow:0 0 40px rgba(34,211,238,.15)}
+.terminal span{color:var(--accent)}
+.line{margin:8px 0;white-space:pre-wrap}
 
-.hero::before{content:"";position:absolute;width:200%;height:200%;top:-50%;left:-50%;background:radial-gradient(circle,rgba(255,255,255,.035) 1px,transparent 1px);background-size:50px 50px;animation:floatParticles 25s linear infinite}
-@keyframes floatParticles{to{transform:translate(60px,60px)}}
+/* STORY */
+.story{min-height:100vh;display:flex;align-items:center}
+.story h2{font-size:2.5rem;margin-bottom:20px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
-/* BANNER */
-.banner{width:100%;height:520px;display:flex;justify-content:center;align-items:center;overflow:hidden;margin:60px 0}
-.banner img{width:100%;height:100%;object-fit:cover;border-radius:22px;border:1px solid var(--border);box-shadow:0 30px 60px rgba(0,0,0,.6);transition:.6s}
-.banner:hover img{transform:scale(1.06);filter:brightness(1.05)}
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:25px}
+.metric{border:1px solid var(--border);padding:30px;border-radius:18px;background:rgba(255,255,255,.02);text-align:center}
+.metric h3{font-size:2.2rem;color:var(--accent)}
 
-/* ABOUT */
-.about-section{display:flex;justify-content:center;background:linear-gradient(135deg,#0e75b6,#020617)}
-.about-card{background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border-radius:22px;padding:45px;max-width:520px;box-shadow:0 25px 60px rgba(0,0,0,.45)}
-.about-card h2{font-size:2.1rem;margin-bottom:20px;color:#00fff0}
-.about-card p{font-size:1.1rem;line-height:1.9;color:#e0e0e0}
+/* VULNS */
+.vulns{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+.vuln{border:1px solid var(--border);border-radius:18px;padding:25px;background:rgba(255,255,255,.02)}
+.vuln span{color:#22c55e}
 
-/* SKILLS */
-.skills-section{display:flex;justify-content:center}
-.skills-card{background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border-radius:22px;padding:45px;max-width:520px;box-shadow:0 25px 60px rgba(0,0,0,.45)}
-.skills-card h3{font-size:2rem;margin-bottom:30px;color:#00fff0}
-.skill{margin-bottom:22px}
-.skill-name{display:block;margin-bottom:8px;color:#e5e7eb;font-weight:600}
-.bar{width:100%;height:12px;background:rgba(255,255,255,.18);border-radius:10px;overflow:hidden}
-.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--primary));border-radius:10px}
-
-/* SOCIALS */
-.socials{display:flex;justify-content:center;gap:26px;margin:60px 0}
-.social-icon{width:52px;height:52px;transition:.3s}
-.social-icon img{width:100%;height:100%;filter:invert(100%)}
-.social-icon:hover{transform:scale(1.25) rotate(8deg);filter:drop-shadow(0 0 12px #22d3ee)}
-
-footer{padding:40px;text-align:center;font-size:.85rem;color:var(--muted);border-top:1px solid var(--border)}
+footer{text-align:center;padding:40px;color:var(--muted);border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
+<div class="toggle" onclick="toggleTheme()">🌙</div>
 
-<!-- HERO -->
-<section class="hero center">
-  <h1>Purushotham R</h1>
-  <div class="typing" id="typing"></div>
+<section class="hero">
+ <div class="terminal" id="terminal"></div>
 </section>
 
-<!-- BANNER -->
-<section class="banner">
-  <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true" alt="Banner">
+<section class="story">
+ <div>
+  <h2>From Fields to Firewalls</h2>
+  <p>Farmer by roots 🌾 → Security Researcher by obsession. I hunt real-world vulnerabilities, abuse logic flaws, and help organizations fix what scanners miss.</p>
+ </div>
 </section>
 
-<!-- ABOUT -->
-<section class="about-section center">
-  <div class="about-card">
-    <h2>🧠 About Me</h2>
-    <p>Farmer by roots 🌾, technologist by passion.</p>
-    <p>Electronics & Communication Engineer focused on security research, real‑world vulnerabilities, and building defensive systems.</p>
+<section>
+ <h2 class="center">📈 Impact Metrics</h2><br>
+ <div class="metrics">
+  <div class="metric"><h3>35+</h3><p>Bugs Found</p></div>
+  <div class="metric"><h3>8</h3><p>Critical / High</p></div>
+  <div class="metric"><h3>12+</h3><p>Programs Tested</p></div>
+  <div class="metric"><h3>API</h3><p>Primary Surface</p></div>
+ </div>
+</section>
+
+<section>
+ <h2 class="center">🔥 Vulnerability Research</h2><br>
+ <div class="vulns">
+  <div class="vuln"><h4>IDOR → Account Takeover</h4><p>Improper object-level authorization in REST APIs.</p><span>High Severity</span></div>
+  <div class="vuln"><h4>OAuth Misconfiguration</h4><p>Exported Android activity allowed auth bypass.</p><span>Critical</span></div>
+  <div class="vuln"><h4>Session Fixation</h4><p>Reusable auth cookies exposed via GitHub.</p><span>High</span></div>
+ </div>
+</section>
+
+<section>
+ <h2 class="center">🧾 Public Writeups & Reports</h2><br>
+ <div class="vulns">
+  <div class="vuln">
+   <h4>🔗 API IDOR Vulnerability – Real Case Study</h4>
+   <p>End-to-end analysis of an IDOR leading to full account takeover, including request tampering and impact.</p>
+   <a href="https://medium.com/@purushothamr" target="_blank"><span>Read on Medium</span></a>
   </div>
-</section>
-
-<!-- SKILLS -->
-<section class="skills-section center">
-  <div class="skills-card">
-    <h3>📊 Technical Expertise</h3>
-    <div class="skill"><span class="skill-name">API Security</span><div class="bar"><span data-width="80%"></span></div></div>
-    <div class="skill"><span class="skill-name">JavaScript Security</span><div class="bar"><span data-width="78%"></span></div></div>
-    <div class="skill"><span class="skill-name">Linux & Bash</span><div class="bar"><span data-width="85%"></span></div></div>
-    <div class="skill"><span class="skill-name">Python</span><div class="bar"><span data-width="75%"></span></div></div>
+  <div class="vuln">
+   <h4>🔗 OAuth Activity Exploitation (Android)</h4>
+   <p>How an exported Android activity enabled authentication abuse. Reported responsibly.</p>
+   <span>HackerOne (Redacted)</span>
   </div>
-</section>
-
-<!-- SOCIALS -->
-<section class="center socials">
-  <a href="mailto:purubughunting@gmail.com" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
-  <a href="https://medium.com/@purushothamr" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
-  <a href="https://twitter.com/purushothamr01" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg"></a>
-  <a href="https://linkedin.com/in/purushothamr06" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
-  <a href="https://github.com/purushothamr01" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
+  <div class="vuln">
+   <h4>🔗 Session Cookie Exposure via GitHub</h4>
+   <p>Discovery of live session cookies in public repositories and real-world risk.</p>
+   <a href="https://medium.com/@purushothamr" target="_blank"><span>Medium Writeup</span></a>
+  </div>
+ </div>
 </section>
 
 <footer>© 2026 Purushotham R · Security Researcher</footer>
 
 <script>
-gsap.registerPlugin(ScrollTrigger);
-
-/* HERO ANIMATION */
-gsap.from(".hero h1",{y:50,opacity:0,duration:1.2,ease:"power3.out"});
-gsap.from(".typing",{y:20,opacity:0,delay:.6,duration:1});
-
-/* TYPING EFFECT */
-const roles=["Security Researcher","Bug Bounty Hunter","ECE Engineer","🌾 Farmer"];let r=0,c=0;const t=document.getElementById("typing");
-function type(){if(c<roles[r].length){t.textContent+=roles[r][c++];setTimeout(type,80)}else{setTimeout(()=>{t.textContent="";c=0;r=(r+1)%roles.length;type()},1500)}}
+const terminal=document.getElementById('terminal');
+const lines=[
+'purushotham@security:~$ whoami',
+'Security Researcher | Bug Bounty Hunter',
+'',
+'purushotham@security:~$ ls skills',
+'API-Security  Linux  Bash  Python  JS-Security',
+'',
+'purushotham@security:~$ cat focus.txt',
+'Finding real bugs. Not noise.'
+];
+let i=0,j=0;
+function type(){if(i<lines.length){if(j<lines[i].length){terminal.innerHTML+=lines[i][j++];setTimeout(type,30)}else{terminal.innerHTML+='\n';j=0;i++;setTimeout(type,200)}}}
 type();
 
-/* SKILL BARS */
-gsap.utils.toArray(".skill").forEach((s,i)=>{const b=s.querySelector("span");gsap.to(b,{scrollTrigger:{trigger:s,start:"top 85%"},width:b.dataset.width,duration:1.2,delay:i*.15})});
+function toggleTheme(){document.body.dataset.theme=document.body.dataset.theme==='dark'?'':'dark'}
 
-/* FLOATING SOCIALS */
-gsap.utils.toArray('.social-icon').forEach((i,n)=>{gsap.to(i,{y:6,duration:2.2,repeat:-1,yoyo:true,delay:n*.2,ease:'sine.inOut'})});
+/* SCROLL STORY */
+gsap.from('.story div',{scrollTrigger:{trigger:'.story',start:'top 70%'},y:60,opacity:0,duration:1.2});
+gsap.from('.metric',{scrollTrigger:{trigger:'.metrics',start:'top 80%'},y:40,opacity:0,stagger:.2});
+gsap.from('.vuln',{scrollTrigger:{trigger:'.vulns',start:'top 80%'},y:40,opacity:0,stagger:.2});
 </script>
 </body>
 </html>
