@@ -6,330 +6,131 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-
 <style>
 :root{
- --bg:#0d1117;
- --panel:#161b22;
- --text:#c9d1d9;
- --muted:#8b949e;
- --accent:#58a6ff;
- --accent2:#1f6feb;
- --border:rgba(255,255,255,.08);
- --social-hover:rgba(88,166,255,0.3);
+ --bg:#0d1117; --panel:#161b22; --text:#c9d1d9; --muted:#8b949e;
+ --accent:#58a6ff; --accent2:#1f6feb; --border:rgba(255,255,255,.08);
 }
-[data-theme="dark"]{
- --bg:#0d1117;
- --panel:#161b22;
- --text:#c9d1d9;
- --muted:#8b949e;
- --accent:#58a6ff;
- --accent2:#1f6feb;
+body{
+ font-family:'Fira Code', monospace;
+ background:var(--bg);
+ color:var(--text);
+ margin:0; padding:0;
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Fira Code',monospace}
-body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:background 0.3s,color 0.3s;}
-section{padding:80px 10%}
-.center{text-align:center}
-
-/* TOGGLE */
-.toggle{
- position:fixed;top:20px;right:20px;z-index:99;
- cursor:pointer;border:1px solid var(--border);
- padding:8px 14px;border-radius:20px;
- background:var(--panel);color:var(--accent);
- transition:0.3s;
-}
-
-/* INTRO */
-#intro{
- position:fixed;inset:0;background:var(--panel);
- display:flex;align-items:center;justify-content:center;
- z-index:9999;
-}
-#intro img{
- max-width:90%;border-radius:20px;
- box-shadow:0 0 80px var(--accent);
-}
-
-/* TERMINAL */
-.hero{min-height:70vh;display:flex;justify-content:center;align-items:center}
-.terminal{
- background:var(--panel);border:1px solid var(--border);
- border-radius:18px;padding:40px;
- width:100%;max-width:1000px;
- box-shadow:0 0 50px var(--accent);
- font-size:1.1rem;line-height:1.6;
- white-space:pre-wrap;position:relative
-}
-.cursor{
- display:inline-block;width:10px;height:1.2em;
- background:var(--accent);margin-left:6px;
- animation:blink 1s infinite
-}
-@keyframes blink{50%{opacity:0}}
-
-/* STORY */
-.story{min-height:60vh;display:flex;align-items:center}
-.story h2{
- font-size:2.5rem;margin-bottom:20px;
- background:linear-gradient(90deg,var(--accent),var(--accent2));
- -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-
-/* METRICS */
-.metrics{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
- gap:20px
-}
-.metric{
- border:1px solid var(--border);
- padding:25px;border-radius:18px;
- background:rgba(88,166,255,.05);
- text-align:center
-}
-.metric h3{font-size:2rem;color:var(--accent)}
-
-/* ATTACK CHAIN */
-.attack-chain{background:linear-gradient(180deg,var(--panel),var(--bg))}
-.chain{
- display:flex;justify-content:center;align-items:center;
- gap:20px;flex-wrap:wrap
-}
-.chain-step{
- border:1px solid var(--border);
- padding:20px;border-radius:18px;
- background:rgba(88,166,255,.05);
- width:240px;text-align:center
-}
-.chain-step strong{color:var(--accent)}
-.chain-arrow{font-size:2rem;color:var(--accent)}
+section{padding:60px 10%;}
+.center{text-align:center;}
+h2{margin-bottom:20px;}
+a{text-decoration:none;}
 
 /* BLOG CARDS */
 .medium-cards{
  display:grid;
  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:20px
+ gap:20px;
 }
 .medium-card{
- background:rgba(88,166,255,.05);
+ background:var(--panel);
  border:1px solid var(--border);
- border-radius:18px;
- transition:.3s ease, transform .3s ease;
+ border-radius:15px;
+ padding:20px;
+ transition:0.3s;
 }
 .medium-card:hover{
  transform:translateY(-6px);
- box-shadow:0 15px 50px var(--accent);
+ box-shadow:0 10px 30px var(--accent);
 }
-.medium-body{
- padding:20px;
- display:flex;
- flex-direction:column;
- gap:12px
-}
-.medium-body h3{color:var(--accent);font-size:1.05rem;margin-bottom:4px;}
-.medium-body p{color:var(--muted);font-size:.9rem;line-height:1.5}
-.medium-body a{
- margin-top:auto;color:var(--accent2);
- font-weight:600;text-decoration:none
-}
-.tags{
- display:flex;gap:6px;flex-wrap:wrap;margin-top:6px
-}
+.medium-card h3{color:var(--accent);}
+.medium-card p{color:var(--muted); font-size:0.9rem;}
+.tags{display:flex; gap:6px; margin:6px 0;}
 .tag{
- font-size:.7rem;padding:4px 8px;
- border-radius:999px;border:1px solid var(--border);
+ font-size:0.7rem;
+ padding:3px 8px;
+ border-radius:999px;
+ background:rgba(88,166,255,0.1);
  color:var(--accent);
- background:rgba(88,166,255,.08);
 }
 
-/* SOCIALS */
-.socials{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:60px 0}
-.icon{
- width:50px;height:50px;
- display:flex;align-items:center;justify-content:center;
- border:1px solid var(--border);border-radius:50%;
- background:var(--panel);transition:0.3s;
+/* SOCIAL ICONS */
+.socials{
+ display:flex;
+ justify-content:center;
+ gap:15px;
+ margin:40px 0;
 }
-.icon svg{width:22px;height:22px;fill:var(--text)}
-.icon:hover{
- transform:translateY(-4px) scale(1.2);
- box-shadow:0 0 20px var(--social-hover);
+.socials a{
+ width:50px; height:50px;
+ display:flex; align-items:center; justify-content:center;
+ border-radius:50%;
+ transition:0.3s;
 }
-
-/* FOOTER */
-footer{
- text-align:center;padding:40px 10%;
- color:var(--muted);
- border-top:1px solid var(--border)
-}
+.socials a svg{width:24px;height:24px;}
+.socials a.email{background:#D14836;}
+.socials a.medium{background:#00ab6c;}
+.socials a.linkedin{background:#0a66c2;}
+.socials a.github{background:#171515;}
+.socials a:hover{transform:scale(1.2);}
+footer{ text-align:center; padding:30px; color:var(--muted); border-top:1px solid var(--border);}
 </style>
 </head>
 <body>
 
-<!-- INTRO -->
-<div id="intro">
- <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
-</div>
-
-<div class="toggle" onclick="toggleTheme()">🌙</div>
-
-<!-- TERMINAL -->
-<section class="hero">
- <div class="terminal" id="terminal"></div>
-</section>
-
-<!-- STORY -->
-<section class="story">
- <div>
-  <h2>From Fields to Firewalls</h2>
-  <p>Farmer by roots 🌾 → Security Researcher by obsession. I hunt real-world vulnerabilities and logic flaws.</p>
- </div>
-</section>
-
-<!-- METRICS -->
-<section>
- <h2 class="center">📈 Impact Metrics</h2><br>
- <div class="metrics">
-  <div class="metric"><h3>35+</h3><p>Bugs Found</p></div>
-  <div class="metric"><h3>8</h3><p>Critical / High</p></div>
-  <div class="metric"><h3>12+</h3><p>Programs Tested</p></div>
-  <div class="metric"><h3>API</h3><p>Primary Surface</p></div>
- </div>
-</section>
-
-<!-- ATTACK CHAIN -->
-<section class="attack-chain">
- <h2 class="center">🧬 Attack Chain</h2><br>
- <div class="chain">
-  <div class="chain-step">🛰️ <strong>Request</strong><p>Malicious API call</p></div>
-  <div class="chain-arrow">➜</div>
-  <div class="chain-step">💥 <strong>Exploit</strong><p>IDOR / Auth Bypass</p></div>
-  <div class="chain-arrow">➜</div>
-  <div class="chain-step">🔥 <strong>Impact</strong><p>ATO / Data Exposure</p></div>
- </div>
-</section>
-
-<!-- BLOG CARDS -->
-<section>
- <h2 class="center">🧾 Featured Medium Reports</h2><br>
+<section class="center">
+ <h2>🧾 Featured Medium Reports</h2>
  <div class="medium-cards">
 
-  <!-- Card 1 -->
   <div class="medium-card">
-   <div class="medium-body">
-    <h3>🧠 Complete Recon Workflow (2025)</h3>
-    <div class="tags"><span class="tag">Recon</span><span class="tag">Automation</span></div>
-    <p>Asset discovery, automation, noise filtering, and real-world recon methodology.</p>
-    <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0" target="_blank">Read →</a>
-   </div>
+   <h3>🧠 Complete Recon Workflow (2025)</h3>
+   <div class="tags"><span class="tag">Recon</span><span class="tag">Automation</span></div>
+   <p>Asset discovery, automation, noise filtering, and real-world recon methodology.</p>
+   <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0" target="_blank">Read →</a>
   </div>
 
-  <!-- Card 2 -->
   <div class="medium-card">
-   <div class="medium-body">
-    <h3>📜 Reading JavaScript Like a Hacker</h3>
-    <div class="tags"><span class="tag">JS</span><span class="tag">APIs</span></div>
-    <p>Finding hidden APIs, logic flaws, and attack surfaces through JS analysis.</p>
-    <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68" target="_blank">Read →</a>
-   </div>
+   <h3>📜 Reading JavaScript Like a Hacker</h3>
+   <div class="tags"><span class="tag">JS</span><span class="tag">APIs</span></div>
+   <p>Finding hidden APIs, logic flaws, and attack surfaces through JS analysis.</p>
+   <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68" target="_blank">Read →</a>
   </div>
 
-  <!-- Card 3 -->
   <div class="medium-card">
-   <div class="medium-body">
-    <h3>💉 Automating SQL Injection with SQLmap</h3>
-    <div class="tags"><span class="tag">SQLi</span><span class="tag">Automation</span></div>
-    <p>Responsible SQLi automation, payload analysis, and exploitation workflow.</p>
-    <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593" target="_blank">Read →</a>
-   </div>
+   <h3>💉 Automating SQL Injection with SQLmap</h3>
+   <div class="tags"><span class="tag">SQLi</span><span class="tag">Automation</span></div>
+   <p>Responsible SQLi automation, payload analysis, and exploitation workflow.</p>
+   <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593" target="_blank">Read →</a>
   </div>
 
-  <!-- Card 4 -->
   <div class="medium-card">
-   <div class="medium-body">
-    <h3>🛡️ Bug Bounty Strategy Guide</h3>
-    <div class="tags"><span class="tag">Bounty</span><span class="tag">Pentest</span></div>
-    <p>Comprehensive strategies for ethical hacking and bug hunting programs.</p>
-    <a href="#" target="_blank">Read →</a>
-   </div>
+   <h3>🛡️ Bug Bounty Strategy Guide</h3>
+   <div class="tags"><span class="tag">Bounty</span><span class="tag">Pentest</span></div>
+   <p>Comprehensive strategies for ethical hacking and bug hunting programs.</p>
+   <a href="#" target="_blank">Read →</a>
   </div>
 
-  <!-- Card 5 -->
   <div class="medium-card">
-   <div class="medium-body">
-    <h3>🔍 Advanced Recon Automation</h3>
-    <div class="tags"><span class="tag">Recon</span><span class="tag">Automation</span></div>
-    <p>Advanced scripts, payload automation, and data filtering for recon efficiency.</p>
-    <a href="#" target="_blank">Read →</a>
-   </div>
+   <h3>🔍 Advanced Recon Automation</h3>
+   <div class="tags"><span class="tag">Recon</span><span class="tag">Automation</span></div>
+   <p>Advanced scripts, payload automation, and data filtering for recon efficiency.</p>
+   <a href="#" target="_blank">Read →</a>
   </div>
 
  </div>
 </section>
 
-<!-- FOOTER + SOCIALS -->
-<footer>
- <div class="socials">
-   <a class="icon" href="mailto:purubughunting@gmail.com" aria-label="Email">
-     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 4v16h20V4H2zm10 9l-10-7h20l-10 7z"/></svg>
-   </a>
-   <a class="icon" href="https://medium.com/@purushothamr" aria-label="Medium">
-     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 6h20v12H2z"/></svg>
-   </a>
-   <a class="icon" href="https://linkedin.com/in/purushothamr06" aria-label="LinkedIn">
-     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
-   </a>
-   <a class="icon" href="https://github.com/purushothamr01" aria-label="GitHub">
-     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.7 1.6-.7.1-.7.4-1.1.7-1.4-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2.9-.2 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
-   </a>
- </div>
- © 2026 Purushotham R · Security Researcher
-</footer>
+<section class="center socials">
+ <a class="email" href="mailto:purubughunting@gmail.com" target="_blank">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M2 4v16h20V4H2zm10 9l-10-7h20l-10 7z"/></svg>
+ </a>
+ <a class="medium" href="https://medium.com/@Purushothamr" target="_blank">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M2 6h20v12H2z"/></svg>
+ </a>
+ <a class="linkedin" href="https://linkedin.com/in/purushothamr06" target="_blank">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
+ </a>
+ <a class="github" href="https://github.com/purushothamr01" target="_blank">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.7 1.6-.7.1-.7.4-1.1.7-1.4-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2.9-.2 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+ </a>
+</section>
 
-<script>
-// INTRO
-const intro = document.getElementById('intro');
-setTimeout(()=>{gsap.to(intro,{opacity:0,scale:1.05,duration:1,onComplete:()=>intro.remove()});},3000);
-
-// TERMINAL
-const terminal=document.getElementById('terminal');
-const cursor=document.createElement('span');
-cursor.className='cursor';
-terminal.appendChild(cursor);
-const lines=[
-  'puru@linux:~$ Hi',
-  'Welcome',
-  '',
-  'puru@linux:~$ whoami',
-  'Farmer 🌾 | ECE Engineer | Security Researcher',
-  '',
-  'puru@linux:~$ ls skills',
-  'Linux  Bash  Python  API Security',
-  '',
-  'puru@linux:~$ cat focus.txt',
-  'Finding real bugs. Not noise.'
-];
-let i=0,j=0;
-(function type(){
- if(i<lines.length){
-  if(j<lines[i].length){cursor.insertAdjacentText('beforebegin',lines[i][j++]);setTimeout(type,28);}
-  else{cursor.insertAdjacentText('beforebegin','\n');j=0;i++;setTimeout(type,160);}
- }
-})();
-
-// THEME
-function toggleTheme(){document.body.dataset.theme=document.body.dataset.theme==='dark'?'':'dark';}
-
-// GSAP Animations
-gsap.registerPlugin(ScrollTrigger);
-gsap.from('.story div',{scrollTrigger:{trigger:'.story',start:'top 75%'},y:60,opacity:0});
-gsap.from('.metric',{scrollTrigger:{trigger:'.metrics',start:'top 80%'},y:40,opacity:0,stagger:.15});
-gsap.from('.chain-step',{scrollTrigger:{trigger:'.attack-chain',start:'top 80%'},y:50,opacity:0,stagger:.15});
-gsap.from('.medium-card',{scrollTrigger:{trigger:'.medium-cards',start:'top 80%'},y:40,opacity:0,stagger:.15});
-gsap.from('footer .icon',{scrollTrigger:{trigger:'footer',start:'top 80%'},y:20,opacity:0,scale:.8,stagger:.1});
-</script>
-
+<footer>© 2026 Purushotham R · Security Researcher</footer>
 </body>
 </html>
