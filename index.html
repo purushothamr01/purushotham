@@ -6,56 +6,70 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
 <style>
 :root{
  --bg:#0d1117; --panel:#000; --text:#c9d1d9; --muted:#8b949e;
  --accent:#58a6ff; --accent2:#1f6feb; --border:rgba(255,255,255,.08);
 }
-
 body{
  font-family:'Fira Code', monospace;
  background:var(--bg);
  color:var(--text);
  margin:0; padding:0;
+ overflow-x:hidden;
 }
 section{padding:60px 10%;}
 .center{text-align:center;}
 
+/* INTRO */
+#intro{
+ position:fixed; inset:0;
+ display:flex; align-items:center; justify-content:center;
+ background:#000; z-index:9999;
+}
+#intro img{
+ max-width:80%;
+ border-radius:15px;
+ box-shadow:0 0 80px var(--accent);
+}
+
 /* TERMINAL */
 .hero {
-  min-height:60vh;
   display:flex;
   justify-content:center;
   align-items:center;
+  height:80vh;
+  padding:20px 10%;
 }
-
 .terminal {
   background:#000;
   border:1px solid var(--border);
   border-radius:15px;
-  padding:30px;
+  padding:40px;
   width:100%;
   max-width:900px;
-  box-shadow:0 0 50px var(--accent);
+  box-shadow:0 0 60px var(--accent);
   font-size:1.1rem;
   line-height:1.6;
   white-space:pre-wrap;
   position:relative;
-  overflow:auto;
+  overflow:hidden;
 }
-
-.cursor {
+.line { display:flex; flex-wrap:wrap; opacity:0; }
+.line span {
   display:inline-block;
-  width:10px;
-  height:1.2em;
+  opacity:0;
+}
+.cursor {
+  display:inline-block; width:10px; height:1.2em;
   background:var(--accent);
   margin-left:6px;
   animation:blink 1s infinite;
 }
 @keyframes blink {50%{opacity:0}}
-
-/* Terminal text colors */
 .cmd { color:var(--text); }
 .success { color:#2ecc71; }
 .error { color:#ff5c5c; }
@@ -74,10 +88,12 @@ section{padding:60px 10%;}
  border-radius:15px;
  padding:20px;
  transition:0.3s;
+ opacity:0;
+ transform: translateY(50px);
 }
 .medium-card:hover{
- transform:translateY(-4px);
- box-shadow:0 8px 25px var(--accent);
+ transform:translateY(-6px);
+ box-shadow:0 10px 30px var(--accent);
 }
 .medium-card h3{color:var(--accent);}
 .medium-card p{color:var(--muted); font-size:0.9rem;}
@@ -95,21 +111,24 @@ section{padding:60px 10%;}
 /* SOCIAL ICONS */
 .socials{
  display:flex; justify-content:center; gap:15px; margin:40px 0;
+ opacity:0;
+ transform: translateY(50px);
 }
-.socials a{
- width:50px; height:50px; display:flex; align-items:center; justify-content:center;
- border-radius:50%; transition:0.3s;
+.socials a img{
+ width:50px; height:50px;
+ border-radius:12px;
+ transition:0.3s;
 }
-.socials a svg{width:24px;height:24px; fill:#fff;}
-.socials a.email{background:#D14836;}
-.socials a.medium{background:#00ab6c;}
-.socials a.linkedin{background:#0a66c2;}
-.socials a.github{background:#171515;}
 .socials a:hover{transform:scale(1.2);}
 footer{ text-align:center; padding:30px; color:var(--muted); border-top:1px solid var(--border);}
 </style>
 </head>
 <body>
+
+<!-- INTRO -->
+<div id="intro">
+ <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
+</div>
 
 <!-- TERMINAL -->
 <section class="hero">
@@ -124,37 +143,37 @@ footer{ text-align:center; padding:30px; color:var(--muted); border-top:1px soli
    <h3>🧠 Complete Recon Workflow (2025)</h3>
    <div class="tags"><span class="tag">Recon</span><span class="tag">Automation</span></div>
    <p>Asset discovery, automation, noise filtering, and real-world recon methodology.</p>
-   <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0" target="_blank">Read →</a>
+   <a href="#" target="_blank">Read →</a>
   </div>
   <div class="medium-card">
    <h3>📜 Reading JavaScript Like a Hacker</h3>
    <div class="tags"><span class="tag">JS</span><span class="tag">APIs</span></div>
    <p>Finding hidden APIs, logic flaws, and attack surfaces through JS analysis.</p>
-   <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68" target="_blank">Read →</a>
+   <a href="#" target="_blank">Read →</a>
   </div>
   <div class="medium-card">
    <h3>💉 Automating SQL Injection with SQLmap</h3>
    <div class="tags"><span class="tag">SQLi</span><span class="tag">Automation</span></div>
    <p>Responsible SQLi automation, payload analysis, and exploitation workflow.</p>
-   <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593" target="_blank">Read →</a>
+   <a href="#" target="_blank">Read →</a>
   </div>
   <div class="medium-card">
-   <h3>🔐 Bug Bounty Tips (2025)</h3>
-   <div class="tags"><span class="tag">BugBounty</span><span class="tag">Tips</span></div>
-   <p>Practical tips for beginners and intermediate bug bounty hunters.</p>
-   <a href="https://medium.com/@Purushothamr" target="_blank">Read →</a>
+   <h3>🔒 Bug Bounty Tips & Tricks</h3>
+   <div class="tags"><span class="tag">Security</span><span class="tag">BugBounty</span></div>
+   <p>Practical advice and workflows for modern bug bounty hunting.</p>
+   <a href="#" target="_blank">Read →</a>
   </div>
   <div class="medium-card">
-   <h3>🛡️ Securing APIs</h3>
-   <div class="tags"><span class="tag">API</span><span class="tag">Security</span></div>
-   <p>Understanding API vulnerabilities and how to secure endpoints.</p>
-   <a href="https://medium.com/@Purushothamr" target="_blank">Read →</a>
+   <h3>📊 Web Application Pentesting Guide</h3>
+   <div class="tags"><span class="tag">Pentest</span><span class="tag">WebApp</span></div>
+   <p>Step-by-step methodology for web application penetration testing.</p>
+   <a href="#" target="_blank">Read →</a>
   </div>
   <div class="medium-card">
-   <h3>💻 Automation in Recon</h3>
-   <div class="tags"><span class="tag">Automation</span><span class="tag">Recon</span></div>
-   <p>How automation can improve recon efficiency and accuracy.</p>
-   <a href="https://medium.com/@Purushothamr" target="_blank">Read →</a>
+   <h3>🛠️ Automating Recon with Python</h3>
+   <div class="tags"><span class="tag">Python</span><span class="tag">Automation</span></div>
+   <p>Scripts and tools for automating reconnaissance tasks efficiently.</p>
+   <a href="#" target="_blank">Read →</a>
   </div>
  </div>
 </section>
@@ -162,36 +181,44 @@ footer{ text-align:center; padding:30px; color:var(--muted); border-top:1px soli
 <!-- SOCIAL ICONS -->
 <section class="center socials">
  <a href="mailto:purubughunting@gmail.com" target="_blank">
-   <img src="https://img.icons8.com/color/48/gmail.png" alt="Email" width="50" height="50">
+   <img src="https://img.icons8.com/color/48/gmail.png" alt="Email">
  </a>
  <a href="https://medium.com/@Purushothamr" target="_blank">
-   <img src="https://img.icons8.com/ios-filled/50/medium-logo.png" alt="Medium" width="50" height="50">
+   <img src="https://img.icons8.com/ios-filled/50/medium-logo.png" alt="Medium">
  </a>
  <a href="https://linkedin.com/in/purushothamr06" target="_blank">
-   <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" width="50" height="50">
+   <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn">
  </a>
  <a href="https://github.com/purushothamr01" target="_blank">
-   <img src="https://img.icons8.com/ios-glyphs/50/github.png" alt="GitHub" width="50" height="50">
+   <img src="https://img.icons8.com/ios-glyphs/50/github.png" alt="GitHub">
+ </a>
+ <a href="https://www.buymeacoffee.com/purushotham" target="_blank">
+   <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=purushotham&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" alt="Buy me a beer">
  </a>
 </section>
-
 
 <footer>© 2026 Purushotham R · Security Researcher</footer>
 
 <script>
-// Terminal typing effect
+// Hide intro
+gsap.to("#intro",{opacity:0,scale:1.05,duration:1,delay:3,onComplete:()=>document.getElementById('intro').remove()});
+
+// Smooth terminal typing
 const terminal = document.getElementById('terminal');
 const cursor = document.createElement('span');
 cursor.className = 'cursor';
 terminal.appendChild(cursor);
 
 const lines = [
-  ["puru@linux:~$ ನಮಸ್ಕಾರ | Namaste | Hello | こんにちは ", "cmd", 500],
-  ["Welcome.........", "info", 500],
+  ["puru@linux:~$ ನಮಸ್ಕಾರ | Namaste | नमस्ते | வணக்கம் | നമസ്കാരം |  Hello | こんにちは |", "cmd", 500],
+  ["Welcome", "info", 600],
+  ["", "", 200],
   ["puru@linux:~$ whoami", "cmd", 500],
-  ["Farmer 🌾 | ECE Engineer | Security Researcher", "info", 500],
+  ["Farmer 🌾 | ECE Engineer | Security Researcher", "info", 600],
+  ["", "", 200],
   ["puru@linux:~$ ls skills", "cmd", 500],
-  ["Linux  Bash  Python  API Security", "success", 500],
+  ["Linux  Bash  Python  API Security", "success", 600],
+  ["", "", 200],
   ["puru@linux:~$ cat focus.txt", "cmd", 500],
   ["Finding real bugs. Not noise.", "info", 0]
 ];
@@ -207,8 +234,10 @@ function typeLine(lineArr, callback){
     if(j < text.length){
       const span = document.createElement('span');
       span.textContent = text[j++];
+      span.style.opacity = 0;
       lineEl.appendChild(span);
-      setTimeout(typeChar, 20);
+      gsap.to(span,{opacity:1,duration:0.3,ease:"power1.out"});
+      setTimeout(typeChar, 40 + Math.random()*20);
     } else {
       lineEl.style.opacity = 1;
       setTimeout(callback, delay);
@@ -217,14 +246,15 @@ function typeLine(lineArr, callback){
   typeChar();
 }
 function startTerminal(){
-  function nextLine(){
-    if(i < lines.length){
-      typeLine(lines[i], ()=>{ i++; nextLine(); });
-    }
-  }
-  nextLine();
+  if(i < lines.length){ typeLine(lines[i], ()=>{ i++; startTerminal(); }); }
 }
 startTerminal();
+
+// Scroll animations for cards and socials
+gsap.utils.toArray('.medium-card').forEach(card=>{
+  gsap.to(card,{scrollTrigger:{trigger:card,start:"top 85%",once:true},y:0,opacity:1,duration:1,ease:"power3.out"});
+});
+gsap.to('.socials',{scrollTrigger:{trigger:'.socials',start:"top 85%",once:true},y:0,opacity:1,duration:1.2,ease:"power3.out"});
 </script>
 
 </body>
