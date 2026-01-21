@@ -37,23 +37,57 @@ section{padding:60px 10%;}
 }
 
 /* TERMINAL */
-.hero{min-height:60vh; display:flex; justify-content:center; align-items:center;}
-.terminal{
- background:var(--panel);
- border:1px solid var(--border);
- border-radius:15px;
- padding:40px;
- width:100%; max-width:900px;
- box-shadow:0 0 50px var(--accent);
- font-size:1.1rem; line-height:1.6;
- white-space:pre-wrap; position:relative;
+.hero {
+  min-height:60vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px 10%;
 }
-.cursor{
- display:inline-block; width:10px; height:1.2em;
- background:var(--accent); margin-left:6px;
- animation:blink 1s infinite;
+
+.terminal {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:30px 40px;
+  width:100%;
+  max-width:900px;
+  box-shadow:0 0 60px var(--accent);
+  font-size:1.1rem;
+  line-height:1.6;
+  white-space:pre-wrap;
+  position:relative;
+  overflow:hidden;
+  font-family:'Fira Code', monospace;
 }
-@keyframes blink{50%{opacity:0}}
+
+.line {
+  display:flex;
+  flex-wrap:wrap;
+  opacity:0;
+}
+
+.line span {
+  display:inline-block;
+}
+
+.cursor {
+  display:inline-block;
+  width:10px;
+  height:1.2em;
+  background:var(--accent);
+  margin-left:6px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink {50%{opacity:0}}
+
+/* Terminal text colors */
+.cmd { color:var(--text); }
+.success { color:#2ecc71; }
+.error { color:#ff5c5c; }
+.info { color:var(--accent2); }
+
 
 /* BLOG CARDS */
 .medium-cards{
@@ -161,31 +195,55 @@ const intro = document.getElementById('intro');
 setTimeout(()=>{gsap.to(intro,{opacity:0,scale:1.05,duration:1,onComplete:()=>intro.remove()});},3000);
 
 // TERMINAL animation
-const terminal=document.getElementById('terminal');
-const cursor=document.createElement('span'); cursor.className='cursor'; terminal.appendChild(cursor);
+<script>
+const terminal = document.getElementById('terminal');
+const cursor = document.createElement('span');
+cursor.className = 'cursor';
+terminal.appendChild(cursor);
 
-const lines=[
- 'puru@linux:~$ whoami',
- 'Farmer 🌾 | ECE Engineer | Security Researcher',
- '',
- 'puru@linux:~$ ls skills',
- 'Linux  Bash  Python  API Security',
- '',
- 'puru@linux:~$ cat focus.txt',
- 'Finding real bugs. Not noise.'
+// Each line: [text, typeClass, delayAfterLine]
+const lines = [
+  ["puru@linux:~$ whoami", "cmd", 500],
+  ["Farmer 🌾 | ECE Engineer | Security Researcher", "info", 600],
+  ["", "", 200],
+  ["puru@linux:~$ ls skills", "cmd", 500],
+  ["Linux  Bash  Python  API Security", "success", 600],
+  ["", "", 200],
+  ["puru@linux:~$ cat focus.txt", "cmd", 500],
+  ["Finding real bugs. Not noise.", "info", 0]
 ];
 
-let i=0,j=0;
-(function type(){
- if(i<lines.length){
-  if(j<lines[i].length){
-   cursor.insertAdjacentText('beforebegin',lines[i][j++]);
-   setTimeout(type,28);
-  }else{
-   cursor.insertAdjacentText('beforebegin','\n'); j=0; i++; setTimeout(type,160);
+let i = 0;
+
+function typeLine(lineArr, callback) {
+  const [text, cls, delay] = lineArr;
+  const lineEl = document.createElement('div');
+  lineEl.className = `line ${cls}`;
+  terminal.insertBefore(lineEl, cursor);
+  
+  let j = 0;
+  function typeChar() {
+    if(j < text.length){
+      const span = document.createElement('span');
+      span.textContent = text[j++];
+      lineEl.appendChild(span);
+      setTimeout(typeChar, 20 + Math.random()*20); // variable typing speed
+    } else {
+      lineEl.style.opacity = 1; // fade-in effect
+      setTimeout(callback, delay);
+    }
   }
- }
-})();
+  typeChar();
+}
+
+function startTerminal() {
+  if(i < lines.length){
+    typeLine(lines[i], ()=>{ i++; startTerminal(); });
+  }
+}
+
+startTerminal();
 </script>
+
 </body>
 </html>
