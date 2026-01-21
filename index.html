@@ -4,74 +4,152 @@
 <meta charset="UTF-8">
 <title>Purushotham R | Security Researcher</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
 <style>
 :root{
  --bg:#020617;--panel:#020617;--text:#e5e7eb;--muted:#9ca3af;
  --accent:#22d3ee;--accent2:#38bdf8;--border:rgba(255,255,255,.08)
 }
 [data-theme="dark"]{--bg:#000;--panel:#000}
+
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Fira Code',monospace}
-body{background:radial-gradient(circle at top,#020617,#000);color:var(--text);overflow-x:hidden}
+body{
+ background:radial-gradient(circle at top,#020617,#000);
+ color:var(--text);
+ overflow-x:hidden;
+}
 section{padding:100px 10%}
 .center{text-align:center}
 
-/* TOGGLE */
-.toggle{position:fixed;top:20px;right:20px;z-index:99;cursor:pointer;border:1px solid var(--border);padding:8px 14px;border-radius:20px;background:#000;color:var(--accent)}
+/* THEME TOGGLE */
+.toggle{
+ position:fixed;top:20px;right:20px;z-index:99;
+ cursor:pointer;border:1px solid var(--border);
+ padding:8px 14px;border-radius:20px;
+ background:#000;color:var(--accent)
+}
 
-/* TERMINAL HERO */
+/* INTRO */
+#intro{
+ position:fixed;inset:0;background:#000;
+ display:flex;align-items:center;justify-content:center;
+ z-index:9999
+}
+#intro img{
+ max-width:90%;border-radius:20px;
+ box-shadow:0 0 80px rgba(34,211,238,.4)
+}
+
+/* TERMINAL */
 .hero{min-height:100vh;display:flex;justify-content:center;align-items:center}
-.terminal{background:#000;border:1px solid var(--border);border-radius:18px;padding:50px;width:100%;max-width:1050px;box-shadow:0 0 80px rgba(34,211,238,.22);font-size:1.15rem;line-height:1.7}
-.terminal span{color:var(--accent)}
-.line{margin:8px 0;white-space:pre-wrap}
+.terminal{
+ background:#000;border:1px solid var(--border);
+ border-radius:18px;padding:50px;
+ width:100%;max-width:1050px;
+ box-shadow:0 0 80px rgba(34,211,238,.22);
+ font-size:1.15rem;line-height:1.7;
+ white-space:pre-wrap;position:relative
+}
+.cursor{
+ display:inline-block;width:10px;
+ background:var(--accent);margin-left:6px;
+ animation:blink 1s infinite
+}
+@keyframes blink{50%{opacity:0}}
 
 /* STORY */
 .story{min-height:100vh;display:flex;align-items:center}
-.story h2{font-size:2.5rem;margin-bottom:20px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.story h2{
+ font-size:2.5rem;margin-bottom:20px;
+ background:linear-gradient(90deg,var(--accent),var(--accent2));
+ -webkit-background-clip:text;-webkit-text-fill-color:transparent
+}
 
 /* METRICS */
-.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:25px}
-.metric{border:1px solid var(--border);padding:30px;border-radius:18px;background:rgba(255,255,255,.02);text-align:center}
+.metrics{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:25px
+}
+.metric{
+ border:1px solid var(--border);
+ padding:30px;border-radius:18px;
+ background:rgba(255,255,255,.02);
+ text-align:center
+}
 .metric h3{font-size:2.2rem;color:var(--accent)}
 
-/* VULNS */
-.vulns{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
-.vuln{border:1px solid var(--border);border-radius:18px;padding:25px;background:rgba(255,255,255,.02)}
-.vuln span{color:#22c55e}
-
-footer{text-align:center;padding:40px;color:var(--muted);border-top:1px solid var(--border)}
-
-.socials{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
-.icon{width:56px;height:56px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:50%;background:#000;transition:.3s}
-.icon.private{opacity:.6;border-style:dashed}
-.icon.private:hover{opacity:1}
-.icon img{width:26px;height:26px;filter:invert(100%)}
-.icon:hover{transform:translateY(-6px) scale(1.15);box-shadow:0 0 18px rgba(34,211,238,.5)}
-
+/* ATTACK CHAIN */
 .attack-chain{background:linear-gradient(180deg,#000,#020617)}
-.chain{display:flex;justify-content:center;align-items:center;gap:25px;flex-wrap:wrap}
-.chain-step{border:1px solid var(--border);padding:30px;border-radius:18px;background:rgba(255,255,255,.03);width:260px;text-align:center}
+.chain{
+ display:flex;justify-content:center;align-items:center;
+ gap:25px;flex-wrap:wrap
+}
+.chain-step{
+ border:1px solid var(--border);
+ padding:30px;border-radius:18px;
+ background:rgba(255,255,255,.03);
+ width:260px;text-align:center
+}
 .chain-step strong{color:var(--accent)}
 .chain-arrow{font-size:2rem;color:var(--accent)}
+
+/* VULNS */
+.vulns{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+ gap:30px
+}
+.vuln{
+ border:1px solid var(--border);
+ border-radius:18px;padding:25px;
+ background:rgba(255,255,255,.02)
+}
+.vuln span{color:#22c55e}
+
+/* SOCIALS */
+.socials{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.icon{
+ width:56px;height:56px;
+ display:flex;align-items:center;justify-content:center;
+ border:1px solid var(--border);border-radius:50%;
+ background:#000;transition:.3s
+}
+.icon img{width:26px;height:26px;filter:invert(100%)}
+.icon:hover{
+ transform:translateY(-6px) scale(1.15);
+ box-shadow:0 0 18px rgba(34,211,238,.5)
+}
+.icon.private{opacity:.6;border-style:dashed}
+.icon.private:hover{opacity:1}
+
+footer{
+ text-align:center;padding:40px;
+ color:var(--muted);
+ border-top:1px solid var(--border)
+}
 </style>
 </head>
+
 <body>
+
+<div id="intro">
+ <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
+</div>
+
 <div class="toggle" onclick="toggleTheme()">🌙</div>
 
 <section class="hero">
  <div class="terminal" id="terminal"></div>
 </section>
 
-<section class="banner">
- <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true" alt="Cyber Banner" style="width:100%;border-radius:20px;border:1px solid var(--border);box-shadow:0 30px 80px rgba(0,0,0,.7)">
-</section>
-
 <section class="story">
  <div>
   <h2>From Fields to Firewalls</h2>
-  <p>Farmer by roots 🌾 → Security Researcher by obsession. I hunt real-world vulnerabilities, abuse logic flaws, and help organizations fix what scanners miss.</p>
+  <p>Farmer by roots 🌾 → Security Researcher by obsession. I hunt real-world vulnerabilities and logic flaws.</p>
  </div>
 </section>
 
@@ -88,128 +166,93 @@ footer{text-align:center;padding:40px;color:var(--muted);border-top:1px solid va
 <section class="attack-chain">
  <h2 class="center">🧬 Attack Chain</h2><br>
  <div class="chain">
-  <div class="chain-step">🛰️ <strong>Request</strong><p>Crafted malicious API request</p></div>
+  <div class="chain-step">🛰️ <strong>Request</strong><p>Malicious API call</p></div>
   <div class="chain-arrow">➜</div>
-  <div class="chain-step">💥 <strong>Exploit</strong><p>IDOR / Auth / Logic flaw abused</p></div>
+  <div class="chain-step">💥 <strong>Exploit</strong><p>IDOR / Auth bypass</p></div>
   <div class="chain-arrow">➜</div>
-  <div class="chain-step">🔥 <strong>Impact</strong><p>Account Takeover / Data Exposure</p></div>
+  <div class="chain-step">🔥 <strong>Impact</strong><p>ATO / Data Exposure</p></div>
  </div>
 </section>
 
 <section>
- <h2 class="center">🔥 Vulnerability Research</h2><br>
- <div class="vulns">
-  <div class="vuln"><h4>IDOR → Account Takeover</h4><p>Improper object-level authorization in REST APIs.</p><span>High Severity</span></div>
-  <div class="vuln"><h4>OAuth Misconfiguration</h4><p>Exported Android activity allowed auth bypass.</p><span>Critical</span></div>
-  <div class="vuln"><h4>Session Fixation</h4><p>Reusable auth cookies exposed via GitHub.</p><span>High</span></div>
- </div>
-</section>
-
-<section>
- <h2 class="center">🧾 Public Writeups & Reports</h2><br>
- <p class="center" style="color:var(--muted)">Latest Medium articles (auto-synced)</p><br>
+ <h2 class="center">🧾 Medium Writeups</h2><br>
  <div class="vulns" id="medium-posts">
-  <div class="vuln">Fetching articles from Medium…</div>
+  <div class="vuln">Loading articles…....</div>
  </div>
 </section>
 
 <section class="center socials" id="socials" style="margin:90px 0">
- <a class="icon" href="mailto:purubughunting@gmail.com" target="_blank" aria-label="Email">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" />
- </a>
- <a class="icon" href="https://medium.com/@purushothamr" target="_blank" aria-label="Medium">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg" />
- </a>
- <a class="icon" href="https://linkedin.com/in/purushothamr06" target="_blank" aria-label="LinkedIn">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" />
- </a>
- <a class="icon" href="https://twitter.com/purushothamr01" target="_blank" aria-label="X">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" />
- </a>
- <a class="icon" href="https://github.com/purushothamr01" target="_blank" aria-label="GitHub">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" />
- </a>
- <a class="icon private" aria-label="HackerOne (Private)">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/hackerone.svg" />
- </a>
- <a class="icon private" aria-label="Bugcrowd (Private)">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/bugcrowd.svg" />
- </a>
+ <a class="icon" href="mailto:purubughunting@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
+ <a class="icon" href="https://medium.com/@purushothamr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
+ <a class="icon" href="https://linkedin.com/in/purushothamr06"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
+ <a class="icon" href="https://twitter.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg"></a>
+ <a class="icon" href="https://github.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
+ <div class="icon private"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/hackerone.svg"></div>
+ <div class="icon private"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/bugcrowd.svg"></div>
 </section>
 
 <footer>© 2026 Purushotham R · Security Researcher</footer>
 
 <script>
+// INTRO
+gsap.to('#intro',{opacity:0,scale:1.1,duration:1.4,delay:2,onComplete:()=>intro.remove()});
+
+// TERMINAL
 const terminal=document.getElementById('terminal');
+const cursor=document.createElement('span');
+cursor.className='cursor';
+terminal.appendChild(cursor);
+
 const lines=[
-'purushotham@security:~$ whoami',
-'Security Researcher | Bug Bounty Hunter',
-'',
-'purushotham@security:~$ ls skills',
-'API-Security  Linux  Bash  Python  JS-Security',
-'',
-'purushotham@security:~$ cat focus.txt',
-'Finding real bugs. Not noise.'
+ 'puru@linux:~$ whoami',
+ 'Security Researcher ',
+ '',
+ 'puru@linux:~$ ls skills',
+ 'Linux  Bash  Python',
+ '',
+ 'purushotham@linux:~$ cat focus.txt',
+ 'Finding real bugs. Not noise.'
 ];
+
 let i=0,j=0;
-function type(){if(i<lines.length){if(j<lines[i].length){terminal.innerHTML+=lines[i][j++];setTimeout(type,28)}else{terminal.innerHTML+='
-';j=0;i++;setTimeout(type,180)}}}
+function type(){
+ if(i<lines.length){
+  if(j<lines[i].length){
+   cursor.insertAdjacentText('beforebegin',lines[i][j++]);
+   setTimeout(type,28);
+  }else{
+   cursor.insertAdjacentText('beforebegin','\n');
+   j=0;i++;setTimeout(type,180);
+  }
+ }
+}
 type();
 
-function toggleTheme(){document.body.dataset.theme=document.body.dataset.theme==='dark'?'':'dark'}
+// THEME
+function toggleTheme(){
+ document.body.dataset.theme =
+ document.body.dataset.theme==='dark'?'':'dark';
+}
 
-// GSAP scroll
+// GSAP
 gsap.registerPlugin(ScrollTrigger);
-gsap.from('.story div',{scrollTrigger:{trigger:'.story',start:'top 70%'},y:60,opacity:0,duration:1.2});
+gsap.from('.story div',{scrollTrigger:{trigger:'.story',start:'top 70%'},y:60,opacity:0});
 gsap.from('.metric',{scrollTrigger:{trigger:'.metrics',start:'top 80%'},y:40,opacity:0,stagger:.2});
-gsap.from('.chain-step',{scrollTrigger:{trigger:'.attack-chain',start:'top 80%'},y:60,opacity:0,stagger:.25,duration:1});
+gsap.from('.chain-step',{scrollTrigger:{trigger:'.attack-chain',start:'top 80%'},y:50,opacity:0,stagger:.25});
+gsap.from('#socials .icon',{scrollTrigger:{trigger:'#socials',start:'top 80%'},y:30,opacity:0,scale:.8,stagger:.12});
 
-gsap.from('.chain-arrow',{scrollTrigger:{trigger:'.attack-chain',start:'top 80%'},opacity:0,stagger:.25,duration:.8});
-
-gsap.from('.vuln',{scrollTrigger:{trigger:'.vulns',start:'top 80%'},y:40,opacity:0,stagger:.2});
-
-// Medium auto-sync (RSS → JSON)
-// NOTE: rss2json can be rate-limited on GitHub Pages.
-// If it fails, fallback links still work.
+// MEDIUM
 fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@purushothamr')
  .then(r=>r.json())
  .then(d=>{
   const box=document.getElementById('medium-posts');
   box.innerHTML='';
-  if(!d.items){throw 'No items'}
   d.items.slice(0,3).forEach(p=>{
-   const div=document.createElement('div');
-   div.className='vuln';
-   div.innerHTML=`<h4>📝 ${p.title}</h4><p>${p.description.replace(/<[^>]+>/g,'').slice(0,140)}...</p><a href='${p.link}' target='_blank'><span>Read on Medium</span></a>`;
-   box.appendChild(div);
+   box.innerHTML+=`<div class="vuln"><h4>${p.title}</h4><p>${p.description.replace(/<[^>]+>/g,'').slice(0,120)}...</p><a href="${p.link}" target="_blank"><span>Read on Medium</span></a></div>`;
   });
  })
- .catch(()=>{
-  document.getElementById('medium-posts').innerHTML=`<div class='vuln'><h4>Medium Articles</h4><p>Auto-sync blocked by browser or rate limits.</p><a href='https://medium.com/@purushothamr' target='_blank'><span>Visit Medium Profile</span></a></div>`;
- });
-  box.innerHTML='';
-  d.items.slice(0,3).forEach(p=>{
-   const div=document.createElement('div');
-   div.className='vuln';
-   div.innerHTML=`<h4>📝 ${p.title}</h4><p>${p.description.replace(/<[^>]+>/g,'').slice(0,120)}...</p><a href='${p.link}' target='_blank'><span>Read on Medium</span></a>`;
-   box.appendChild(div);
-  });
- })
- .catch(()=>{document.getElementById('medium-posts').innerHTML='<div class="vuln">Unable to load Medium articles.</div>'});
+ .catch(()=>{medium-posts.innerHTML='<div class="vuln">Visit Medium profile</div>'});
 </script>
-<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
-<script>
- gsap.registerPlugin(ScrollTrigger);
- gsap.from('#socials .icon',{
-  scrollTrigger:{trigger:'#socials',start:'top 80%'},
-  opacity:0,
-  y:30,
-  scale:0.8,
-  stagger:0.12,
-  duration:0.6,
-  ease:'power2.out'
- });
-</script>
+
 </body>
 </html>
