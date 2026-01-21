@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
@@ -19,7 +18,7 @@
 [data-theme="dark"]{--bg:#000;--panel:#000}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Fira Code',monospace}
 body{background:radial-gradient(circle at top,#020617,#000);color:var(--text);overflow-x:hidden;}
-section{padding:100px 10%}
+section{padding:80px 10%}
 .center{text-align:center}
 
 /* TOGGLE */
@@ -42,13 +41,13 @@ section{padding:100px 10%}
 }
 
 /* TERMINAL */
-.hero{min-height:100vh;display:flex;justify-content:center;align-items:center}
+.hero{min-height:70vh;display:flex;justify-content:center;align-items:center}
 .terminal{
  background:#000;border:1px solid var(--border);
- border-radius:18px;padding:55px;
- width:100%;max-width:1100px;
- box-shadow:0 0 80px rgba(34,211,238,.22);
- font-size:1.2rem;line-height:1.8;
+ border-radius:18px;padding:40px;
+ width:100%;max-width:1000px;
+ box-shadow:0 0 50px rgba(34,211,238,.22);
+ font-size:1.1rem;line-height:1.6;
  white-space:pre-wrap;position:relative
 }
 .cursor{
@@ -59,7 +58,7 @@ section{padding:100px 10%}
 @keyframes blink{50%{opacity:0}}
 
 /* STORY */
-.story{min-height:100vh;display:flex;align-items:center}
+.story{min-height:60vh;display:flex;align-items:center}
 .story h2{
  font-size:2.5rem;margin-bottom:20px;
  background:linear-gradient(90deg,var(--accent),var(--accent2));
@@ -68,92 +67,88 @@ section{padding:100px 10%}
 
 /* METRICS */
 .metrics{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
- gap:25px
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+ gap:20px
 }
 .metric{
  border:1px solid var(--border);
- padding:30px;border-radius:18px;
+ padding:25px;border-radius:18px;
  background:rgba(255,255,255,.02);
  text-align:center
 }
-.metric h3{font-size:2.2rem;color:var(--accent)}
+.metric h3{font-size:2rem;color:var(--accent)}
 
 /* ATTACK CHAIN */
 .attack-chain{background:linear-gradient(180deg,#000,#020617)}
 .chain{
  display:flex;justify-content:center;align-items:center;
- gap:25px;flex-wrap:wrap
+ gap:20px;flex-wrap:wrap
 }
 .chain-step{
  border:1px solid var(--border);
- padding:30px;border-radius:18px;
+ padding:20px;border-radius:18px;
  background:rgba(255,255,255,.03);
- width:260px;text-align:center
+ width:240px;text-align:center
 }
 .chain-step strong{color:var(--accent)}
 .chain-arrow{font-size:2rem;color:var(--accent)}
 
-/* MEDIUM CARDS */
+/* BLOG CARDS */
 .medium-cards{
  display:grid;
- grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
- gap:28px
+ grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+ gap:20px
 }
 .medium-card{
  background:rgba(255,255,255,.03);
  border:1px solid var(--border);
  border-radius:18px;
- transition:.35s ease
+ transition:.3s ease
 }
 .medium-card:hover{
- transform:translateY(-8px);
- box-shadow:0 20px 60px rgba(34,211,238,.25)
+ transform:translateY(-6px);
+ box-shadow:0 15px 50px rgba(34,211,238,.25)
 }
 .medium-body{
- padding:26px;
+ padding:20px;
  display:flex;
  flex-direction:column;
- gap:14px
+ gap:12px
 }
-.medium-body h3{color:var(--accent);font-size:1.1rem}
-.medium-body p{color:var(--muted);font-size:.95rem;line-height:1.6}
+.medium-body h3{color:var(--accent);font-size:1.05rem;margin-bottom:4px;}
+.medium-body p{color:var(--muted);font-size:.9rem;line-height:1.5}
 .medium-body a{
  margin-top:auto;color:var(--accent2);
  font-weight:600;text-decoration:none
 }
 .tags{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin-top:6px;
+ display:flex;gap:6px;flex-wrap:wrap;margin-top:6px
 }
 .tag{
- font-size:.7rem;
- padding:4px 8px;
- border-radius:999px;
- border:1px solid var(--border);
+ font-size:.7rem;padding:4px 8px;
+ border-radius:999px;border:1px solid var(--border);
  color:var(--accent);
  background:rgba(34,211,238,.08);
 }
 
 /* SOCIALS */
-.socials{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:90px 0}
+.socials{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:60px 0}
 .icon{
- width:56px;height:56px;
+ width:50px;height:50px;
  display:flex;align-items:center;justify-content:center;
  border:1px solid var(--border);border-radius:50%;
  background:#000;transition:.3s
 }
-.icon svg{width:26px;height:26px;fill:var(--text)}
+.icon svg{width:22px;height:22px;fill:var(--text)}
 .icon:hover{
- transform:translateY(-6px) scale(1.15);
- box-shadow:0 0 18px rgba(34,211,238,.5)
+ transform:translateY(-4px) scale(1.1);
+ box-shadow:0 0 12px rgba(34,211,238,.5)
 }
 .icon.private{opacity:.6;border-style:dashed}
 
+/* FOOTER */
 footer{
- text-align:center;padding:40px;
+ text-align:center;padding:40px 10%;
  color:var(--muted);
  border-top:1px solid var(--border)
 }
@@ -204,7 +199,7 @@ footer{
  </div>
 </section>
 
-<!-- MEDIUM BLOGS -->
+<!-- BLOG CARDS -->
 <section>
  <h2 class="center">🧾 Featured Medium Reports</h2><br>
  <div class="medium-cards">
@@ -216,16 +211,14 @@ footer{
     <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0" target="_blank">Read →</a>
    </div>
   </div>
-
   <div class="medium-card">
    <div class="medium-body">
     <h3>📜 Reading JavaScript Like a Hacker</h3>
-    <div class="tags"><span class="tag">JavaScript</span><span class="tag">Hidden APIs</span></div>
+    <div class="tags"><span class="tag">JS</span><span class="tag">APIs</span></div>
     <p>Finding hidden APIs, logic flaws, and attack surfaces through JS analysis.</p>
     <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68" target="_blank">Read →</a>
    </div>
   </div>
-
   <div class="medium-card">
    <div class="medium-body">
     <h3>💉 Automating SQL Injection with SQLmap</h3>
@@ -237,44 +230,36 @@ footer{
  </div>
 </section>
 
-<!-- SOCIALS -->
-<section class="center socials" id="socials">
- <a class="icon" href="mailto:purubughunting@gmail.com" aria-label="Email">
-   <svg viewBox="0 0 24 24"><path d="M12 13L0 4v16h24V4L12 13z" fill="currentColor"/></svg>
- </a>
- <a class="icon" href="https://medium.com/@purushothamr" aria-label="Medium">
-   <svg viewBox="0 0 24 24"><path d="M0 4h24v16H0V4z" fill="currentColor"/></svg>
- </a>
- <a class="icon" href="https://linkedin.com/in/purushothamr06" aria-label="LinkedIn">
-   <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4z" fill="currentColor"/></svg>
- </a>
- <a class="icon" href="https://github.com/purushothamr01" aria-label="GitHub">
-   <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.7 1.6-.7.1-.7.4-1.1.7-1.4-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2.9-.2 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
- </a>
- <div class="icon private" aria-label="HackerOne">
-   <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>
+<!-- FOOTER + SOCIALS -->
+<footer>
+ <div class="socials">
+   <a class="icon" href="mailto:purubughunting@gmail.com" aria-label="Email">
+     <svg viewBox="0 0 24 24"><path d="M12 13L0 4v16h24V4L12 13z"/></svg>
+   </a>
+   <a class="icon" href="https://medium.com/@purushothamr" aria-label="Medium">
+     <svg viewBox="0 0 24 24"><path d="M0 4h24v16H0z"/></svg>
+   </a>
+   <a class="icon" href="https://linkedin.com/in/purushothamr06" aria-label="LinkedIn">
+     <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
+   </a>
+   <a class="icon" href="https://github.com/purushothamr01" aria-label="GitHub">
+     <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.7 1.6-.7.1-.7.4-1.1.7-1.4-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2.9-.2 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+   </a>
  </div>
- <div class="icon private" aria-label="Bugcrowd">
-   <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>
- </div>
-</section>
-
-<footer>© 2026 Purushotham R · Security Researcher</footer>
+ © 2026 Purushotham R · Security Researcher
+</footer>
 
 <script>
 // INTRO
 const intro = document.getElementById('intro');
-setTimeout(() => {
-  gsap.to(intro,{opacity:0,scale:1.1,duration:1,onComplete:()=>intro.remove()});
-}, 3000);
+setTimeout(()=>{gsap.to(intro,{opacity:0,scale:1.05,duration:1,onComplete:()=>intro.remove()});},3000);
 
 // TERMINAL
-const terminal = document.getElementById('terminal');
-const cursor = document.createElement('span');
+const terminal=document.getElementById('terminal');
+const cursor=document.createElement('span');
 cursor.className='cursor';
 terminal.appendChild(cursor);
-
-const lines = [
+const lines=[
  'puru@linux:~$ whoami',
  'Farmer 🌾 | ECE Engineer | Security Researcher',
  '',
@@ -284,32 +269,24 @@ const lines = [
  'puru@linux:~$ cat focus.txt',
  'Finding real bugs. Not noise.'
 ];
-
 let i=0,j=0;
 (function type(){
  if(i<lines.length){
-  if(j<lines[i].length){
-   cursor.insertAdjacentText('beforebegin',lines[i][j++]);
-   setTimeout(type,28);
-  }else{
-   cursor.insertAdjacentText('beforebegin','\n');
-   j=0;i++;setTimeout(type,160);
-  }
+  if(j<lines[i].length){cursor.insertAdjacentText('beforebegin',lines[i][j++]);setTimeout(type,28);}
+  else{cursor.insertAdjacentText('beforebegin','\n');j=0;i++;setTimeout(type,160);}
  }
 })();
 
 // THEME
-function toggleTheme(){
- document.body.dataset.theme = document.body.dataset.theme==='dark'?'':'dark';
-}
+function toggleTheme(){document.body.dataset.theme=document.body.dataset.theme==='dark'?'':'dark';}
 
 // GSAP
 gsap.registerPlugin(ScrollTrigger);
-gsap.from('.story div',{scrollTrigger:{trigger:'.story',start:'top 70%'},y:60,opacity:0});
-gsap.from('.metric',{scrollTrigger:{trigger:'.metrics',start:'top 80%'},y:40,opacity:0,stagger:.2});
-gsap.from('.chain-step',{scrollTrigger:{trigger:'.attack-chain',start:'top 80%'},y:50,opacity:0,stagger:.25});
-gsap.from('.medium-card',{scrollTrigger:{trigger:'.medium-cards',start:'top 80%'},y:40,opacity:0,stagger:.2});
-gsap.from('#socials .icon',{scrollTrigger:{trigger:'#socials',start:'top 80%'},y:30,opacity:0,scale:.8,stagger:.12});
+gsap.from('.story div',{scrollTrigger:{trigger:'.story',start:'top 75%'},y:60,opacity:0});
+gsap.from('.metric',{scrollTrigger:{trigger:'.metrics',start:'top 80%'},y:40,opacity:0,stagger:.15});
+gsap.from('.chain-step',{scrollTrigger:{trigger:'.attack-chain',start:'top 80%'},y:50,opacity:0,stagger:.15});
+gsap.from('.medium-card',{scrollTrigger:{trigger:'.medium-cards',start:'top 80%'},y:40,opacity:0,stagger:.15});
+gsap.from('footer .icon',{scrollTrigger:{trigger:'footer',start:'top 80%'},y:20,opacity:0,scale:.8,stagger:.1});
 </script>
 
 </body>
