@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Purushotham | Security Researcher</title>
+<title>Purushotham R | Security Researcher</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
 
 <!-- GSAP -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
@@ -14,156 +14,81 @@
 
 <style>
 :root {
-  --primary: #38bdf8;
-  --accent: #0e75b6;
-  --bg: #0b0f14;
-  --card: rgba(17,24,39,.75);
-  --text: #e6edf3;
-  --muted: #9ba3af;
-  --border: rgba(255,255,255,.08);
+  --primary:#38bdf8;
+  --accent:#22d3ee;
+  --bg:#0b0f14;
+  --card:rgba(17,24,39,.75);
+  --text:#e6edf3;
+  --muted:#9ba3af;
+  --border:rgba(255,255,255,.08);
 }
 
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Fira Code', monospace; }
-body { background: radial-gradient(circle at top, #0e1624, var(--bg)); color: var(--text); overflow-x: hidden; scroll-behavior: smooth; }
-section { padding: 90px 10%; }
-.center { text-align: center; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Fira Code',monospace}
+body{background:radial-gradient(circle at top,#0e1624,var(--bg));color:var(--text);overflow-x:hidden}
+section{padding:90px 10%}
+.center{text-align:center}
+.hidden{opacity:0;pointer-events:none}
 
 /* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(circle at top, #0e1624, var(--bg));
-}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;overflow:hidden}
+.hero h1{font-size:3.6rem;letter-spacing:2px;font-weight:700;text-transform:uppercase;background:linear-gradient(270deg,#38bdf8,#22d3ee,#0e75b6,#38bdf8);background-size:600% 600%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientMove 6s ease infinite}
+@keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
-.hero h1 {
-  font-size: 3.5rem;
-  letter-spacing: 2px;
-  font-weight: 700;
-  text-transform: uppercase;
-  background: linear-gradient(270deg, #38bdf8, #22d3ee, #0e75b6, #38bdf8);
-  background-size: 600% 600%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 6s ease infinite;
-  text-align: center;
-}
+.typing{font-size:1.5rem;margin-top:22px;color:var(--muted);position:relative}
+.typing::after{content:"|";position:absolute;right:-12px;color:var(--primary);animation:blink .8s infinite}
+@keyframes blink{50%{opacity:0}}
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.typing {
-  font-size: 1.5rem;
-  margin-top: 20px;
-  color: var(--muted);
-  font-family: 'Fira Code', monospace;
-  position: relative;
-}
-
-.typing::after {
-  content: "|";
-  position: absolute;
-  right: -12px;
-  animation: blink 0.8s step-start infinite;
-  color: var(--primary);
-}
-
-@keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
-}
-
-/* Optional floating particle dots */
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: floatParticles 20s linear infinite;
-}
-
-@keyframes floatParticles {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
-}
-
+.hero::before{content:"";position:absolute;width:200%;height:200%;top:-50%;left:-50%;background:radial-gradient(circle,rgba(255,255,255,.035) 1px,transparent 1px);background-size:50px 50px;animation:floatParticles 25s linear infinite}
+@keyframes floatParticles{to{transform:translate(60px,60px)}}
 
 /* BANNER */
-.banner { position: relative; width:100%; height:500px; display:flex; justify-content:center; align-items:center; overflow:hidden; margin:60px 0; }
-.banner-container { position:relative; width:100%; height:100%; }
-.banner img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; filter: brightness(0.85); border-radius:18px; border:1px solid var(--border); box-shadow:0 30px 60px rgba(0,0,0,.6);}
-.banner:hover img { transform: scale(1.05); filter: brightness(1);}
-.banner-overlay { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:#fff; text-align:center; }
-
+.banner{width:100%;height:520px;display:flex;justify-content:center;align-items:center;overflow:hidden;margin:60px 0}
+.banner img{width:100%;height:100%;object-fit:cover;border-radius:22px;border:1px solid var(--border);box-shadow:0 30px 60px rgba(0,0,0,.6);transition:.6s}
+.banner:hover img{transform:scale(1.06);filter:brightness(1.05)}
 
 /* ABOUT */
-.about-section { display:flex; justify-content:center; align-items:center; background: linear-gradient(135deg, #0e75b6, #020617); color:#fff; padding:80px 20px; }
-.about-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius:20px; padding:40px; max-width:500px; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.3); transition: transform 0.4s ease, box-shadow 0.4s ease; }
-.about-card:hover { transform:translateY(-10px); box-shadow:0 30px 60px rgba(0,0,0,0.5); }
-.about-card h2 { font-size:2rem; margin-bottom:20px; color:#00fff0; text-shadow:1px 1px 6px rgba(0,0,0,0.7);}
-.about-card p { font-size:1.1rem; line-height:1.8; margin:10px 0; color:#e0e0e0; }
+.about-section{display:flex;justify-content:center;background:linear-gradient(135deg,#0e75b6,#020617)}
+.about-card{background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border-radius:22px;padding:45px;max-width:520px;box-shadow:0 25px 60px rgba(0,0,0,.45)}
+.about-card h2{font-size:2.1rem;margin-bottom:20px;color:#00fff0}
+.about-card p{font-size:1.1rem;line-height:1.9;color:#e0e0e0}
 
 /* SKILLS */
-.skills-section { display:flex; justify-content:center; }
-.skills-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius:20px; padding:40px; max-width:500px; box-shadow:0 20px 40px rgba(0,0,0,0.3);}
-.skills-card h3 { font-size:2rem; margin-bottom:30px; color:#00fff0; text-align:center; text-shadow:1px 1px 6px rgba(0,0,0,0.7);}
-.skill { margin-bottom:20px; }
-.skill-name { display:block; margin-bottom:6px; font-weight:600; color:#e0e0e0; }
-.bar { width:100%; height:12px; background: rgba(255,255,255,0.2); border-radius:10px; overflow:hidden; position:relative; }
-.bar span { display:block; height:100%; width:0; background: linear-gradient(90deg,var(--accent), var(--primary)); border-radius:10px; }
+.skills-section{display:flex;justify-content:center}
+.skills-card{background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border-radius:22px;padding:45px;max-width:520px;box-shadow:0 25px 60px rgba(0,0,0,.45)}
+.skills-card h3{font-size:2rem;margin-bottom:30px;color:#00fff0}
+.skill{margin-bottom:22px}
+.skill-name{display:block;margin-bottom:8px;color:#e5e7eb;font-weight:600}
+.bar{width:100%;height:12px;background:rgba(255,255,255,.18);border-radius:10px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--primary));border-radius:10px}
 
 /* SOCIALS */
-.socials { display:flex; justify-content:center; gap:25px; margin:50px 0; }
-.social-icon { display:inline-block; width:50px; height:50px; transition: transform 0.3s ease, filter 0.3s ease; }
-.social-icon img { width:100%; height:100%; filter:invert(100%) brightness(1.2); transition: filter 0.3s ease; }
-.social-icon:hover { transform:scale(1.2) rotate(10deg); filter:drop-shadow(0 0 10px #00fff0); }
-.social-icon:hover img { filter: invert(55%) sepia(100%) saturate(500%) hue-rotate(150deg); }
+.socials{display:flex;justify-content:center;gap:26px;margin:60px 0}
+.social-icon{width:52px;height:52px;transition:.3s}
+.social-icon img{width:100%;height:100%;filter:invert(100%)}
+.social-icon:hover{transform:scale(1.25) rotate(8deg);filter:drop-shadow(0 0 12px #22d3ee)}
 
-/* FOOTER */
-footer { padding:40px; text-align:center; font-size:.85rem; color:var(--muted); border-top:1px solid var(--border); }
+footer{padding:40px;text-align:center;font-size:.85rem;color:var(--muted);border-top:1px solid var(--border)}
 </style>
 </head>
-
 <body>
 
 <!-- HERO -->
 <section class="hero center">
-
-  <div id="mainContent" class="hidden">
-    <h1>Hello, I'm Purushotham R</h1>
-    <div class="typing" id="typing"></div>
-  </div>
+  <h1>Purushotham R</h1>
+  <div class="typing" id="typing"></div>
 </section>
 
 <!-- BANNER -->
-<section class="banner center">
-  <div class="banner-container">
-    <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true" alt="Banner">
-    <div class="banner-overlay">
-
-      
-    </div>
-  </div>
+<section class="banner">
+  <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true" alt="Banner">
 </section>
 
 <!-- ABOUT -->
 <section class="about-section center">
   <div class="about-card">
     <h2>🧠 About Me</h2>
-    <p>Farmer by roots, technologist by passion</p>
-    <p> Electronics & Communication Engineer</p>
-  
+    <p>Farmer by roots 🌾, technologist by passion.</p>
+    <p>Electronics & Communication Engineer focused on security research, real‑world vulnerabilities, and building defensive systems.</p>
   </div>
 </section>
 
@@ -171,119 +96,41 @@ footer { padding:40px; text-align:center; font-size:.85rem; color:var(--muted); 
 <section class="skills-section center">
   <div class="skills-card">
     <h3>📊 Technical Expertise</h3>
-    <div class="skill"><span class="skill-name">API Security</span><div class="bar"><span data-width="70%"></span></div></div>
-    <div class="skill"><span class="skill-name">JavaScript Security</span><div class="bar"><span data-width="75%"></span></div></div>
-    <div class="skill"><span class="skill-name">Linux & Bash</span><div class="bar"><span data-width="75%"></span></div></div>
-    <div class="skill"><span class="skill-name">Python</span><div class="bar"><span data-width="70%"></span></div></div>
+    <div class="skill"><span class="skill-name">API Security</span><div class="bar"><span data-width="80%"></span></div></div>
+    <div class="skill"><span class="skill-name">JavaScript Security</span><div class="bar"><span data-width="78%"></span></div></div>
+    <div class="skill"><span class="skill-name">Linux & Bash</span><div class="bar"><span data-width="85%"></span></div></div>
+    <div class="skill"><span class="skill-name">Python</span><div class="bar"><span data-width="75%"></span></div></div>
   </div>
 </section>
 
 <!-- SOCIALS -->
 <section class="center socials">
-  <a href="mailto:purubughunting@gmail.com" class="social-icon" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" alt="Gmail"></a>
-  <a href="https://medium.com/@purushothamr" class="social-icon" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg" alt="Medium"></a>
-  <a href="https://twitter.com/purushothamr01" class="social-icon" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X/Twitter"></a>
-  <a href="https://linkedin.com/in/purushothamr06" class="social-icon" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn"></a>
-  <a href="https://github.com/purushothamr01" class="social-icon" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub"></a>
+  <a href="mailto:purubughunting@gmail.com" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
+  <a href="https://medium.com/@purushothamr" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
+  <a href="https://twitter.com/purushothamr01" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg"></a>
+  <a href="https://linkedin.com/in/purushothamr06" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
+  <a href="https://github.com/purushothamr01" class="social-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
 </section>
 
-<footer>
-  © 2026 Purushotham R  Security Researcher
-</footer>
+<footer>© 2026 Purushotham R · Security Researcher</footer>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-/* HERO FADE & TYPING ON SCROLL */
-let started = false;
-const roles = ["Security Researcher", "ECE Engineer", "🌾 Farmer"];
-let roleIndex = 0, charIndex = 0;
-const typing = document.getElementById("typing");
+/* HERO ANIMATION */
+gsap.from(".hero h1",{y:50,opacity:0,duration:1.2,ease:"power3.out"});
+gsap.from(".typing",{y:20,opacity:0,delay:.6,duration:1});
 
-function typeEffect() {
-  if(charIndex < roles[roleIndex].length) {
-    typing.textContent += roles[roleIndex].charAt(charIndex);
-    charIndex++;
-    setTimeout(typeEffect, 80);
-  } else {
-    setTimeout(()=>{
-      typing.textContent="";
-      charIndex=0;
-      roleIndex=(roleIndex+1)%roles.length;
-      typeEffect();
-    },1500);
-  }
-}
+/* TYPING EFFECT */
+const roles=["Security Researcher","Bug Bounty Hunter","ECE Engineer","🌾 Farmer"];let r=0,c=0;const t=document.getElementById("typing");
+function type(){if(c<roles[r].length){t.textContent+=roles[r][c++];setTimeout(type,80)}else{setTimeout(()=>{t.textContent="";c=0;r=(r+1)%roles.length;type()},1500)}}
+type();
 
-window.addEventListener("scroll", () => {
-  if(!started && window.scrollY>10){
-    started=true;
-    const welcome=document.getElementById("welcome");
-    welcome.classList.add("fade-out");
-    setTimeout(()=>{
-      welcome.style.display="none";
-      document.getElementById("mainContent").classList.remove("hidden");
-      typeEffect();
-    },600);
-  }
-});
+/* SKILL BARS */
+gsap.utils.toArray(".skill").forEach((s,i)=>{const b=s.querySelector("span");gsap.to(b,{scrollTrigger:{trigger:s,start:"top 85%"},width:b.dataset.width,duration:1.2,delay:i*.15})});
 
-/* HERO INITIAL ANIMATION */
-gsap.from(".hero h1", {y:50, opacity:0, duration:1.2, ease:"power3.out"});
-gsap.from(".typing", {y:20, opacity:0, delay:.6, duration:1, ease:"power3.out"});
-
-/* BANNER FLOAT */
-gsap.to(".banner img",{y:-18,duration:4,repeat:-1,yoyo:true,ease:"sine.inOut"});
-gsap.from(".banner-overlay h2",{y:50, opacity:0, duration:1.2, ease:"power3.out", scrollTrigger:{trigger:".banner", start:"top 80%"}});
-gsap.from(".banner-overlay p",{y:20, opacity:0, duration:1.2, ease:"power3.out", scrollTrigger:{trigger:".banner", start:"top 85%"}});
-
-/* ABOUT STAGGER */
-gsap.utils.toArray(".about-card p").forEach((p,i)=>{
-  gsap.from(p,{scrollTrigger:{trigger:p,start:"top 90%"}, y:20, opacity:0, delay:i*0.2, duration:0.8});
-});
-
-/* SKILL BARS STAGGERED */
-gsap.utils.toArray(".skill").forEach((skill,i)=>{
-  const bar=skill.querySelector("span");
-  gsap.to(bar,{scrollTrigger:{trigger:skill,start:"top 85%"}, width:bar.dataset.width, duration:1.2, delay:i*0.2, ease:"power2.out"});
-});
-
-/* SOCIAL ICON MICRO INTERACTIONS + FLOAT */
-gsap.utils.toArray(".social-icon").forEach((icon,i)=>{
-  icon.addEventListener("mouseenter",()=>{ gsap.to(icon,{scale:1.2,y:-6,duration:.3}); });
-  icon.addEventListener("mouseleave",()=>{ gsap.to(icon,{scale:1,y:0,duration:.3}); });
-  gsap.to(icon,{y:4,duration:2,repeat:-1,yoyo:true,stagger:0.2,ease:"sine.inOut"});
-});
-
-
-const roles = ["Security Researcher", "ECE Engineer", "🌾 Farmer"];
-let roleIndex = 0;
-let charIndex = 0;
-const typingEl = document.getElementById("typing");
-
-function typeEffect() {
-  if(charIndex < roles[roleIndex].length) {
-    typingEl.textContent += roles[roleIndex].charAt(charIndex);
-    charIndex++;
-    setTimeout(typeEffect, 80);
-  } else {
-    setTimeout(()=>{
-      typingEl.textContent="";
-      charIndex=0;
-      roleIndex=(roleIndex+1)%roles.length;
-      typeEffect();
-    },1500);
-  }
-}
-
-// Start typing once hero is in view
-window.addEventListener("scroll", () => {
-  if(window.scrollY > 10 && !started){
-    started = true;
-    typeEffect();
-  }
-});
+/* FLOATING SOCIALS */
+gsap.utils.toArray('.social-icon').forEach((i,n)=>{gsap.to(i,{y:6,duration:2.2,repeat:-1,yoyo:true,delay:n*.2,ease:'sine.inOut'})});
 </script>
-  
 </body>
 </html>
