@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
@@ -16,13 +17,8 @@
  --accent:#22d3ee;--accent2:#38bdf8;--border:rgba(255,255,255,.08)
 }
 [data-theme="dark"]{--bg:#000;--panel:#000}
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Fira Code',monospace}
-body{
- background:radial-gradient(circle at top,#020617,#000);
- color:var(--text);
- overflow-x:hidden;
-}
+body{background:radial-gradient(circle at top,#020617,#000);color:var(--text);overflow-x:hidden;}
 section{padding:100px 10%}
 .center{text-align:center}
 
@@ -126,16 +122,30 @@ section{padding:100px 10%}
  margin-top:auto;color:var(--accent2);
  font-weight:600;text-decoration:none
 }
+.tags{
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
+ margin-top:6px;
+}
+.tag{
+ font-size:.7rem;
+ padding:4px 8px;
+ border-radius:999px;
+ border:1px solid var(--border);
+ color:var(--accent);
+ background:rgba(34,211,238,.08);
+}
 
 /* SOCIALS */
-.socials{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.socials{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:90px 0}
 .icon{
  width:56px;height:56px;
  display:flex;align-items:center;justify-content:center;
  border:1px solid var(--border);border-radius:50%;
  background:#000;transition:.3s
 }
-.icon img{width:26px;height:26px;filter:invert(100%)}
+.icon svg{width:26px;height:26px;fill:var(--text)}
 .icon:hover{
  transform:translateY(-6px) scale(1.15);
  box-shadow:0 0 18px rgba(34,211,238,.5)
@@ -149,7 +159,6 @@ footer{
 }
 </style>
 </head>
-
 <body>
 
 <!-- INTRO -->
@@ -199,59 +208,73 @@ footer{
 <section>
  <h2 class="center">🧾 Featured Medium Reports</h2><br>
  <div class="medium-cards">
-
   <div class="medium-card">
    <div class="medium-body">
     <h3>🧠 Complete Recon Workflow (2025)</h3>
+    <div class="tags"><span class="tag">Recon</span><span class="tag">Automation</span></div>
     <p>Asset discovery, automation, noise filtering, and real-world recon methodology.</p>
-    <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0" target="_blank" rel="noopener noreferrer">Read →</a>
+    <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0" target="_blank">Read →</a>
    </div>
   </div>
 
   <div class="medium-card">
    <div class="medium-body">
     <h3>📜 Reading JavaScript Like a Hacker</h3>
+    <div class="tags"><span class="tag">JavaScript</span><span class="tag">Hidden APIs</span></div>
     <p>Finding hidden APIs, logic flaws, and attack surfaces through JS analysis.</p>
-    <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68" target="_blank" rel="noopener noreferrer">Read →</a>
+    <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68" target="_blank">Read →</a>
    </div>
   </div>
 
   <div class="medium-card">
    <div class="medium-body">
     <h3>💉 Automating SQL Injection with SQLmap</h3>
+    <div class="tags"><span class="tag">SQLi</span><span class="tag">Automation</span></div>
     <p>Responsible SQLi automation, payload analysis, and exploitation workflow.</p>
-    <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593" target="_blank" rel="noopener noreferrer">Read →</a>
+    <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593" target="_blank">Read →</a>
    </div>
   </div>
-
  </div>
 </section>
 
 <!-- SOCIALS -->
 <section class="center socials" id="socials">
- <a class="icon" href="mailto:purubughunting@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
- <a class="icon" href="https://medium.com/@purushothamr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
- <a class="icon" href="https://linkedin.com/in/purushothamr06"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
- <a class="icon" href="https://github.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
- <div class="icon private"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/hackerone.svg"></div>
- <div class="icon private"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/bugcrowd.svg"></div>
+ <a class="icon" href="mailto:purubughunting@gmail.com" aria-label="Email">
+   <svg viewBox="0 0 24 24"><path d="M12 13L0 4v16h24V4L12 13z" fill="currentColor"/></svg>
+ </a>
+ <a class="icon" href="https://medium.com/@purushothamr" aria-label="Medium">
+   <svg viewBox="0 0 24 24"><path d="M0 4h24v16H0V4z" fill="currentColor"/></svg>
+ </a>
+ <a class="icon" href="https://linkedin.com/in/purushothamr06" aria-label="LinkedIn">
+   <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4z" fill="currentColor"/></svg>
+ </a>
+ <a class="icon" href="https://github.com/purushothamr01" aria-label="GitHub">
+   <svg viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.7 1.6-.7.1-.7.4-1.1.7-1.4-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2.9-.2 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+ </a>
+ <div class="icon private" aria-label="HackerOne">
+   <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>
+ </div>
+ <div class="icon private" aria-label="Bugcrowd">
+   <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>
+ </div>
 </section>
 
 <footer>© 2026 Purushotham R · Security Researcher</footer>
 
 <script>
-// INTRO — auto hide after 3s
-setTimeout(()=>{
- gsap.to('#intro',{opacity:0,scale:1.1,duration:1,onComplete:()=>intro.remove()})
-},3000);
+// INTRO
+const intro = document.getElementById('intro');
+setTimeout(() => {
+  gsap.to(intro,{opacity:0,scale:1.1,duration:1,onComplete:()=>intro.remove()});
+}, 3000);
 
 // TERMINAL
-const terminal=document.getElementById('terminal');
-const cursor=document.createElement('span');
+const terminal = document.getElementById('terminal');
+const cursor = document.createElement('span');
 cursor.className='cursor';
 terminal.appendChild(cursor);
 
-const lines=[
+const lines = [
  'puru@linux:~$ whoami',
  'Farmer 🌾 | ECE Engineer | Security Researcher',
  '',
@@ -277,8 +300,7 @@ let i=0,j=0;
 
 // THEME
 function toggleTheme(){
- document.body.dataset.theme =
- document.body.dataset.theme==='dark'?'':'dark';
+ document.body.dataset.theme = document.body.dataset.theme==='dark'?'':'dark';
 }
 
 // GSAP
