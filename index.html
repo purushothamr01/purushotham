@@ -5,27 +5,23 @@
 <title>Purushotham R | Security Researcher</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SECURITY HEADERS (best-effort for static hosting) -->
-<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta http-equiv="X-Frame-Options" content="DENY">
-
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
 <style>
 :root{
- --bg:#020617;--text:#e5e7eb;--muted:#9ca3af;
+ --bg:#020617;--panel:#020617;--text:#e5e7eb;--muted:#9ca3af;
  --accent:#22d3ee;--accent2:#38bdf8;--border:rgba(255,255,255,.08)
 }
-[data-theme="dark"]{--bg:#000}
+[data-theme="dark"]{--bg:#000;--panel:#000}
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Fira Code',monospace}
 body{
  background:radial-gradient(circle at top,#020617,#000);
- color:var(--text);overflow-x:hidden
+ color:var(--text);
+ overflow-x:hidden;
 }
 section{padding:100px 10%}
 .center{text-align:center}
@@ -33,9 +29,9 @@ section{padding:100px 10%}
 /* TOGGLE */
 .toggle{
  position:fixed;top:20px;right:20px;z-index:99;
- border:1px solid var(--border);padding:8px 14px;
- border-radius:20px;background:#000;color:var(--accent);
- cursor:pointer
+ cursor:pointer;border:1px solid var(--border);
+ padding:8px 14px;border-radius:20px;
+ background:#000;color:var(--accent)
 }
 
 /* INTRO */
@@ -50,14 +46,14 @@ section{padding:100px 10%}
 }
 
 /* TERMINAL */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.hero{min-height:100vh;display:flex;justify-content:center;align-items:center}
 .terminal{
  background:#000;border:1px solid var(--border);
- border-radius:18px;padding:50px;
- width:100%;max-width:1050px;
+ border-radius:18px;padding:55px;
+ width:100%;max-width:1100px;
  box-shadow:0 0 80px rgba(34,211,238,.22);
- font-size:1.15rem;line-height:1.7;
- white-space:pre-wrap
+ font-size:1.2rem;line-height:1.8;
+ white-space:pre-wrap;position:relative
 }
 .cursor{
  display:inline-block;width:10px;height:1.2em;
@@ -66,170 +62,232 @@ section{padding:100px 10%}
 }
 @keyframes blink{50%{opacity:0}}
 
-/* CONTENT */
+/* STORY */
+.story{min-height:100vh;display:flex;align-items:center}
 .story h2{
  font-size:2.5rem;margin-bottom:20px;
  background:linear-gradient(90deg,var(--accent),var(--accent2));
  -webkit-background-clip:text;-webkit-text-fill-color:transparent
 }
-.metrics,.vulns{
- display:grid;gap:25px;
- grid-template-columns:repeat(auto-fit,minmax(220px,1fr))
+
+/* METRICS */
+.metrics{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:25px
 }
-.metric,.vuln{
+.metric{
  border:1px solid var(--border);
- padding:25px;border-radius:18px;
- background:rgba(255,255,255,.02)
+ padding:30px;border-radius:18px;
+ background:rgba(255,255,255,.02);
+ text-align:center
 }
-.metric h3{color:var(--accent);font-size:2rem}
+.metric h3{font-size:2.2rem;color:var(--accent)}
+
+/* ATTACK CHAIN */
+.attack-chain{background:linear-gradient(180deg,#000,#020617)}
+.chain{
+ display:flex;justify-content:center;align-items:center;
+ gap:25px;flex-wrap:wrap
+}
+.chain-step{
+ border:1px solid var(--border);
+ padding:30px;border-radius:18px;
+ background:rgba(255,255,255,.03);
+ width:260px;text-align:center
+}
+.chain-step strong{color:var(--accent)}
+.chain-arrow{font-size:2rem;color:var(--accent)}
+
+/* MEDIUM CARDS */
+.medium-cards{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+ gap:28px
+}
+.medium-card{
+ background:rgba(255,255,255,.03);
+ border:1px solid var(--border);
+ border-radius:18px;
+ transition:.35s ease
+}
+.medium-card:hover{
+ transform:translateY(-8px);
+ box-shadow:0 20px 60px rgba(34,211,238,.25)
+}
+.medium-body{
+ padding:26px;
+ display:flex;
+ flex-direction:column;
+ gap:14px
+}
+.medium-body h3{color:var(--accent);font-size:1.1rem}
+.medium-body p{color:var(--muted);font-size:.95rem;line-height:1.6}
+.medium-body a{
+ margin-top:auto;color:var(--accent2);
+ font-weight:600;text-decoration:none
+}
 
 /* SOCIALS */
 .socials{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
 .icon{
- width:56px;height:56px;border-radius:50%;
- border:1px solid var(--border);
+ width:56px;height:56px;
  display:flex;align-items:center;justify-content:center;
+ border:1px solid var(--border);border-radius:50%;
  background:#000;transition:.3s
 }
 .icon img{width:26px;height:26px;filter:invert(100%)}
-.icon:hover{transform:translateY(-6px) scale(1.15)}
+.icon:hover{
+ transform:translateY(-6px) scale(1.15);
+ box-shadow:0 0 18px rgba(34,211,238,.5)
+}
 .icon.private{opacity:.6;border-style:dashed}
 
 footer{
  text-align:center;padding:40px;
- color:var(--muted);border-top:1px solid var(--border)
+ color:var(--muted);
+ border-top:1px solid var(--border)
 }
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
 <div id="intro">
- <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true" alt="Intro">
+ <img src="https://github.com/purushothamr01/purushothamr01/blob/f4380332df3451f9d67afa4d63a692f0eec668ab/Teal%20and%20Black%20Modern%20Programmer%20New%20LinkedIn%20Banner.gif?raw=true">
 </div>
 
 <div class="toggle" onclick="toggleTheme()">🌙</div>
 
+<!-- TERMINAL -->
 <section class="hero">
  <div class="terminal" id="terminal"></div>
 </section>
 
+<!-- STORY -->
 <section class="story">
  <div>
   <h2>From Fields to Firewalls</h2>
-  <p>Farmer by roots 🌾 → Security Researcher by obsession.</p>
+  <p>Farmer by roots 🌾 → Security Researcher by obsession. I hunt real-world vulnerabilities and logic flaws.</p>
  </div>
 </section>
 
+<!-- METRICS -->
 <section>
  <h2 class="center">📈 Impact Metrics</h2><br>
  <div class="metrics">
-  <div class="metric"><h3>35+</h3>Bugs Found</div>
-  <div class="metric"><h3>8</h3>Critical / High</div>
-  <div class="metric"><h3>12+</h3>Programs</div>
-  <div class="metric"><h3>API</h3>Primary Surface</div>
+  <div class="metric"><h3>35+</h3><p>Bugs Found</p></div>
+  <div class="metric"><h3>8</h3><p>Critical / High</p></div>
+  <div class="metric"><h3>12+</h3><p>Programs Tested</p></div>
+  <div class="metric"><h3>API</h3><p>Primary Surface</p></div>
  </div>
 </section>
 
+<!-- ATTACK CHAIN -->
+<section class="attack-chain">
+ <h2 class="center">🧬 Attack Chain</h2><br>
+ <div class="chain">
+  <div class="chain-step">🛰️ <strong>Request</strong><p>Malicious API call</p></div>
+  <div class="chain-arrow">➜</div>
+  <div class="chain-step">💥 <strong>Exploit</strong><p>IDOR / Auth Bypass</p></div>
+  <div class="chain-arrow">➜</div>
+  <div class="chain-step">🔥 <strong>Impact</strong><p>ATO / Data Exposure</p></div>
+ </div>
+</section>
+
+<!-- MEDIUM BLOGS -->
 <section>
- <h2 class="center">🧾 Medium Writeups</h2><br>
- <div class="vulns" id="medium-posts">
-  <div class="vuln">Loading articles…</div>
+ <h2 class="center">🧾 Featured Medium Reports</h2><br>
+ <div class="medium-cards">
+
+  <div class="medium-card">
+   <div class="medium-body">
+    <h3>🧠 Complete Recon Workflow (2025)</h3>
+    <p>Asset discovery, automation, noise filtering, and real-world recon methodology.</p>
+    <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0" target="_blank" rel="noopener noreferrer">Read →</a>
+   </div>
+  </div>
+
+  <div class="medium-card">
+   <div class="medium-body">
+    <h3>📜 Reading JavaScript Like a Hacker</h3>
+    <p>Finding hidden APIs, logic flaws, and attack surfaces through JS analysis.</p>
+    <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68" target="_blank" rel="noopener noreferrer">Read →</a>
+   </div>
+  </div>
+
+  <div class="medium-card">
+   <div class="medium-body">
+    <h3>💉 Automating SQL Injection with SQLmap</h3>
+    <p>Responsible SQLi automation, payload analysis, and exploitation workflow.</p>
+    <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593" target="_blank" rel="noopener noreferrer">Read →</a>
+   </div>
+  </div>
+
  </div>
 </section>
 
+<!-- SOCIALS -->
 <section class="center socials" id="socials">
- <a class="icon" href="mailto:purubughunting@gmail.com" rel="noopener noreferrer">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg">
- </a>
- <a class="icon" href="https://medium.com/@purushothamr" target="_blank" rel="noopener noreferrer">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg">
- </a>
- <a class="icon" href="https://linkedin.com/in/purushothamr06" target="_blank" rel="noopener noreferrer">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg">
- </a>
- <a class="icon" href="https://github.com/purushothamr01" target="_blank" rel="noopener noreferrer">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg">
- </a>
- <div class="icon private">
-  <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/hackerone.svg">
- </div>
+ <a class="icon" href="mailto:purubughunting@gmail.com"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg"></a>
+ <a class="icon" href="https://medium.com/@purushothamr"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/medium.svg"></a>
+ <a class="icon" href="https://linkedin.com/in/purushothamr06"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
+ <a class="icon" href="https://github.com/purushothamr01"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg"></a>
+ <div class="icon private"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/hackerone.svg"></div>
+ <div class="icon private"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/bugcrowd.svg"></div>
 </section>
 
 <footer>© 2026 Purushotham R · Security Researcher</footer>
 
 <script>
-/* INTRO – fixed 3s */
-window.addEventListener("load",()=>{
- const intro=document.getElementById("intro");
- setTimeout(()=>{
-  gsap.to(intro,{opacity:0,scale:1.1,duration:1.2,onComplete:()=>intro.remove()});
- },3000);
-});
+// INTRO — auto hide after 3s
+setTimeout(()=>{
+ gsap.to('#intro',{opacity:0,scale:1.1,duration:1,onComplete:()=>intro.remove()})
+},3000);
 
-/* TERMINAL */
-const terminal=document.getElementById("terminal");
-const cursor=document.createElement("span");
-cursor.className="cursor";
+// TERMINAL
+const terminal=document.getElementById('terminal');
+const cursor=document.createElement('span');
+cursor.className='cursor';
 terminal.appendChild(cursor);
 
 const lines=[
- "puru@linux:~$ whoami",
- "Security Researcher",
- "",
- "puru@linux:~$ ls skills",
- "Linux  Bash  Python  API-Security",
- "",
- "puru@linux:~$ cat focus.txt",
- "Finding real bugs. Not noise."
+ 'puru@linux:~$ whoami',
+ 'Farmer 🌾 | ECE Engineer | Security Researcher',
+ '',
+ 'puru@linux:~$ ls skills',
+ 'Linux  Bash  Python  API Security',
+ '',
+ 'puru@linux:~$ cat focus.txt',
+ 'Finding real bugs. Not noise.'
 ];
+
 let i=0,j=0;
 (function type(){
- if(i>=lines.length) return;
- if(j<lines[i].length){
-  cursor.before(lines[i][j++]);
-  setTimeout(type,28);
- }else{
-  cursor.before("\n"); j=0; i++;
-  setTimeout(type,160);
+ if(i<lines.length){
+  if(j<lines[i].length){
+   cursor.insertAdjacentText('beforebegin',lines[i][j++]);
+   setTimeout(type,28);
+  }else{
+   cursor.insertAdjacentText('beforebegin','\n');
+   j=0;i++;setTimeout(type,160);
+  }
  }
 })();
 
-/* THEME */
+// THEME
 function toggleTheme(){
  document.body.dataset.theme =
- document.body.dataset.theme==="dark"?"":"dark";
+ document.body.dataset.theme==='dark'?'':'dark';
 }
 
-/* GSAP */
+// GSAP
 gsap.registerPlugin(ScrollTrigger);
-gsap.from(".metric",{scrollTrigger:{trigger:".metrics",start:"top 80%"},y:40,opacity:0,stagger:.2});
-gsap.from("#socials .icon",{scrollTrigger:{trigger:"#socials",start:"top 85%"},y:30,opacity:0,stagger:.12});
-
-/* MEDIUM – XSS SAFE */
-fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@purushothamr")
-.then(r=>r.ok?r.json():Promise.reject())
-.then(d=>{
- const box=document.getElementById("medium-posts");
- box.textContent="";
- d.items.slice(0,3).forEach(p=>{
-  const div=document.createElement("div");
-  div.className="vuln";
-  const title=document.createElement("h4");
-  title.textContent=p.title;
-  const desc=document.createElement("p");
-  desc.textContent=p.description.replace(/<[^>]+>/g,"").slice(0,120)+"…";
-  const link=document.createElement("a");
-  link.href=p.link; link.target="_blank"; link.rel="noopener noreferrer";
-  link.textContent="Read on Medium";
-  div.append(title,desc,link);
-  box.appendChild(div);
- });
-})
-.catch(()=>{
- document.getElementById("medium-posts").innerHTML=
- "<div class='vuln'>Visit Medium profile</div>";
-});
+gsap.from('.story div',{scrollTrigger:{trigger:'.story',start:'top 70%'},y:60,opacity:0});
+gsap.from('.metric',{scrollTrigger:{trigger:'.metrics',start:'top 80%'},y:40,opacity:0,stagger:.2});
+gsap.from('.chain-step',{scrollTrigger:{trigger:'.attack-chain',start:'top 80%'},y:50,opacity:0,stagger:.25});
+gsap.from('.medium-card',{scrollTrigger:{trigger:'.medium-cards',start:'top 80%'},y:40,opacity:0,stagger:.2});
+gsap.from('#socials .icon',{scrollTrigger:{trigger:'#socials',start:'top 80%'},y:30,opacity:0,scale:.8,stagger:.12});
 </script>
 
 </body>
