@@ -32,23 +32,47 @@ section{padding:60px 10%;}
 .center{text-align:center;}
 
 /* HERO & TERMINAL */
-#hero{
-  min-height:80vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b0f14;
+  color: #e5e7eb;
 }
-.hero-content h1{
-  font-size:2.5rem;
-  margin-bottom:30px;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-align:center;
+
+.hero-content {
+  text-align: center;
 }
+
+.terminal {
+  margin-top: 20px;
+  padding: 16px 20px;
+  width: 90%;
+  max-width: 520px;
+  background: #020617;
+  border-radius: 10px;
+  font-family: "Fira Code", monospace;
+  font-size: 0.95rem;
+  color: #22c55e;
+  box-shadow: 0 0 30px rgba(34,197,94,0.15);
+  text-align: left;
+  white-space: pre-wrap;
+  position: relative;
+}
+
+/* blinking cursor */
+.terminal::after {
+  content: "▋";
+  animation: blink 1s infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
 
 /* TERMINAL */
 .terminal {
@@ -153,13 +177,15 @@ footer{
 </head>
 <body>
 
+
 <!-- HERO -->
 <section id="hero">
   <div class="hero-content">
-    <h1>ನಮಸ್ಕಾರ Namaste Hello  こんにちは  </h1>
+    <h1>ನಮಸ್ಕಾರ Namaste Hello  こんにちは</h1>
     <div class="terminal" id="terminal"></div>
   </div>
 </section>
+
 
 <!-- BLOG CARDS -->
 <section class="center">
@@ -283,6 +309,44 @@ gsap.utils.toArray('.medium-card').forEach(card=>{
   gsap.fromTo(card,{y:30,opacity:0},{scrollTrigger:{trigger:card,once:true},y:0,opacity:1,duration:0.8,ease:"power2.out"});
 });
 gsap.fromTo('.socials',{y:30,opacity:0},{scrollTrigger:{trigger:'.socials',once:true},y:0,opacity:1,duration:1,ease:"power2.out"});
+</script>
+<script>
+const terminal = document.getElementById("terminal");
+
+const lines = [
+  "purushotham@security:~$ whoami",
+  "Security Researcher | Bug Bounty Hunter",
+  "",
+  "purushotham@security:~$ skills",
+  "• Web & API Security",
+  "• Android Pentesting",
+  "• Linux • Bash • Python",
+  "",
+  "purushotham@security:~$ echo \"Hack. Secure. Innovate.\""
+];
+
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeTerminal() {
+  if (lineIndex < lines.length) {
+    if (charIndex < lines[lineIndex].length) {
+      terminal.textContent += lines[lineIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeTerminal, 35); // typing speed
+    } else {
+      terminal.textContent += "\n";
+      lineIndex++;
+      charIndex = 0;
+      setTimeout(typeTerminal, 300); // pause between lines
+    }
+  }
+}
+
+// start typing after load
+window.addEventListener("load", () => {
+  setTimeout(typeTerminal, 800);
+});
 </script>
 
 </body>
