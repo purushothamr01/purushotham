@@ -310,36 +310,6 @@ gsap.utils.toArray('.medium-card').forEach(card=>{
 });
 gsap.fromTo('.socials',{y:30,opacity:0},{scrollTrigger:{trigger:'.socials',once:true},y:0,opacity:1,duration:1,ease:"power2.out"});
 </script>
-<script>
-const terminal = document.getElementById("terminal");
-
-const lines = [
-
-];
-
-let lineIndex = 0;
-let charIndex = 0;
-
-function typeTerminal() {
-  if (lineIndex < lines.length) {
-    if (charIndex < lines[lineIndex].length) {
-      terminal.textContent += lines[lineIndex].charAt(charIndex);
-      charIndex++;
-      setTimeout(typeTerminal, 35); // typing speed
-    } else {
-      terminal.textContent += "\n";
-      lineIndex++;
-      charIndex = 0;
-      setTimeout(typeTerminal, 300); // pause between lines
-    }
-  }
-}
-
-// start typing after load
-window.addEventListener("load", () => {
-  setTimeout(typeTerminal, 800);
-});
-</script>
 
 </body>
 </html>
