@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
       function runBootSequence() {
         const bootLines = [
           { text: '  ┌─────────────────────────────────┐', cls: 'accent', delay: 0 },
-          { text: '  │ Welcome to Purushotham\'s Shell │', cls: 'accent', delay: 60 },
+          { text: '  │ Welcome to Purushotham\'s Shell   │', cls: 'accent', delay: 60 },
           { text: '  └─────────────────────────────────┘', cls: 'accent', delay: 120 },
           { text: '', cls: '', delay: 180 },
           { text: '  OS:     Kali GNU/Linux', cls: 'response', delay: 240 },
