@@ -3,23 +3,22 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Purushotham.r - Security Researcher</title>
+  <title>Purushotham R - Security Researcher & Bug Bounty Hunter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Security Researcher specializing in Web Application Security, Bug Bounty, and Automation">
-  <meta name="theme-color" content="#0a0a0f">
+  <meta name="theme-color" content="#040b14">
   <link rel="icon" type="image/png" href="favicon.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Raleway:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap"
     rel="stylesheet">
 
-  <!-- GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
@@ -27,439 +26,380 @@
 
 <body>
 
-  <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress"></div>
-
-  <!-- CURSOR GLOW -->
-  <div class="cursor-glow" id="cursorGlow"></div>
-
-  <!-- GRAIN OVERLAY -->
-  <div class="grain-overlay"></div>
-
-  <!-- MOBILE MENU OVERLAY -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#expertise">Expertise</a>
-    <a href="#work">Work</a>
-    <a href="#contact">Contact</a>
+  <!-- Page Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-ring"></div>
+      <span class="preloader-text">Loading</span>
+    </div>
   </div>
 
-  <!-- NAVIGATION -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <div class="logo">
-        <span class="logo-name">Purushotham</span>
-        <span class="logo-dot">.</span>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ======= SIDEBAR ======= -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+      <!-- Profile -->
+      <div class="sidebar-profile">
+        <img src="profile.png" alt="Purushotham R" class="sidebar-avatar">
+        <h1 class="sidebar-name">Purushotham R</h1>
+        <div class="sidebar-typed">
+          <span class="typed-text" id="typedText"></span><span class="typed-cursor">|</span>
+        </div>
       </div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#expertise">Expertise</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="nav-cta">
-        <a href="https://bloomeor.github.io/bloomeor/" target="_blank" class="company-link">
-          <img src="secuvia-logo.png" alt="Bloomeor" class="company-logo">
+
+      <!-- Navigation -->
+      <nav class="sidebar-nav" id="sidebarNav">
+        <ul>
+          <li><a href="#hero" class="active"><i class="bi bi-house-door"></i> <span>Home</span></a></li>
+          <li><a href="#about"><i class="bi bi-person"></i> <span>About</span></a></li>
+          <li><a href="#skills"><i class="bi bi-gear"></i> <span>Skills</span></a></li>
+          <li><a href="#tools"><i class="bi bi-tools"></i> <span>Tools</span></a></li>
+          <li><a href="#publications"><i class="bi bi-journal-text"></i> <span>Publications</span></a></li>
+          <li><a href="#contact"><i class="bi bi-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+      </nav>
+
+      <!-- Wildlife Photography -->
+      <div class="sidebar-wildlife">
+        <a href="https://purushothamr01.github.io/purushothamr/" target="_blank" class="wildlife-btn">
+          <i class="bi bi-camera"></i>
+          <span>Wildlife Photography</span>
+        </a>
+        <a href="https://bloomeor.github.io/bloomeor/" target="_blank" class="company-btn">
+          <i class="bi bi-building"></i>
           <span>Bloomeor</span>
         </a>
-        <a href="https://purushothamr01.github.io/purushothamr/" target="_blank" class="company-link wildlife-link">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-            <circle cx="8.5" cy="8.5" r="1.5"></circle>
-            <polyline points="21 15 16 10 5 21"></polyline>
-          </svg>
-          <span>Wildlife</span>
-        </a>
       </div>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+
+      <!-- Social Links -->
+      <div class="sidebar-social">
+        <a href="https://github.com/purushothamr01" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+        <a href="https://linkedin.com/in/purushothamr06" target="_blank" title="LinkedIn"><i
+            class="bi bi-linkedin"></i></a>
+        <a href="https://medium.com/@Purushothamr" target="_blank" title="Medium"><i class="bi bi-medium"></i></a>
+        <a href="mailto:purubughunting@gmail.com" title="Email"><i class="bi bi-envelope-fill"></i></a>
+      </div>
+
+      <!-- Dark Mode Toggle -->
+      <div class="sidebar-theme">
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+          <i class="bi bi-moon-fill" id="themeIcon"></i>
+          <span>Dark Mode</span>
+        </button>
       </div>
     </div>
-  </nav>
+  </aside>
 
-  <!-- HERO SECTION -->
-  <section id="home" class="hero">
-    <canvas id="particles-bg"></canvas>
-    <div class="hero-glow-orb orb-1"></div>
-    <div class="hero-glow-orb orb-2"></div>
-    <div class="container">
+  <!-- Mobile Nav Toggle -->
+  <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation">
+    <i class="bi bi-list"></i>
+  </button>
+
+  <!-- ======= MAIN CONTENT ======= -->
+  <main id="main">
+
+    <!-- ======= HERO SECTION ======= -->
+    <section id="hero" class="hero-section">
+      <canvas id="particles-bg"></canvas>
+      <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          <span>Available for Security Consulting</span>
-        </div>
-        <h1 class="hero-title">
-          Security Researcher<br>
-          <span class="gradient-text">& Bug Bounty Hunter</span>
-        </h1>
-        <p class="hero-description">
-          Specialized in web application security, reconnaissance automation, and vulnerability research.
-          Founder of Bloomeor, passionate about building secure systems and finding critical bugs.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Get in Touch</a>
-          <a href="#work" class="btn btn-secondary">View Work</a>
-        </div>
+        <h1>Purushotham R</h1>
+        <p>I'm a <span class="hero-typed" id="heroTyped"></span></p>
         <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-number" data-count="10">0</span>
-            <span class="stat-label">Bugs Found</span>
+          <div class="hero-stat">
+            <span class="hero-stat-number" data-count="50">0</span>
+            <span class="hero-stat-label">Bugs Found</span>
           </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-number" data-count="2">0</span>
-            <span class="stat-label">Years Experience</span>
+          <div class="hero-stat">
+            <span class="hero-stat-number" data-count="3">0</span>
+            <span class="hero-stat-label">Years Experience</span>
           </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-number" data-count="1">0</span>
-            <span class="stat-label">Tools Built</span>
+          <div class="hero-stat">
+            <span class="hero-stat-number" data-count="2">0</span>
+            <span class="hero-stat-label">Tools Built</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ABOUT SECTION -->
-  <section id="about" class="about">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">About Me</span>
-        <h2 class="section-title">Building Secure Digital Solutions</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-content">
-          <p class="lead-text">
-            I'm Purushotham.R, a Security Researcher and Founder of <a href="https://bloomeor.github.io/bloomeor/"
-              target="_blank" class="inline-link">Bloomeor</a>,
-            where we focus on comprehensive security solutions for modern applications.
-          </p>
-          <p>
-            With a background in Electronics & Communication Engineering, I bring a unique perspective to cybersecurity,
-            bridging hardware logic with software vulnerabilities. My expertise spans web application penetration
-            testing,
-            automated reconnaissance, and developing security tools.
-          </p>
-          <p>
-            When I'm not hunting for bugs or writing code, you'll find me farming staying grounded and connected to
-            nature.
-            I also pursue wildlife photography, capturing the beauty of the natural world.
-          </p>
-          <div class="about-links">
-            <a href="https://purushothamr01.github.io/purushothamr/" target="_blank" class="about-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <polyline points="21 15 16 10 5 21"></polyline>
-              </svg>
-              Wildlife Photography
-            </a>
-            <a href="https://medium.com/@Purushothamr" target="_blank" class="about-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-              Technical Writing
-            </a>
-          </div>
+    <!-- ======= ABOUT SECTION ======= -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>About</h2>
+          <p>Security Researcher & Bug Bounty Hunter with a passion for building secure digital solutions.</p>
         </div>
-        <div class="about-image">
-          <div class="image-wrapper">
-            <img src="profile.png" alt="Purushotham" class="profile-image">
+        <div class="about-row">
+          <div class="about-image">
+            <img src="profile.png" alt="Purushotham R">
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERTISE SECTION -->
-  <section id="expertise" class="expertise">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Expertise</span>
-        <h2 class="section-title">Technical Skills & Specializations</h2>
-      </div>
-      <div class="expertise-grid">
-        <div class="expertise-card">
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-          </div>
-          <h3>Web Application Security</h3>
-          <p>Expert in OWASP Top 10, SQL Injection, XSS, SSRF, and authentication bypass vulnerabilities.</p>
-          <div class="skill-list">
-            <span>Burp Suite</span>
-            <span>OWASP ZAP</span>
-            <span>SQLMap</span>
-            <span>Nuclei</span>
-          </div>
-        </div>
-
-        <div class="expertise-card">
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"></path>
-            </svg>
-          </div>
-          <h3>Reconnaissance & OSINT</h3>
-          <p>Advanced asset discovery, subdomain enumeration, and automated recon workflows.</p>
-          <div class="skill-list">
-            <span>Subfinder</span>
-            <span>Amass</span>
-            <span>Shodan</span>
-            <span>Custom Scripts</span>
-          </div>
-        </div>
-
-        <div class="expertise-card">
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-          </div>
-          <h3>Automation & Scripting</h3>
-          <p>Building custom security tools and automating repetitive security testing workflows.</p>
-          <div class="skill-list">
-            <span>Python</span>
-            <span>Bash</span>
-            <span>JavaScript</span>
-            <span>Go</span>
-          </div>
-        </div>
-
-        <div class="expertise-card">
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
-          </div>
-          <h3>Infrastructure & Cloud</h3>
-          <p>Security assessment of cloud infrastructure and containerized applications.</p>
-          <div class="skill-list">
-            <span>AWS</span>
-            <span>Docker</span>
-            <span>Linux</span>
-            <span>Kali</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK SECTION -->
-  <section id="work" class="work">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Featured Work</span>
-        <h2 class="section-title">Research & Publications</h2>
-      </div>
-      <div class="work-grid">
-        <article class="work-card">
-          <div class="work-header">
-            <span class="work-tag">Reconnaissance</span>
-            <span class="work-date">2024</span>
-          </div>
-          <h3>Complete Recon Workflow for Bug Bounty Hunting</h3>
-          <p>Comprehensive guide on asset discovery, automation, noise filtering, and real world reconnaissance
-            methodology.</p>
-          <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0"
-            target="_blank" class="work-link">
-            Read Article
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </a>
-        </article>
-
-        <article class="work-card">
-          <div class="work-header">
-            <span class="work-tag">JavaScript Analysis</span>
-            <span class="work-date">2024</span>
-          </div>
-          <h3>Reading JavaScript Like a Hacker</h3>
-          <p>Finding hidden APIs, logic flaws, and attack surfaces through comprehensive JavaScript analysis techniques.
-          </p>
-          <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68"
-            target="_blank" class="work-link">
-            Read Article
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </a>
-        </article>
-
-        <article class="work-card">
-          <div class="work-header">
-            <span class="work-tag">SQL Injection</span>
-            <span class="work-date">2024</span>
-          </div>
-          <h3>Automating SQL Injection with SQLmap</h3>
-          <p>Practical guide on responsible SQLi automation, payload analysis, and exploitation workflow best practices.
-          </p>
-          <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593"
-            target="_blank" class="work-link">
-            Read Article
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="7" y1="17" x2="17" y2="7"></line>
-              <polyline points="7 7 17 7 17 17"></polyline>
-            </svg>
-          </a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <div class="contact-content">
-        <div class="contact-info">
-          <span class="section-tag">Get in Touch</span>
-          <h2 class="section-title">Let's Work Together</h2>
-          <p class="contact-description">
-            Interested in security consulting, bug bounty collaboration, or just want to discuss cybersecurity?
-            Feel free to reach out through any of these channels.
-          </p>
-          <div class="contact-links">
-            <a href="mailto:purubughunting@gmail.com" class="contact-link contact-email">
-              <div class="contact-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
+          <div class="about-text">
+            <h3>Security Researcher &amp; Founder of Bloomeor</h3>
+            <p class="about-italic">
+              Specialized in web application security, reconnaissance automation, and vulnerability research.
+            </p>
+            <div class="about-details">
+              <div class="about-detail"><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>B.E in
+                  ECE</span></div>
+              <div class="about-detail"><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>India</span>
               </div>
-              <div class="contact-link-text">
-                <div class="link-label">Email</div>
-                <div class="link-value">purushothamr242@gmail.com</div>
+              <div class="about-detail"><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
+                <span>purushothamr242@gmail.com</span>
               </div>
-              <div class="contact-arrow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </a>
-
-            <a href="https://linkedin.com/in/purushothamr06" target="_blank" class="contact-link contact-linkedin">
-              <div class="contact-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-              </div>
-              <div class="contact-link-text">
-                <div class="link-label">LinkedIn</div>
-                <div class="link-value">purushothamr06</div>
-              </div>
-              <div class="contact-arrow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </a>
-
-            <a href="https://github.com/purushothamr01" target="_blank" class="contact-link contact-github">
-              <div class="contact-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                  </path>
-                </svg>
-              </div>
-              <div class="contact-link-text">
-                <div class="link-label">GitHub</div>
-                <div class="link-value">purushothamr01</div>
-              </div>
-              <div class="contact-arrow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </a>
-
-            <a href="https://medium.com/@Purushothamr" target="_blank" class="contact-link contact-medium">
-              <div class="contact-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                  <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-              </div>
-              <div class="contact-link-text">
-                <div class="link-label">Medium</div>
-                <div class="link-value">@Purushothamr</div>
-              </div>
-              <div class="contact-arrow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="contact-visual">
-          <div class="visual-card" id="terminalCard">
-            <div class="visual-header">
-              <span class="visual-dot"></span>
-              <span class="visual-dot"></span>
-              <span class="visual-dot"></span>
-              <span class="terminal-title">puru@linux:~</span>
+              <div class="about-detail"><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><a
+                    href="https://bloomeor.github.io/bloomeor/" target="_blank">bloomeor.github.io</a></span></div>
             </div>
-            <div class="terminal-body" id="terminalBody">
-              <div class="terminal-output" id="terminalOutput"></div>
-              <div class="terminal-input-line">
-                <span class="terminal-prompt">
-                  <span class="prompt-user">purushotham</span><span class="prompt-at">@</span><span
-                    class="prompt-host">linux</span><span class="prompt-colon">:</span><span
-                    class="prompt-path">~</span><span class="prompt-dollar">$</span>
-                </span>
-                <input type="text" class="terminal-input" id="terminalInput" autocomplete="off" spellcheck="false"
-                  placeholder="type 'help' for commands...">
+            <p>
+              With a background in Electronics & Communication Engineering, I bring a unique perspective to
+              cybersecurity,
+              bridging hardware logic with software vulnerabilities. My expertise spans web application penetration
+              testing,
+              automated reconnaissance, and developing security tools. When I'm not hunting for bugs or writing code,
+              you'll find me
+              farming, staying grounded and connected to nature. I also pursue wildlife photography, capturing the
+              beauty of the natural world.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= SKILLS SECTION ======= -->
+    <section id="skills" class="section section-alt">
+      <div class="container">
+        <div class="section-title">
+          <h2>Skills & Expertise</h2>
+          <p>Technical specializations honed through years of real-world security research and bug bounty hunting.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon"><i class="bi bi-shield-lock"></i></div>
+            <h4>Web Application Security</h4>
+            <p>Expert in OWASP Top 10, SQL Injection, XSS, SSRF, and authentication bypass vulnerabilities.</p>
+            <div class="skill-tags">
+              <span>Burp Suite</span><span>OWASP ZAP</span><span>SQLMap</span><span>Nuclei</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="bi bi-search"></i></div>
+            <h4>Reconnaissance &amp; OSINT</h4>
+            <p>Advanced asset discovery, subdomain enumeration, and automated recon workflows.</p>
+            <div class="skill-tags">
+              <span>Subfinder</span><span>Amass</span><span>Shodan</span><span>Custom Scripts</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="bi bi-code-slash"></i></div>
+            <h4>Automation &amp; Scripting</h4>
+            <p>Building custom security tools and automating repetitive security testing workflows.</p>
+            <div class="skill-tags">
+              <span>Python</span><span>Bash</span><span>JavaScript</span><span>Go</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon"><i class="bi bi-cloud"></i></div>
+            <h4>Infrastructure &amp; Cloud</h4>
+            <p>Security assessment of cloud infrastructure and containerized applications.</p>
+            <div class="skill-tags">
+              <span>AWS</span><span>Docker</span><span>Linux</span><span>Kali</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skill Progress Bars -->
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-info"><span>Web Application Pentesting</span><span class="skill-percent">90%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="90"></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-info"><span>Reconnaissance & OSINT</span><span class="skill-percent">85%</span></div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="85"></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-info"><span>Python & Bash Scripting</span><span class="skill-percent">80%</span></div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="80"></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-info"><span>JavaScript / Go</span><span class="skill-percent">70%</span></div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="70"></div>
+            </div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-info"><span>Cloud & Infrastructure</span><span class="skill-percent">65%</span></div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="65"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= TOOLS SECTION ======= -->
+    <section id="tools" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Security Tools</h2>
+          <p>Open-source tools built to help the security community.</p>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-icon"><i class="bi bi-binoculars"></i></div>
+            <div class="tool-info">
+              <h4>ReconKit 🔎</h4>
+              <span class="tool-tag">Recon Framework</span>
+              <p>Personal reconnaissance framework for bug bounty built to automate multi-tool subdomain enumeration, JS
+                endpoint extraction, and smart template scanning.</p>
+              <a href="https://github.com/purushothamr01/ReconKit" target="_blank" class="tool-link">View on GitHub <i
+                  class="bi bi-arrow-up-right"></i></a>
+            </div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon"><i class="bi bi-lightning-charge"></i></div>
+            <div class="tool-info">
+              <h4>JS Explorer ⚡</h4>
+              <span class="tool-tag">JS Analysis</span>
+              <p>A powerful, client-side only JavaScript enumerator and beautifier custom-built for bug bounty hunters,
+                penetration testers, and security researchers.</p>
+              <a href="https://purushothamr01.github.io/Jsexplorer/" target="_blank" class="tool-link">View Tool <i
+                  class="bi bi-arrow-up-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= PUBLICATIONS SECTION ======= -->
+    <section id="publications" class="section section-alt">
+      <div class="container">
+        <div class="section-title">
+          <h2>Publications</h2>
+          <p>Research articles and technical write-ups on security topics.</p>
+        </div>
+        <div class="publications-grid">
+          <div class="pub-card">
+            <div class="pub-icon"><i class="bi bi-journal-richtext"></i></div>
+            <div class="pub-info">
+              <span class="pub-tag">Reconnaissance</span>
+              <h4>Complete Recon Workflow for Bug Bounty Hunting</h4>
+              <p>Comprehensive guide on asset discovery, automation, noise filtering, and real world reconnaissance
+                methodology.</p>
+              <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0"
+                target="_blank" class="pub-link">Read Article <i class="bi bi-arrow-up-right"></i></a>
+            </div>
+          </div>
+          <div class="pub-card">
+            <div class="pub-icon"><i class="bi bi-filetype-js"></i></div>
+            <div class="pub-info">
+              <span class="pub-tag">JavaScript Analysis</span>
+              <h4>Reading JavaScript Like a Hacker</h4>
+              <p>Finding hidden APIs, logic flaws, and attack surfaces through comprehensive JavaScript analysis
+                techniques.</p>
+              <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68"
+                target="_blank" class="pub-link">Read Article <i class="bi bi-arrow-up-right"></i></a>
+            </div>
+          </div>
+          <div class="pub-card">
+            <div class="pub-icon"><i class="bi bi-database-lock"></i></div>
+            <div class="pub-info">
+              <span class="pub-tag">SQL Injection</span>
+              <h4>Automating SQL Injection with SQLmap</h4>
+              <p>Practical guide on responsible SQLi automation, payload analysis, and exploitation workflow best
+                practices.</p>
+              <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593"
+                target="_blank" class="pub-link">Read Article <i class="bi bi-arrow-up-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= CONTACT SECTION ======= -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>Interested in security consulting, bug bounty collaboration, or just want to discuss cybersecurity?</p>
+        </div>
+        <div class="contact-row">
+          <div class="contact-cards">
+            <div class="contact-info-card">
+              <i class="bi bi-envelope"></i>
+              <h4>Email</h4>
+              <p><a href="mailto:purubughunting@gmail.com">purubughunting@gmail.com</a></p>
+            </div>
+            <div class="contact-info-card">
+              <i class="bi bi-linkedin"></i>
+              <h4>LinkedIn</h4>
+              <p><a href="https://linkedin.com/in/purushothamr06" target="_blank">purushothamr06</a></p>
+            </div>
+            <div class="contact-info-card">
+              <i class="bi bi-github"></i>
+              <h4>GitHub</h4>
+              <p><a href="https://github.com/purushothamr01" target="_blank">purushothamr01</a></p>
+            </div>
+            <div class="contact-info-card">
+              <i class="bi bi-medium"></i>
+              <h4>Medium</h4>
+              <p><a href="https://medium.com/@Purushothamr" target="_blank">@Purushothamr</a></p>
+            </div>
+          </div>
+          <div class="contact-terminal">
+            <div class="terminal-card" id="terminalCard">
+              <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title-text">puru@kali:~</span>
+              </div>
+              <div class="terminal-body" id="terminalBody">
+                <div class="terminal-output" id="terminalOutput"></div>
+                <div class="terminal-input-line">
+                  <span class="terminal-prompt">
+                    <span class="prompt-user">purushotham</span><span class="prompt-at">@</span><span
+                      class="prompt-host">kali</span><span class="prompt-colon">:</span><span
+                      class="prompt-path">~</span><span class="prompt-dollar">$</span>
+                  </span>
+                  <input type="text" class="terminal-input" id="terminalInput" autocomplete="off" spellcheck="false"
+                    placeholder="type 'help' for commands...">
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
+  </main>
+
+  <!-- ======= FOOTER ======= -->
+  <footer id="footer">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <div class="footer-logo">Purushotham<span>.</span></div>
-          <p>Security Researcher • Farmer </p>
-        </div>
-        <div class="footer-right">
-          <p>&copy; 2026 Purushotham R. All rights reserved.</p>
-        </div>
-      </div>
+      <p>&copy; 2026 <strong>Purushotham R</strong>. All rights reserved.</p>
+      <p>Security Researcher &bull; Farmer &bull; Wildlife Photographer</p>
     </div>
   </footer>
 
-  <!-- SCROLL TO TOP -->
-  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
+  <!-- Scroll To Top -->
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+    <i class="bi bi-arrow-up-short"></i>
   </button>
 
-  <!-- Custom Script -->
+  <!-- Scripts -->
   <script src="script.js"></script>
 
 </body>
