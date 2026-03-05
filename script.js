@@ -1,122 +1,158 @@
+// ============================================
+// iPortfolio Script — Full Featured
+// ============================================
 document.addEventListener('DOMContentLoaded', () => {
 
   // ============================================
-  // PARTICLE SYSTEM (Hero Background)
+  // PAGE PRELOADER
   // ============================================
-  const canvas = document.getElementById('particles-bg');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let animId;
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      setTimeout(() => preloader.classList.add('hidden'), 400);
+    });
+    // Fallback: hide after 3 seconds max
+    setTimeout(() => preloader.classList.add('hidden'), 3000);
+  }
 
-    function resizeCanvas() {
-      const hero = canvas.parentElement;
-      canvas.width = hero.offsetWidth;
-      canvas.height = hero.offsetHeight;
-    }
+  // ============================================
+  // TYPED TEXT — Sidebar
+  // ============================================
+  const typedEl = document.getElementById('typedText');
+  if (typedEl) {
+    const phrases = ['Security Researcher', 'Bug Bounty Hunter', 'Founder of Bloomeor'];
+    let phraseIdx = 0, charIdx = 0, isDeleting = false;
 
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        this.radius = Math.random() * 1.5 + 0.5;
-        this.opacity = Math.random() * 0.4 + 0.1;
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
-        ctx.fill();
-      }
-    }
-
-    function initParticles() {
-      const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
-      particles = [];
-      for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function drawConnections() {
-      const maxDist = 120;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < maxDist) {
-            const opacity = (1 - dist / maxDist) * 0.12;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(37, 99, 235, ${opacity})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
+    function typeLoop() {
+      const current = phrases[phraseIdx];
+      if (isDeleting) {
+        typedEl.textContent = current.substring(0, charIdx--);
+        if (charIdx < 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          setTimeout(typeLoop, 400);
+          return;
         }
+        setTimeout(typeLoop, 40);
+      } else {
+        typedEl.textContent = current.substring(0, charIdx++);
+        if (charIdx > current.length) {
+          isDeleting = true;
+          setTimeout(typeLoop, 2000);
+          return;
+        }
+        setTimeout(typeLoop, 80);
       }
     }
+    setTimeout(typeLoop, 500);
+  }
 
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // ============================================
+  // TYPED TEXT — Hero
+  // ============================================
+  const heroTypedEl = document.getElementById('heroTyped');
+  if (heroTypedEl) {
+    const heroPhrases = ['Security Researcher', 'Bug Bounty Hunter', 'Pentest Enthusiast'];
+    let hIdx = 0, hChar = 0, hDel = false;
 
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      drawConnections();
-      animId = requestAnimationFrame(animateParticles);
+    function heroTypeLoop() {
+      const current = heroPhrases[hIdx];
+      if (hDel) {
+        heroTypedEl.textContent = current.substring(0, hChar--);
+        if (hChar < 0) {
+          hDel = false;
+          hIdx = (hIdx + 1) % heroPhrases.length;
+          setTimeout(heroTypeLoop, 400);
+          return;
+        }
+        setTimeout(heroTypeLoop, 40);
+      } else {
+        heroTypedEl.textContent = current.substring(0, hChar++);
+        if (hChar > current.length) {
+          hDel = true;
+          setTimeout(heroTypeLoop, 2000);
+          return;
+        }
+        setTimeout(heroTypeLoop, 80);
+      }
     }
+    setTimeout(heroTypeLoop, 1000);
+  }
 
-    resizeCanvas();
-    initParticles();
-    animateParticles();
+  // ============================================
+  // MOBILE SIDEBAR TOGGLE
+  // ============================================
+  const sidebar = document.getElementById('sidebar');
+  const mobileToggle = document.getElementById('mobileNavToggle');
 
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      initParticles();
+  if (mobileToggle && sidebar) {
+    mobileToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+      mobileToggle.classList.toggle('active');
+    });
+
+    // Close sidebar when a link is clicked on mobile
+    sidebar.querySelectorAll('.sidebar-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 992) {
+          sidebar.classList.remove('active');
+          mobileToggle.classList.remove('active');
+        }
+      });
     });
   }
 
   // ============================================
-  // CURSOR GLOW
+  // ACTIVE NAV HIGHLIGHTING
   // ============================================
-  const cursorGlow = document.getElementById('cursorGlow');
-  if (cursorGlow && window.innerWidth > 768) {
-    let cursorX = 0, cursorY = 0;
-    let glowX = 0, glowY = 0;
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-    document.addEventListener('mousemove', (e) => {
-      cursorX = e.clientX;
-      cursorY = e.clientY;
+  function updateActiveNav() {
+    const scrollY = window.pageYOffset + 100;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+
+      if (scrollY >= top && scrollY < top + height) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
     });
+  }
 
-    function updateGlow() {
-      glowX += (cursorX - glowX) * 0.08;
-      glowY += (cursorY - glowY) * 0.08;
-      cursorGlow.style.left = glowX + 'px';
-      cursorGlow.style.top = glowY + 'px';
-      requestAnimationFrame(updateGlow);
-    }
-    updateGlow();
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav();
+
+  // ============================================
+  // SMOOTH SCROLL
+  // ============================================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ============================================
+  // SCROLL TO TOP BUTTON
+  // ============================================
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.pageYOffset > 400);
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   // ============================================
@@ -125,511 +161,405 @@ document.addEventListener('DOMContentLoaded', () => {
   const scrollProgress = document.getElementById('scrollProgress');
   if (scrollProgress) {
     window.addEventListener('scroll', () => {
-      const scrollTop = document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const progress = (scrollTop / scrollHeight) * 100;
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.pageYOffset / totalHeight) * 100;
       scrollProgress.style.width = progress + '%';
     });
   }
 
   // ============================================
-  // NAVBAR SCROLL EFFECT
+  // DARK MODE TOGGLE
   // ============================================
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 80) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
 
-  // ============================================
-  // MOBILE MENU
-  // ============================================
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
+  // Restore saved theme
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    if (themeIcon) themeIcon.className = 'bi bi-sun-fill';
+    if (themeToggle) themeToggle.querySelector('span').textContent = 'Light Mode';
+  }
 
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
-      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      themeIcon.className = isDark ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+      themeToggle.querySelector('span').textContent = isDark ? 'Light Mode' : 'Dark Mode';
     });
   }
 
   // ============================================
-  // SMOOTH SCROLL
+  // SKILL BAR ANIMATION
   // ============================================
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        const offset = 80;
-        const targetPosition = target.offsetTop - offset;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
+  const skillBars = document.querySelectorAll('.skill-bar-fill[data-width]');
+  const barObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const width = entry.target.dataset.width;
+        entry.target.style.width = width + '%';
+        barObserver.unobserve(entry.target);
       }
     });
-  });
+  }, { threshold: 0.5 });
+
+  skillBars.forEach(bar => barObserver.observe(bar));
 
   // ============================================
-  // SCROLL TO TOP
+  // COUNTER ANIMATION
   // ============================================
-  const scrollTopBtn = document.getElementById('scrollTopBtn');
-  if (scrollTopBtn) {
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 500) {
-        scrollTopBtn.classList.add('visible');
-      } else {
-        scrollTopBtn.classList.remove('visible');
-      }
-    });
-
-    scrollTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // ============================================
-  // STAT COUNTER ANIMATION
-  // ============================================
-  const statNumbers = document.querySelectorAll('.stat-number[data-count]');
-  const counterObserver = new IntersectionObserver((entries) => {
+  const counters = document.querySelectorAll('.hero-stat-number[data-count]');
+  const counterObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const el = entry.target;
-        const target = parseInt(el.getAttribute('data-count'));
+        const target = parseInt(el.dataset.count);
         let current = 0;
-        const duration = 1500;
-        const step = target / (duration / 16);
-
-        const counter = setInterval(() => {
+        const step = target / (1500 / 16);
+        const timer = setInterval(() => {
           current += step;
           if (current >= target) {
             current = target;
-            clearInterval(counter);
+            clearInterval(timer);
           }
           el.textContent = Math.floor(current) + '+';
         }, 16);
-
         counterObserver.unobserve(el);
       }
     });
   }, { threshold: 0.5 });
 
-  statNumbers.forEach(num => counterObserver.observe(num));
+  counters.forEach(c => counterObserver.observe(c));
 
   // ============================================
-  // ACTIVE NAV HIGHLIGHTING
+  // PARTICLE BACKGROUND — Hero
   // ============================================
-  const sections = document.querySelectorAll('section[id]');
-  const navItems = document.querySelectorAll('.nav-links a');
+  const canvas = document.getElementById('particles-bg');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.closest('.hero-section');
+    let particles = [];
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      if (window.pageYOffset >= sectionTop - 200) {
-        current = section.getAttribute('id');
+    function resizeCanvas() {
+      canvas.width = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    }
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+        this.color = Math.random() > 0.6 ? '20, 157, 221' : '0, 255, 65';
       }
-    });
-
-    navItems.forEach(item => {
-      item.classList.remove('active');
-      if (item.getAttribute('href') === `#${current}`) {
-        item.classList.add('active');
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.radius = Math.random() * 1.5 + 0.5;
+        this.opacity = Math.random() * 0.3 + 0.1;
       }
-    });
-  });
-
-  // ============================================
-  // GSAP ANIMATIONS
-  // ============================================
-  if (typeof gsap !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Hero staggered entrance
-    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    heroTl
-      .from('.hero-badge', { opacity: 0, y: 30, duration: 0.7 })
-      .from('.hero-title', { opacity: 0, y: 40, duration: 0.9 }, '-=0.3')
-      .from('.hero-description', { opacity: 0, y: 30, duration: 0.7 }, '-=0.4')
-      .from('.hero-actions', { opacity: 0, y: 20, duration: 0.6 }, '-=0.3')
-      .from('.hero-stats .stat-item', {
-        opacity: 0,
-        y: 20,
-        duration: 0.5,
-        stagger: 0.1
-      }, '-=0.2')
-      .from('.hero-stats .stat-divider', {
-        opacity: 0,
-        scaleY: 0,
-        duration: 0.4,
-        stagger: 0.1
-      }, '-=0.3');
-
-    // Section headers
-    gsap.utils.toArray('.section-header').forEach(header => {
-      gsap.from(header, {
-        scrollTrigger: {
-          trigger: header,
-          start: 'top 82%',
-          once: true
-        },
-        opacity: 0,
-        y: 40,
-        duration: 0.9,
-        ease: 'power3.out'
-      });
-    });
-
-    // About content
-    gsap.from('.about-content', {
-      scrollTrigger: {
-        trigger: '.about-content',
-        start: 'top 80%',
-        once: true
-      },
-      opacity: 0,
-      x: -40,
-      duration: 0.9,
-      ease: 'power3.out'
-    });
-
-    gsap.from('.about-image', {
-      scrollTrigger: {
-        trigger: '.about-image',
-        start: 'top 80%',
-        once: true
-      },
-      opacity: 0,
-      x: 40,
-      duration: 0.9,
-      ease: 'power3.out'
-    });
-
-    // Expertise cards stagger
-    gsap.utils.toArray('.expertise-card').forEach((card, index) => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          once: true
-        },
-        opacity: 0,
-        y: 50,
-        duration: 0.7,
-        delay: index * 0.12,
-        ease: 'power3.out'
-      });
-    });
-
-    // Work cards stagger
-    gsap.utils.toArray('.work-card').forEach((card, index) => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          once: true
-        },
-        opacity: 0,
-        y: 50,
-        scale: 0.96,
-        duration: 0.7,
-        delay: index * 0.15,
-        ease: 'power3.out'
-      });
-    });
-
-    // Contact links
-    gsap.utils.toArray('.contact-link').forEach((link, index) => {
-      gsap.from(link, {
-        scrollTrigger: {
-          trigger: link,
-          start: 'top 88%',
-          once: true
-        },
-        opacity: 0,
-        x: -30,
-        duration: 0.6,
-        delay: index * 0.1,
-        ease: 'power3.out'
-      });
-    });
-
-    // Visual card
-    gsap.from('.visual-card', {
-      scrollTrigger: {
-        trigger: '.visual-card',
-        start: 'top 85%',
-        once: true
-      },
-      opacity: 0,
-      scale: 0.92,
-      y: 30,
-      duration: 0.9,
-      ease: 'power3.out'
-    });
-
-    // Interactive Terminal
-    const terminalOutput = document.getElementById('terminalOutput');
-    const terminalInput = document.getElementById('terminalInput');
-    const terminalBody = document.getElementById('terminalBody');
-    let terminalBooted = false;
-
-    if (terminalOutput && terminalInput) {
-      // Terminal commands
-      const commands = {
-        help: () => [
-          { text: '', cls: '' },
-          { text: '  Available Commands:', cls: 'accent' },
-          { text: '  ─────────────────────────────', cls: 'dim' },
-          { text: '  whoami       → About me', cls: 'response' },
-          { text: '  skills       → Technical skills', cls: 'response' },
-          { text: '  projects     → Featured work', cls: 'response' },
-          { text: '  contact      → Contact info', cls: 'response' },
-          { text: '  socials      → Social links', cls: 'response' },
-          { text: '  cat resume   → Quick summary', cls: 'response' },
-          { text: '  uname -a     → System info', cls: 'response' },
-          { text: '  date         → Current date', cls: 'response' },
-          { text: '  clear        → Clear terminal', cls: 'response' },
-          { text: '', cls: '' },
-        ],
-        whoami: () => [
-          { text: '', cls: '' },
-          { text: '  ╭─ Purushotham R', cls: 'accent' },
-          { text: '  │', cls: 'dim' },
-          { text: '  ├─ 🔒 Security Researcher', cls: 'success' },
-          { text: '  ├─ 🐛 Bug Bounty Hunter', cls: 'success' },
-          { text: '  ├─ 🏗️  Founder @ Bloomeor', cls: 'success' },
-          { text: '  ├─ 🎓 ECE Background', cls: 'response' },
-          { text: '  ├─ 🌾 Farmer', cls: 'response' },
-          { text: '  ╰─ 📸 Wildlife Photographer', cls: 'response' },
-          { text: '', cls: '' },
-        ],
-        skills: () => [
-          { text: '', cls: '' },
-          { text: '  ╭─ Technical Arsenal', cls: 'accent' },
-          { text: '  │', cls: 'dim' },
-          { text: '  ├─ 🛡️  Web App Security    [██████████] 90%', cls: 'success' },
-          { text: '  ├─ 🔍 Recon & OSINT       [█████████░] 85%', cls: 'success' },
-          { text: '  ├─ 🐍 Python              [█████████░] 85%', cls: 'warning' },
-          { text: '  ├─ 🖥️  Bash Scripting      [████████░░] 80%', cls: 'warning' },
-          { text: '  ├─ ☁️  Cloud Security       [███████░░░] 70%', cls: 'purple' },
-          { text: '  ╰─ 🔧 Go                  [██████░░░░] 60%', cls: 'purple' },
-          { text: '', cls: '' },
-          { text: '  Tools: Burp Suite, SQLMap, Nuclei, Subfinder', cls: 'dim' },
-          { text: '', cls: '' },
-        ],
-        projects: () => [
-          { text: '', cls: '' },
-          { text: '  📂 Featured Research:', cls: 'accent' },
-          { text: '  ─────────────────────────────', cls: 'dim' },
-          { text: '  [1] Complete Recon Workflow (2024)', cls: 'success' },
-          { text: '      → Bug bounty recon methodology', cls: 'dim' },
-          { text: '  [2] Reading JS Like a Hacker (2024)', cls: 'warning' },
-          { text: '      → Hidden API & logic flaw analysis', cls: 'dim' },
-          { text: '  [3] Automating SQLi with SQLmap (2024)', cls: 'purple' },
-          { text: '      → Responsible SQLi automation', cls: 'dim' },
-          { text: '', cls: '' },
-          { text: '  Read more at medium.com/@Purushothamr', cls: 'response' },
-          { text: '', cls: '' },
-        ],
-        contact: () => [
-          { text: '', cls: '' },
-          { text: '  ╭─ Contact Information', cls: 'accent' },
-          { text: '  │', cls: 'dim' },
-          { text: '  ├─ 📧 purushothamr242@gmail.com', cls: 'success' },
-          { text: '  ├─ 💼 linkedin.com/in/purushothamr06', cls: 'response' },
-          { text: '  ├─ 🐙 github.com/purushothamr01', cls: 'response' },
-          { text: '  ╰─ ✍️  medium.com/@Purushothamr', cls: 'response' },
-          { text: '', cls: '' },
-          { text: '  Status: 🟢 Available for consulting', cls: 'success' },
-          { text: '', cls: '' },
-        ],
-        socials: () => [
-          { text: '', cls: '' },
-          { text: '  🌐 Social Links:', cls: 'accent' },
-          { text: '  ─────────────────────────────', cls: 'dim' },
-          { text: '  LinkedIn  → linkedin.com/in/purushothamr06', cls: 'response' },
-          { text: '  GitHub    → github.com/purushothamr01', cls: 'response' },
-          { text: '  Medium    → medium.com/@Purushothamr', cls: 'response' },
-          { text: '  Bloomeor  → bloomeor.github.io/bloomeor', cls: 'success' },
-          { text: '  Wildlife  → purushothamr01.github.io/purushothamr', cls: 'success' },
-          { text: '', cls: '' },
-        ],
-        'cat resume': () => [
-          { text: '', cls: '' },
-          { text: '  ┌───────────────────────────────────┐', cls: 'accent' },
-          { text: '  │     PURUSHOTHAM R — RESUME        │', cls: 'accent' },
-          { text: '  └───────────────────────────────────┘', cls: 'accent' },
-          { text: '', cls: '' },
-          { text: '  Role:       Security Researcher', cls: 'response' },
-          { text: '  Company:    Bloomeor (Founder)', cls: 'response' },
-          { text: '  Education:  B.E. in ECE', cls: 'response' },
-          { text: '  Focus:      Web App Security', cls: 'success' },
-          { text: '  Bugs:       10+ vulnerabilities', cls: 'success' },
-          { text: '  Experience: 2+ years', cls: 'success' },
-          { text: '  Languages:  Python, Bash, JS, Go', cls: 'warning' },
-          { text: '', cls: '' },
-        ],
-        'uname -a': () => [
-          { text: '  Linux kali 6.1.0-kali9 #1 SMP x86_64 GNU/Linux', cls: 'response' },
-        ],
-        date: () => [
-          { text: '  ' + new Date().toString(), cls: 'response' },
-        ],
-      };
-
-      function addLine(text, cls = 'response') {
-        const line = document.createElement('div');
-        line.className = 'term-line ' + cls;
-        line.textContent = text;
-        terminalOutput.appendChild(line);
-        terminalBody.scrollTop = terminalBody.scrollHeight;
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
       }
-
-      function addPromptEcho(cmd) {
-        const line = document.createElement('div');
-        line.className = 'term-line cmd-echo';
-        line.innerHTML = '<span class="prompt-user">purushotham</span><span class="prompt-at">@</span><span class="prompt-host">kali</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span> ' + cmd;
-        terminalOutput.appendChild(line);
-        terminalBody.scrollTop = terminalBody.scrollHeight;
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+        ctx.fill();
       }
+    }
 
-      function processCommand(cmd) {
-        const trimmed = cmd.trim().toLowerCase();
-        addPromptEcho(cmd);
+    function initParticles() {
+      const count = Math.min(60, Math.floor((canvas.width * canvas.height) / 18000));
+      particles = [];
+      for (let i = 0; i < count; i++) particles.push(new Particle());
+    }
 
-        if (trimmed === 'clear') {
-          terminalOutput.innerHTML = '';
-          return;
-        }
-
-        if (trimmed === '') return;
-
-        const handler = commands[trimmed];
-        if (handler) {
-          const lines = handler();
-          lines.forEach((l, i) => {
-            setTimeout(() => {
-              addLine(l.text, l.cls);
-            }, i * 30);
-          });
-        } else {
-          addLine('  bash: ' + trimmed + ': command not found', 'error');
-          addLine('  Type "help" for available commands', 'dim');
-        }
-      }
-
-      terminalInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          const cmd = terminalInput.value;
-          terminalInput.value = '';
-          processCommand(cmd);
-        }
-      });
-
-      // Click anywhere on terminal to focus input
-      document.getElementById('terminalCard').addEventListener('click', () => {
-        terminalInput.focus();
-      });
-
-      // Boot sequence on scroll
-      const terminalObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !terminalBooted) {
-            terminalBooted = true;
-            runBootSequence();
+    function drawConnections() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(20, 157, 221, ${(1 - dist / 120) * 0.1})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
           }
-        });
-      }, { threshold: 0.3 });
-
-      terminalObserver.observe(document.getElementById('terminalCard'));
-
-      function runBootSequence() {
-        const bootLines = [
-          { text: '  ┌─────────────────────────────────┐', cls: 'accent', delay: 0 },
-          { text: '  │ Welcome to Purushotham\'s Shell   │', cls: 'accent', delay: 60 },
-          { text: '  └─────────────────────────────────┘', cls: 'accent', delay: 120 },
-          { text: '', cls: '', delay: 180 },
-          { text: '  OS:     Kali GNU/Linux', cls: 'response', delay: 240 },
-          { text: '  Host:   purushotham.r', cls: 'response', delay: 300 },
-          { text: '  Kernel: 6.1.0-kali9-amd64', cls: 'response', delay: 360 },
-          { text: '  Shell:  /bin/zsh', cls: 'response', delay: 420 },
-          { text: '  Uptime: 3+ years hacking', cls: 'success', delay: 480 },
-          { text: '  Bugs:   60+ found & reported', cls: 'success', delay: 540 },
-          { text: '', cls: '', delay: 600 },
-          { text: '  Type "help" for available commands.', cls: 'dim', delay: 660 },
-          { text: '', cls: '', delay: 720 },
-        ];
-
-        bootLines.forEach(line => {
-          setTimeout(() => {
-            addLine(line.text, line.cls);
-          }, line.delay);
-        });
-
-        // Focus input after boot
-        setTimeout(() => {
-          terminalInput.focus();
-        }, 800);
+        }
       }
     }
-  }
 
-  // ============================================
-  // CARD TILT EFFECT
-  // ============================================
-  if (window.innerWidth > 768) {
-    const tiltCards = document.querySelectorAll('.expertise-card, .work-card');
-    tiltCards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -4;
-        const rotateY = ((x - centerX) / centerX) * 4;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      drawConnections();
+      requestAnimationFrame(animate);
+    }
 
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-      });
+    initParticles();
+    animate();
 
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-        card.style.transition = 'transform 0.5s ease';
-      });
-
-      card.addEventListener('mouseenter', () => {
-        card.style.transition = 'none';
-      });
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initParticles();
     });
   }
 
   // ============================================
-  // PARALLAX HERO
+  // INTERSECTION OBSERVER — Staggered Card Reveals
   // ============================================
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero-content');
-    if (hero && scrolled < window.innerHeight) {
-      hero.style.transform = `translateY(${scrolled * 0.2}px)`;
-      hero.style.opacity = 1 - (scrolled / 800);
-    }
+  const revealCards = document.querySelectorAll('.skill-card, .tool-card, .pub-card, .contact-info-card');
+  revealCards.forEach(card => card.classList.add('reveal-card'));
+
+  const cardObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Stagger animation delay based on sibling position
+        const parent = entry.target.parentElement;
+        const siblings = Array.from(parent.children);
+        const index = siblings.indexOf(entry.target);
+        entry.target.style.transitionDelay = `${index * 0.1}s`;
+        entry.target.classList.add('revealed');
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealCards.forEach(el => cardObserver.observe(el));
+
+  // Section title animations
+  const sectionTitles = document.querySelectorAll('.section-title');
+  const titleObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        titleObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sectionTitles.forEach(el => titleObserver.observe(el));
+
+  // Section fade-in
+  const fadeEls = document.querySelectorAll('.section');
+  const fadeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.05 });
+
+  fadeEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    fadeObserver.observe(el);
   });
 
-  console.log('%c🔒 Portfolio loaded successfully!', 'color: #00d4ff; font-weight: bold; font-size: 14px;');
+  // ============================================
+  // CUSTOM CURSOR — Sparkle Trail
+  // ============================================
+  const cursorDot = document.getElementById('cursorDot');
+
+  if (cursorDot && window.innerWidth > 768 && window.matchMedia('(hover: hover)').matches) {
+    let mouseX = 0, mouseY = 0;
+    let trailCount = 0;
+    const trailColors = ['#2563eb', '#7c3aed', '#06b6d4', '#10b981'];
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.left = mouseX + 'px';
+      cursorDot.style.top = mouseY + 'px';
+
+      // Spawn a trail particle every 3rd move event
+      trailCount++;
+      if (trailCount % 3 === 0) {
+        const trail = document.createElement('div');
+        trail.className = 'cursor-trail';
+        const size = Math.random() * 6 + 3;
+        const color = trailColors[Math.floor(Math.random() * trailColors.length)];
+        trail.style.cssText = `
+          left: ${mouseX}px;
+          top: ${mouseY}px;
+          width: ${size}px;
+          height: ${size}px;
+          background: ${color};
+          box-shadow: 0 0 ${size * 2}px ${color};
+        `;
+        document.body.appendChild(trail);
+        setTimeout(() => trail.remove(), 600);
+      }
+    });
+
+    // Change dot on interactive elements
+    const hoverTargets = document.querySelectorAll('a, button, input, .skill-card, .tool-card, .pub-card, .contact-info-card');
+    hoverTargets.forEach(el => {
+      el.addEventListener('mouseenter', () => cursorDot.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursorDot.classList.remove('hovering'));
+    });
+
+    // Hide default cursor
+    document.body.style.cursor = 'none';
+    hoverTargets.forEach(el => el.style.cursor = 'none');
+  }
+
+  // ============================================
+  // INTERACTIVE TERMINAL
+  // ============================================
+  const terminalInput = document.getElementById('terminalInput');
+  const terminalOutput = document.getElementById('terminalOutput');
+  const terminalBody = document.getElementById('terminalBody');
+
+  if (terminalInput && terminalOutput && terminalBody) {
+    function addLine(text, className = '') {
+      const line = document.createElement('div');
+      line.classList.add('term-line');
+      if (className) line.classList.add(className);
+      line.textContent = text;
+      terminalOutput.appendChild(line);
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+    // Welcome message
+    addLine('Welcome to Purushotham\'s Terminal!', 'accent');
+    addLine('Type "help" for available commands.', 'dim');
+    addLine('', 'dim');
+
+    const commands = {
+      help: () => {
+        addLine('Available commands:', 'accent');
+        addLine('  whoami     - About me', 'response');
+        addLine('  skills     - My technical skills', 'response');
+        addLine('  tools      - Open source tools', 'response');
+        addLine('  projects   - Research & articles', 'response');
+        addLine('  contact    - How to reach me', 'response');
+        addLine('  socials    - Social media links', 'response');
+        addLine('  clear      - Clear terminal', 'response');
+        addLine('  ──────── Easter Eggs ────────', 'dim');
+        addLine('  matrix     - Enter the Matrix', 'purple');
+        addLine('  hack       - Hack the system', 'purple');
+        addLine('  neofetch   - System info', 'purple');
+        addLine('  date       - Current date/time', 'purple');
+        addLine('  uptime     - Session uptime', 'purple');
+      },
+      whoami: () => {
+        addLine('Purushotham R', 'success');
+        addLine('Security Researcher | Bug Bounty Hunter', 'response');
+        addLine('Founder of Bloomeor', 'accent');
+        addLine('B.E in Electronics & Communication Engineering', 'response');
+      },
+      skills: () => {
+        addLine('Technical Skills:', 'accent');
+        addLine('  [+] Web Application Security', 'success');
+        addLine('  [+] Reconnaissance & OSINT', 'success');
+        addLine('  [+] Automation & Scripting', 'success');
+        addLine('  [+] Cloud & Infrastructure', 'success');
+        addLine('  Tools: Burp Suite, Nuclei, SQLMap, Subfinder', 'response');
+      },
+      tools: () => {
+        addLine('Open Source Tools:', 'accent');
+        addLine('  🔎 ReconKit — Recon automation framework', 'success');
+        addLine('     github.com/purushothamr01/ReconKit', 'response');
+        addLine('  ⚡ JS Explorer — JavaScript analysis tool', 'success');
+        addLine('     purushothamr01.github.io/Jsexplorer/', 'response');
+      },
+      projects: () => {
+        addLine('Publications:', 'accent');
+        addLine('  📝 Complete Recon Workflow for Bug Bounty', 'success');
+        addLine('  📝 Reading JavaScript Like a Hacker', 'success');
+        addLine('  📝 Automating SQL Injection with SQLmap', 'success');
+      },
+      contact: () => {
+        addLine('Contact Information:', 'accent');
+        addLine('  📧 purubughunting@gmail.com', 'response');
+        addLine('  🔗 linkedin.com/in/purushothamr06', 'response');
+        addLine('  🐱 github.com/purushothamr01', 'response');
+      },
+      socials: () => {
+        addLine('Social Links:', 'accent');
+        addLine('  GitHub:   github.com/purushothamr01', 'response');
+        addLine('  LinkedIn: linkedin.com/in/purushothamr06', 'response');
+        addLine('  Medium:   medium.com/@Purushothamr', 'response');
+      },
+      clear: () => {
+        terminalOutput.innerHTML = '';
+        addLine('Terminal cleared.', 'dim');
+      },
+      // Easter eggs
+      matrix: () => {
+        const chars = '01アイウエオカキクケコ';
+        for (let i = 0; i < 8; i++) {
+          let line = '';
+          for (let j = 0; j < 50; j++) line += chars[Math.floor(Math.random() * chars.length)];
+          addLine(line, 'success');
+        }
+        addLine('Wake up, Neo...', 'accent');
+      },
+      hack: () => {
+        addLine('[*] Initializing hack sequence...', 'warning');
+        addLine('[*] Bypassing firewall...', 'success');
+        addLine('[*] Injecting payload...', 'accent');
+        addLine('[*] Escalating privileges...', 'success');
+        addLine('[!] ACCESS GRANTED', 'success');
+        addLine('Just kidding 😄 This is just a portfolio!', 'purple');
+      },
+      date: () => {
+        addLine(new Date().toLocaleString(), 'response');
+      },
+      uptime: () => {
+        const seconds = Math.floor(performance.now() / 1000);
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        addLine(`Session uptime: ${mins}m ${secs}s`, 'accent');
+      },
+      neofetch: () => {
+        addLine('  ____                      ', 'accent');
+        addLine(' |  _ \\ _   _ _ __ _   _    ', 'accent');
+        addLine(' | |_) | | | | \'__| | | |   ', 'accent');
+        addLine(' |  __/| |_| | |  | |_| |   ', 'accent');
+        addLine(' |_|    \\__,_|_|   \\__,_|   ', 'accent');
+        addLine('', 'dim');
+        addLine('OS:      Kali Linux', 'response');
+        addLine('Shell:   /bin/bash', 'response');
+        addLine('Role:    Security Researcher', 'response');
+        addLine('Tools:   Burp / Nuclei / SQLMap', 'response');
+        addLine('Coffee:  ████████████ 100%', 'success');
+      }
+    };
+
+    terminalInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const cmd = terminalInput.value.trim().toLowerCase();
+        addLine(`$ ${cmd}`, 'cmd-echo');
+        terminalInput.value = '';
+
+        if (cmd === '') return;
+        if (commands[cmd]) {
+          commands[cmd]();
+        } else {
+          addLine(`Command not found: ${cmd}`, 'warning');
+          addLine('Type "help" for available commands.', 'dim');
+        }
+        addLine('', 'dim');
+      }
+    });
+
+    // Click terminal to focus input
+    const terminalCard = document.getElementById('terminalCard');
+    if (terminalCard) {
+      terminalCard.addEventListener('click', () => terminalInput.focus());
+    }
+  }
 });
