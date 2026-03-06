@@ -3,18 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Purushotham R - Security Researcher & Bug Bounty Hunter</title>
+  <title>Purushotham R — Security Researcher & Bug Bounty Hunter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Security Researcher specializing in Web Application Security, Bug Bounty, and Automation">
-  <meta name="theme-color" content="#040b14">
+  <meta name="theme-color" content="#0a192f">
   <link rel="icon" type="image/png" href="favicon.png">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Raleway:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
 
   <!-- Bootstrap Icons -->
@@ -26,7 +26,7 @@
 
 <body>
 
-  <!-- Page Preloader -->
+  <!-- Preloader -->
   <div class="preloader" id="preloader">
     <div class="preloader-inner">
       <div class="preloader-ring"></div>
@@ -34,337 +34,482 @@
     </div>
   </div>
 
-  <!-- Scroll Progress Bar -->
+  <!-- Scroll Progress -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- Custom Cursor -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- ======= SIDEBAR ======= -->
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-      <!-- Profile -->
-      <div class="sidebar-profile">
-        <img src="profile.png" alt="Purushotham R" class="sidebar-avatar">
-        <h1 class="sidebar-name">Purushotham R</h1>
-        <div class="sidebar-typed">
-          <span class="typed-text" id="typedText"></span><span class="typed-cursor">|</span>
-        </div>
-      </div>
-
-      <!-- Navigation -->
-      <nav class="sidebar-nav" id="sidebarNav">
+  <!-- ======= Header / Navbar ======= -->
+  <header id="header" class="header">
+    <div class="container header-container">
+      <a href="#hero" class="logo">Purushotham<span>.</span><span class="logo-r">R</span></a>
+      <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="#hero" class="active"><i class="bi bi-house-door"></i> <span>Home</span></a></li>
-          <li><a href="#about"><i class="bi bi-person"></i> <span>About</span></a></li>
-          <li><a href="#skills"><i class="bi bi-gear"></i> <span>Skills</span></a></li>
-          <li><a href="#tools"><i class="bi bi-tools"></i> <span>Tools</span></a></li>
-          <li><a href="#publications"><i class="bi bi-journal-text"></i> <span>Publications</span></a></li>
-          <li><a href="#contact"><i class="bi bi-envelope"></i> <span>Contact</span></a></li>
+          <li><a class="nav-link active" href="#hero">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#services">Skills</a></li>
+          <li><a class="nav-link" href="#portfolio">Tools</a></li>
+          <li><a class="nav-link" href="#blog">Publications</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </header>
 
-      <!-- Wildlife Photography -->
-      <div class="sidebar-wildlife">
-        <a href="https://purushothamr01.github.io/purushothamr/" target="_blank" class="wildlife-btn">
-          <i class="bi bi-camera"></i>
-          <span>Wildlife Photography</span>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero">
+    <canvas id="particlesCanvas"></canvas>
+    <div class="hero-overlay"></div>
+
+    <!-- Floating geometric shapes -->
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+    </div>
+
+    <!-- Orbit ring -->
+    <div class="hero-orbit">
+      <div class="orbit-ring"></div>
+      <div class="orbit-dot"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Available for Bug Bounty</span>
+      </div>
+      <h1 class="hero-title" data-text="Purushotham R">Purushotham R</h1>
+      <p class="hero-subtitle">I'm a <span class="typed-text" id="heroTyped"></span><span class="typed-cursor">|</span>
+      </p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-number" data-count="50">0</span>
+          <span class="hero-stat-label">Bugs Found</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-number" data-count="3">0</span>
+          <span class="hero-stat-label">Years Exp</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-number" data-count="2">0</span>
+          <span class="hero-stat-label">Tools Built</span>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#about" class="btn-primary-cta">
+          <span>Explore My Work</span>
+          <i class="bi bi-arrow-right"></i>
         </a>
-        <a href="https://bloomeor.github.io/bloomeor/" target="_blank" class="company-btn">
-          <i class="bi bi-building"></i>
-          <span>Bloomeor</span>
+        <a href="#contact" class="btn-outline-cta">
+          <span>Get In Touch</span>
         </a>
       </div>
 
-      <!-- Social Links -->
-      <div class="sidebar-social">
-        <a href="https://github.com/purushothamr01" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
-        <a href="https://linkedin.com/in/purushothamr06" target="_blank" title="LinkedIn"><i
-            class="bi bi-linkedin"></i></a>
-        <a href="https://medium.com/@Purushothamr" target="_blank" title="Medium"><i class="bi bi-medium"></i></a>
-        <a href="mailto:purubughunting@gmail.com" title="Email"><i class="bi bi-envelope-fill"></i></a>
-      </div>
-
-      <!-- Dark Mode Toggle -->
-      <div class="sidebar-theme">
-        <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
-          <i class="bi bi-moon-fill" id="themeIcon"></i>
-          <span>Dark Mode</span>
-        </button>
+      <!-- Tech stack ticker -->
+      <div class="hero-tech-stack">
+        <span>Burp Suite</span>
+        <span class="tech-dot">•</span>
+        <span>Python</span>
+        <span class="tech-dot">•</span>
+        <span>Nuclei</span>
+        <span class="tech-dot">•</span>
+        <span>JavaScript</span>
+        <span class="tech-dot">•</span>
+        <span>Go</span>
       </div>
     </div>
-  </aside>
 
-  <!-- Mobile Nav Toggle -->
-  <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation">
-    <i class="bi bi-list"></i>
-  </button>
+    <div class="hero-scroll-indicator">
+      <div class="mouse"></div>
+      <div class="scroll-track"></div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
 
-  <!-- ======= MAIN CONTENT ======= -->
   <main id="main">
 
-    <!-- ======= HERO SECTION ======= -->
-    <section id="hero" class="hero-section">
-      <canvas id="particles-bg"></canvas>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>Purushotham R</h1>
-        <p>I'm a <span class="hero-typed" id="heroTyped"></span></p>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="hero-stat-number" data-count="50">0</span>
-            <span class="hero-stat-label">Bugs Found</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-number" data-count="3">0</span>
-            <span class="hero-stat-label">Years Experience</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-number" data-count="2">0</span>
-            <span class="hero-stat-label">Tools Built</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= ABOUT SECTION ======= -->
+    <!-- ======= About Section ======= -->
     <section id="about" class="section">
       <div class="container">
-        <div class="section-title">
-          <h2>About</h2>
-          <p>Security Researcher & Bug Bounty Hunter with a passion for building secure digital solutions.</p>
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Who I Am</span>
+          <h2 class="section-title">About Me</h2>
+          <div class="section-line"></div>
         </div>
-        <div class="about-row">
-          <div class="about-image">
-            <img src="profile.png" alt="Purushotham R">
-          </div>
-          <div class="about-text">
-            <h3>Security Researcher &amp; Founder of Bloomeor</h3>
-            <p class="about-italic">
-              Specialized in web application security, reconnaissance automation, and vulnerability research.
-            </p>
-            <div class="about-details">
-              <div class="about-detail"><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>B.E in
-                  ECE</span></div>
-              <div class="about-detail"><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>India</span>
-              </div>
-              <div class="about-detail"><i class="bi bi-chevron-right"></i> <strong>Email:</strong>
-                <span>purushothamr242@gmail.com</span>
-              </div>
-              <div class="about-detail"><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><a
-                    href="https://bloomeor.github.io/bloomeor/" target="_blank">bloomeor.github.io</a></span></div>
+        <div class="about-card">
+          <div class="about-left">
+            <div class="about-img-wrapper">
+              <img src="profile.png" alt="Purushotham R" class="about-photo">
+              <div class="about-img-ring"></div>
+              <div class="about-status-dot" title="Available"></div>
             </div>
-            <p>
-              With a background in Electronics & Communication Engineering, I bring a unique perspective to
-              cybersecurity,
-              bridging hardware logic with software vulnerabilities. My expertise spans web application penetration
-              testing,
-              automated reconnaissance, and developing security tools. When I'm not hunting for bugs or writing code,
-              you'll find me
-              farming, staying grounded and connected to nature. I also pursue wildlife photography, capturing the
-              beauty of the natural world.
-            </p>
+
+            <!-- Quick Stats -->
+            <div class="about-quick-stats">
+              <div class="quick-stat">
+                <span class="quick-stat-num">50+</span>
+                <span class="quick-stat-label">Bugs</span>
+              </div>
+              <div class="quick-stat">
+                <span class="quick-stat-num">3+</span>
+                <span class="quick-stat-label">Years</span>
+              </div>
+              <div class="quick-stat">
+                <span class="quick-stat-num">2</span>
+                <span class="quick-stat-label">Tools</span>
+              </div>
+            </div>
+
+            <div class="about-info-grid">
+              <div class="info-item">
+                <i class="bi bi-person"></i>
+                <div><strong>Name</strong><span>Purushotham R</span></div>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-briefcase"></i>
+                <div><strong>Profile</strong><span>Security Researcher</span></div>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-envelope"></i>
+                <div><strong>Email</strong><span>purushothamr242@gmail.com</span></div>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-geo-alt"></i>
+                <div><strong>Location</strong><span>India</span></div>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-mortarboard"></i>
+                <div><strong>Degree</strong><span>B.E in ECE</span></div>
+              </div>
+              <div class="info-item">
+                <i class="bi bi-building"></i>
+                <div><strong>Company</strong><span>Bloomeor (Founder)</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="about-right">
+            <div class="about-heading-row">
+              <h3 class="about-heading">Security Researcher & Founder</h3>
+              <span class="about-badge-tag"><i class="bi bi-patch-check-fill"></i> Verified</span>
+            </div>
+            <p>With a background in Electronics & Communication Engineering, I bring a unique perspective to
+              cybersecurity, bridging hardware logic with software vulnerabilities.</p>
+            <p>My expertise spans web application penetration testing, automated reconnaissance, and developing security
+              tools. I am specialized in web application security, reconnaissance automation, and vulnerability
+              research.</p>
+            <p>When I'm not hunting for bugs or writing code, you'll find me farming, staying grounded and connected to
+              nature. I also pursue wildlife photography, capturing the beauty of the natural world.</p>
+
+            <!-- Experience Highlights -->
+            <div class="experience-highlights">
+              <div class="exp-item" data-color="blue">
+                <div class="exp-icon-wrap"><i class="bi bi-shield-check"></i></div>
+                <div class="exp-content">
+                  <div class="exp-top">
+                    <strong>Bug Bounty Hunter</strong>
+                    <span class="exp-count">50+</span>
+                  </div>
+                  <span>Identified critical vulnerabilities including XSS, SSRF, SQLi across web applications</span>
+                </div>
+                <i class="bi bi-arrow-right exp-arrow"></i>
+              </div>
+              <div class="exp-item" data-color="green">
+                <div class="exp-icon-wrap"><i class="bi bi-terminal"></i></div>
+                <div class="exp-content">
+                  <div class="exp-top">
+                    <strong>Tool Builder</strong>
+                    <span class="exp-count">2</span>
+                  </div>
+                  <span>Created ReconKit & JS Explorer — open source tools used by security researchers</span>
+                </div>
+                <i class="bi bi-arrow-right exp-arrow"></i>
+              </div>
+              <div class="exp-item" data-color="purple">
+                <div class="exp-icon-wrap"><i class="bi bi-pen"></i></div>
+                <div class="exp-content">
+                  <div class="exp-top">
+                    <strong>Technical Writer</strong>
+                    <span class="exp-count">3+</span>
+                  </div>
+                  <span>Published in-depth security research & methodology articles on Medium</span>
+                </div>
+                <i class="bi bi-arrow-right exp-arrow"></i>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ======= SKILLS SECTION ======= -->
-    <section id="skills" class="section section-alt">
+    <!-- ======= Services / Skills Section ======= -->
+    <section id="services" class="section section-dark">
       <div class="container">
-        <div class="section-title">
-          <h2>Skills & Expertise</h2>
-          <p>Technical specializations honed through years of real-world security research and bug bounty hunting.</p>
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">What I Do</span>
+          <h2 class="section-title">Skills & Expertise</h2>
+          <div class="section-line"></div>
         </div>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="skill-icon"><i class="bi bi-shield-lock"></i></div>
-            <h4>Web Application Security</h4>
+        <div class="services-grid">
+          <div class="service-card" data-accent="blue">
+            <div class="service-card-glow"></div>
+            <div class="service-level">Expert</div>
+            <div class="service-icon"><i class="bi bi-shield-lock"></i></div>
+            <h3>Web Application Security</h3>
             <p>Expert in OWASP Top 10, SQL Injection, XSS, SSRF, and authentication bypass vulnerabilities.</p>
-            <div class="skill-tags">
+            <div class="service-tags">
               <span>Burp Suite</span><span>OWASP ZAP</span><span>SQLMap</span><span>Nuclei</span>
             </div>
+            <div class="service-progress">
+              <div class="service-progress-fill" data-width="90"></div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon"><i class="bi bi-search"></i></div>
-            <h4>Reconnaissance &amp; OSINT</h4>
-            <p>Advanced asset discovery, subdomain enumeration, and automated recon workflows.</p>
-            <div class="skill-tags">
+          <div class="service-card" data-accent="cyan">
+            <div class="service-card-glow"></div>
+            <div class="service-level">Advanced</div>
+            <div class="service-icon"><i class="bi bi-search"></i></div>
+            <h3>Reconnaissance & OSINT</h3>
+            <p>Advanced asset discovery, subdomain enumeration, and automated recon workflows at scale.</p>
+            <div class="service-tags">
               <span>Subfinder</span><span>Amass</span><span>Shodan</span><span>Custom Scripts</span>
             </div>
+            <div class="service-progress">
+              <div class="service-progress-fill" data-width="85"></div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon"><i class="bi bi-code-slash"></i></div>
-            <h4>Automation &amp; Scripting</h4>
+          <div class="service-card" data-accent="green">
+            <div class="service-card-glow"></div>
+            <div class="service-level">Advanced</div>
+            <div class="service-icon"><i class="bi bi-code-slash"></i></div>
+            <h3>Automation & Scripting</h3>
             <p>Building custom security tools and automating repetitive security testing workflows.</p>
-            <div class="skill-tags">
+            <div class="service-tags">
               <span>Python</span><span>Bash</span><span>JavaScript</span><span>Go</span>
             </div>
+            <div class="service-progress">
+              <div class="service-progress-fill" data-width="80"></div>
+            </div>
           </div>
-          <div class="skill-card">
-            <div class="skill-icon"><i class="bi bi-cloud"></i></div>
-            <h4>Infrastructure &amp; Cloud</h4>
+          <div class="service-card" data-accent="purple">
+            <div class="service-card-glow"></div>
+            <div class="service-level">Intermediate</div>
+            <div class="service-icon"><i class="bi bi-cloud"></i></div>
+            <h3>Infrastructure & Cloud</h3>
             <p>Security assessment of cloud infrastructure and containerized applications.</p>
-            <div class="skill-tags">
+            <div class="service-tags">
               <span>AWS</span><span>Docker</span><span>Linux</span><span>Kali</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Skill Progress Bars -->
-        <div class="skill-bars">
-          <div class="skill-bar-item">
-            <div class="skill-bar-info"><span>Web Application Pentesting</span><span class="skill-percent">90%</span>
-            </div>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" data-width="90"></div>
-            </div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-info"><span>Reconnaissance & OSINT</span><span class="skill-percent">85%</span></div>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" data-width="85"></div>
-            </div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-info"><span>Python & Bash Scripting</span><span class="skill-percent">80%</span></div>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" data-width="80"></div>
-            </div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-info"><span>JavaScript / Go</span><span class="skill-percent">70%</span></div>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" data-width="70"></div>
-            </div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-info"><span>Cloud & Infrastructure</span><span class="skill-percent">65%</span></div>
-            <div class="skill-bar-track">
-              <div class="skill-bar-fill" data-width="65"></div>
+            <div class="service-progress">
+              <div class="service-progress-fill" data-width="65"></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ======= TOOLS SECTION ======= -->
-    <section id="tools" class="section">
+    <!-- ======= Portfolio / Tools Section ======= -->
+    <section id="portfolio" class="section section-dark">
       <div class="container">
-        <div class="section-title">
-          <h2>Security Tools</h2>
-          <p>Open-source tools built to help the security community.</p>
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">My Projects</span>
+          <h2 class="section-title">Security Tools</h2>
+          <div class="section-line"></div>
         </div>
-        <div class="tools-grid">
+        <div class="portfolio-grid">
+          <!-- ReconKit -->
           <div class="tool-card">
-            <div class="tool-icon"><i class="bi bi-binoculars"></i></div>
-            <div class="tool-info">
-              <h4>ReconKit 🔎</h4>
-              <span class="tool-tag">Recon Framework</span>
-              <p>Personal reconnaissance framework for bug bounty built to automate multi-tool subdomain enumeration, JS
-                endpoint extraction, and smart template scanning.</p>
-              <a href="https://github.com/purushothamr01/ReconKit" target="_blank" class="tool-link">View on GitHub <i
-                  class="bi bi-arrow-up-right"></i></a>
+            <div class="tool-card-header">
+              <div class="tool-icon-box"><i class="bi bi-binoculars"></i></div>
+              <div class="tool-meta">
+                <span class="tool-status active"><span class="status-dot"></span> Active</span>
+                <span class="tool-stars"><i class="bi bi-star-fill"></i> Open Source</span>
+              </div>
+            </div>
+            <div class="tool-body">
+              <span class="tool-category">Recon Framework</span>
+              <h3 class="tool-name">ReconKit</h3>
+              <p class="tool-desc">Personal reconnaissance framework for bug bounty built to automate multi-tool
+                subdomain enumeration, JS endpoint extraction, and smart template scanning.</p>
+              <div class="tool-tech-stack">
+                <span>Python</span><span>Bash</span><span>Subfinder</span><span>Nuclei</span>
+              </div>
+            </div>
+            <div class="tool-card-footer">
+              <a href="https://github.com/purushothamr01/ReconKit" target="_blank" class="tool-btn tool-btn-primary">
+                <i class="bi bi-github"></i> View Source
+              </a>
             </div>
           </div>
+          <!-- JS Explorer -->
           <div class="tool-card">
-            <div class="tool-icon"><i class="bi bi-lightning-charge"></i></div>
-            <div class="tool-info">
-              <h4>JS Explorer ⚡</h4>
-              <span class="tool-tag">JS Analysis</span>
-              <p>A powerful, client-side only JavaScript enumerator and beautifier custom-built for bug bounty hunters,
-                penetration testers, and security researchers.</p>
-              <a href="https://purushothamr01.github.io/Jsexplorer/" target="_blank" class="tool-link">View Tool <i
-                  class="bi bi-arrow-up-right"></i></a>
+            <div class="tool-card-header">
+              <div class="tool-icon-box accent-cyan"><i class="bi bi-lightning-charge"></i></div>
+              <div class="tool-meta">
+                <span class="tool-status active"><span class="status-dot"></span> Live</span>
+                <span class="tool-stars"><i class="bi bi-star-fill"></i> Open Source</span>
+              </div>
+            </div>
+            <div class="tool-body">
+              <span class="tool-category">JS Analysis</span>
+              <h3 class="tool-name">JS Explorer</h3>
+              <p class="tool-desc">A powerful, client-side only JavaScript enumerator and beautifier custom-built for
+                bug bounty hunters, penetration testers, and security researchers.</p>
+              <div class="tool-tech-stack">
+                <span>JavaScript</span><span>HTML</span><span>CSS</span><span>Client-Side</span>
+              </div>
+            </div>
+            <div class="tool-card-footer">
+              <a href="https://github.com/purushothamr01/Jsexplorer" target="_blank" class="tool-btn tool-btn-outline">
+                <i class="bi bi-github"></i> Source
+              </a>
+              <a href="https://purushothamr01.github.io/Jsexplorer/" target="_blank" class="tool-btn tool-btn-primary">
+                <i class="bi bi-box-arrow-up-right"></i> Live Demo
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ======= PUBLICATIONS SECTION ======= -->
-    <section id="publications" class="section section-alt">
+    <!-- ======= Blog / Publications Section ======= -->
+    <section id="blog" class="section">
       <div class="container">
-        <div class="section-title">
-          <h2>Publications</h2>
-          <p>Research articles and technical write-ups on security topics.</p>
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">My Writings</span>
+          <h2 class="section-title">Publications</h2>
+          <div class="section-line"></div>
         </div>
-        <div class="publications-grid">
-          <div class="pub-card">
-            <div class="pub-icon"><i class="bi bi-journal-richtext"></i></div>
-            <div class="pub-info">
-              <span class="pub-tag">Reconnaissance</span>
-              <h4>Complete Recon Workflow for Bug Bounty Hunting</h4>
+        <div class="blog-grid">
+          <article class="pub-card">
+            <div class="pub-number">01</div>
+            <div class="pub-header">
+              <div class="pub-tags">
+                <span class="pub-tag tag-blue">Reconnaissance</span>
+                <span class="pub-read-time"><i class="bi bi-clock"></i> 12 min read</span>
+              </div>
+              <div class="pub-icon"><i class="bi bi-journal-richtext"></i></div>
+            </div>
+            <div class="pub-body">
+              <h3><a
+                  href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0"
+                  target="_blank">Complete Recon Workflow for Bug Bounty Hunting</a></h3>
               <p>Comprehensive guide on asset discovery, automation, noise filtering, and real world reconnaissance
                 methodology.</p>
-              <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0"
-                target="_blank" class="pub-link">Read Article <i class="bi bi-arrow-up-right"></i></a>
             </div>
-          </div>
-          <div class="pub-card">
-            <div class="pub-icon"><i class="bi bi-filetype-js"></i></div>
-            <div class="pub-info">
-              <span class="pub-tag">JavaScript Analysis</span>
-              <h4>Reading JavaScript Like a Hacker</h4>
+            <div class="pub-footer">
+              <div class="pub-author">
+                <img src="profile.png" alt="" class="pub-avatar">
+                <div>
+                  <span class="pub-author-name">Purushotham R</span>
+                  <span class="pub-date">2025 Edition</span>
+                </div>
+              </div>
+              <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-my-complete-recon-workflow-for-bug-bounty-hunting-2025-edition-587b903385c0"
+                target="_blank" class="pub-read-btn">
+                Read <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+          <article class="pub-card">
+            <div class="pub-number">02</div>
+            <div class="pub-header">
+              <div class="pub-tags">
+                <span class="pub-tag tag-green">JavaScript Analysis</span>
+                <span class="pub-read-time"><i class="bi bi-clock"></i> 10 min read</span>
+              </div>
+              <div class="pub-icon"><i class="bi bi-filetype-js"></i></div>
+            </div>
+            <div class="pub-body">
+              <h3><a
+                  href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68"
+                  target="_blank">Reading JavaScript Like a Hacker</a></h3>
               <p>Finding hidden APIs, logic flaws, and attack surfaces through comprehensive JavaScript analysis
                 techniques.</p>
-              <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68"
-                target="_blank" class="pub-link">Read Article <i class="bi bi-arrow-up-right"></i></a>
             </div>
-          </div>
-          <div class="pub-card">
-            <div class="pub-icon"><i class="bi bi-database-lock"></i></div>
-            <div class="pub-info">
-              <span class="pub-tag">SQL Injection</span>
-              <h4>Automating SQL Injection with SQLmap</h4>
+            <div class="pub-footer">
+              <div class="pub-author">
+                <img src="profile.png" alt="" class="pub-avatar">
+                <div>
+                  <span class="pub-author-name">Purushotham R</span>
+                  <span class="pub-date">Security Research</span>
+                </div>
+              </div>
+              <a href="https://medium.com/@Purushothamr/%EF%B8%8F-%EF%B8%8F-reading-javascript-like-a-hacker-0d77acae5a68"
+                target="_blank" class="pub-read-btn">
+                Read <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+          <article class="pub-card">
+            <div class="pub-number">03</div>
+            <div class="pub-header">
+              <div class="pub-tags">
+                <span class="pub-tag tag-red">SQL Injection</span>
+                <span class="pub-read-time"><i class="bi bi-clock"></i> 8 min read</span>
+              </div>
+              <div class="pub-icon"><i class="bi bi-database-lock"></i></div>
+            </div>
+            <div class="pub-body">
+              <h3><a
+                  href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593"
+                  target="_blank">Automating SQL Injection with SQLmap</a></h3>
               <p>Practical guide on responsible SQLi automation, payload analysis, and exploitation workflow best
                 practices.</p>
-              <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593"
-                target="_blank" class="pub-link">Read Article <i class="bi bi-arrow-up-right"></i></a>
             </div>
-          </div>
+            <div class="pub-footer">
+              <div class="pub-author">
+                <img src="profile.png" alt="" class="pub-avatar">
+                <div>
+                  <span class="pub-author-name">Purushotham R</span>
+                  <span class="pub-date">Practical Guide</span>
+                </div>
+              </div>
+              <a href="https://medium.com/@Purushothamr/automating-sql-injection-with-sqlmap-a-practical-guide-c22df8e5d593"
+                target="_blank" class="pub-read-btn">
+                Read <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ======= CONTACT SECTION ======= -->
-    <section id="contact" class="section">
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="section section-dark">
       <div class="container">
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>Interested in security consulting, bug bounty collaboration, or just want to discuss cybersecurity?</p>
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-tag">Reach Out</span>
+          <h2 class="section-title">Let's Work Together</h2>
+          <div class="section-line"></div>
         </div>
-        <div class="contact-row">
-          <div class="contact-cards">
-            <div class="contact-info-card">
-              <i class="bi bi-envelope"></i>
-              <h4>Email</h4>
-              <p><a href="mailto:purubughunting@gmail.com">purubughunting@gmail.com</a></p>
-            </div>
-            <div class="contact-info-card">
-              <i class="bi bi-linkedin"></i>
-              <h4>LinkedIn</h4>
-              <p><a href="https://linkedin.com/in/purushothamr06" target="_blank">purushothamr06</a></p>
-            </div>
-            <div class="contact-info-card">
-              <i class="bi bi-github"></i>
-              <h4>GitHub</h4>
-              <p><a href="https://github.com/purushothamr01" target="_blank">purushothamr01</a></p>
-            </div>
-            <div class="contact-info-card">
-              <i class="bi bi-medium"></i>
-              <h4>Medium</h4>
-              <p><a href="https://medium.com/@Purushothamr" target="_blank">@Purushothamr</a></p>
-            </div>
-          </div>
-          <div class="contact-terminal">
-            <div class="terminal-card" id="terminalCard">
-              <div class="terminal-header">
-                <span class="terminal-dot red"></span>
-                <span class="terminal-dot yellow"></span>
-                <span class="terminal-dot green"></span>
-                <span class="terminal-title-text">puru@kali:~</span>
+        <div class="contact-grid">
+          <!-- Terminal Side -->
+          <div class="contact-terminal-wrap">
+            <div class="terminal-card ios-terminal" id="terminalCard">
+              <div class="ios-titlebar">
+                <div class="ios-dots">
+                  <span class="ios-dot close"></span>
+                  <span class="ios-dot minimize"></span>
+                  <span class="ios-dot maximize"></span>
+                </div>
+                <div class="ios-title">Terminal — puru@kali — 80×24</div>
+                <div class="ios-titlebar-spacer"></div>
+              </div>
+              <div class="ios-toolbar">
+                <div class="ios-toolbar-tabs">
+                  <span class="ios-tab active"><i class="bi bi-terminal"></i> puru@kali</span>
+                </div>
+                <div class="ios-toolbar-right">
+                  <span class="ios-uptime" id="terminalUptime">00:00:00</span>
+                </div>
               </div>
               <div class="terminal-body" id="terminalBody">
                 <div class="terminal-output" id="terminalOutput"></div>
@@ -380,28 +525,138 @@
               </div>
             </div>
           </div>
+          <!-- Info Side -->
+          <div class="contact-info-wrap">
+            <h3 class="contact-heading">Get in Touch</h3>
+            <p class="contact-subtitle">Interested in security consulting, bug bounty collaboration, or just want to
+              discuss cybersecurity? Let's connect.</p>
+            <div class="contact-items">
+              <a href="mailto:purushothamr242@gmail.com" class="contact-item-card">
+                <div class="contact-icon-box"><i class="bi bi-envelope"></i></div>
+                <div>
+                  <strong>Email</strong>
+                  <span>purushothamr242@gmail.com</span>
+                </div>
+                <i class="bi bi-arrow-right contact-item-arrow"></i>
+              </a>
+              <div class="contact-item-card">
+                <div class="contact-icon-box icon-green"><i class="bi bi-geo-alt"></i></div>
+                <div>
+                  <strong>Location</strong>
+                  <span>India</span>
+                </div>
+              </div>
+              <div class="contact-item-card">
+                <div class="contact-icon-box icon-purple"><i class="bi bi-clock"></i></div>
+                <div>
+                  <strong>Availability</strong>
+                  <span>Open for collaborations</span>
+                </div>
+              </div>
+            </div>
+            <div class="contact-socials-premium">
+              <a href="https://github.com/purushothamr01" target="_blank" class="social-link-card">
+                <i class="bi bi-github"></i>
+                <span>GitHub</span>
+              </a>
+              <a href="https://linkedin.com/in/purushothamr06" target="_blank" class="social-link-card">
+                <i class="bi bi-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://medium.com/@Purushothamr" target="_blank" class="social-link-card">
+                <i class="bi bi-medium"></i>
+                <span>Medium</span>
+              </a>
+              <a href="https://purushothamr01.github.io/purushothamr/" target="_blank" class="social-link-card">
+                <i class="bi bi-camera"></i>
+                <span>Photos</span>
+              </a>
+              <a href="https://bloomeor.github.io/bloomeor/" target="_blank" class="social-link-card">
+                <i class="bi bi-building"></i>
+                <span>Bloomeor</span>
+              </a>
+              <a href="https://www.instagram.com/purushothamr06/" target="_blank" class="social-link-card">
+                <i class="bi bi-instagram"></i>
+                <span>Instagram</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ======= FOOTER ======= -->
-  <footer id="footer">
+  <!-- ======= Advanced Footer ======= -->
+  <footer class="footer advanced-footer">
+    <div class="footer-glow"></div>
     <div class="container">
-      <p>&copy; 2026 <strong>Purushotham R</strong>. All rights reserved.</p>
-      <p>Security Researcher &bull; Farmer &bull; Wildlife Photographer</p>
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-col brand-col">
+          <a href="#hero" class="footer-logo">Purushotham<span class="logo-dot">.</span><span
+              class="logo-r">R</span></a>
+          <p class="footer-bio">Bridging hardware logic with software vulnerabilities to secure the modern web.</p>
+          <div class="footer-socials">
+            <a href="https://github.com/purushothamr01" target="_blank"><i class="bi bi-github"></i></a>
+            <a href="https://linkedin.com/in/purushothamr06" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.instagram.com/purushothamr06/" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://medium.com/@Purushothamr" target="_blank"><i class="bi bi-medium"></i></a>
+            <a href="mailto:purubughunting@gmail.com"><i class="bi bi-envelope-fill"></i></a>
+          </div>
+        </div>
+
+        <!-- Links Column -->
+        <div class="footer-col links-col">
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#about"><i class="bi bi-chevron-right"></i> About Me</a></li>
+            <li><a href="#services"><i class="bi bi-chevron-right"></i> Expertise</a></li>
+            <li><a href="#portfolio"><i class="bi bi-chevron-right"></i> Projects</a></li>
+            <li><a href="#blog"><i class="bi bi-chevron-right"></i> Publications</a></li>
+          </ul>
+        </div>
+
+        <!-- Stats Column -->
+        <div class="footer-col stats-col">
+          <h4 class="footer-title">Impact</h4>
+          <div class="footer-stats-grid">
+            <div class="f-stat">
+              <span class="f-num">50+</span>
+              <span class="f-label">Bugs</span>
+            </div>
+            <div class="f-stat">
+              <span class="f-num">2</span>
+              <span class="f-label">Tools</span>
+            </div>
+            <div class="f-stat">
+              <span class="f-num">3+</span>
+              <span class="f-label">Years</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="footer-bottom">
+        <p class="copyright">&copy; <span id="currentYear">2026</span> <strong>Purushotham R</strong>. All rights
+          reserved.</p>
+        <p class="footer-signature">Security Researcher <span class="dot-sep">•</span> Farmer <span
+            class="dot-sep">•</span> Wildlife Photographer</p>
+      </div>
     </div>
   </footer>
 
-  <!-- Scroll To Top -->
-  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
-    <i class="bi bi-arrow-up-short"></i>
-  </button>
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Go to top"><i class="bi bi-arrow-up-short"></i></button>
 
-  <!-- Scripts -->
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- Main JavaScript File -->
   <script src="script.js"></script>
-
 </body>
 
 </html>
